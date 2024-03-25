@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # Models
-from django.contrib.auth.models import User
 from .models import Administrator, Client
 
 
@@ -32,19 +31,15 @@ class ClientView(APIView):
         """
 
         try:
-            # Create the user
-            user = User.objects.create(
-                username=request.data.get('username'),
-                password=request.data.get('password'),
-                first_name=request.data.get('first_name'),
-                last_name=request.data.get('last_name'),
-                email=request.data.get('email')
-            )
 
             # Create the client
             client = Client.objects.create(
-                user=user,
+                first_name=request.data.get('first_name'),
+                last_name=request.data.get('last_name'),
+                email=request.data.get('email'),
                 phone=request.data.get('phone'),
+                username=request.data.get('username'),
+                password=request.data.get('password')
             )
 
             return Response({'message': 'Client created successfully'}, status=status.HTTP_201_CREATED)
@@ -75,17 +70,12 @@ class AdministratorView(APIView):
 
         try:
             # Create the user
-            user = User.objects.create(
-                username=request.data.get('username'),
-                password=request.data.get('password'),
-                first_name=request.data.get('first_name'),
-                last_name=request.data.get('last_name'),
-                email=request.data.get('email')
-            )
-
-            # Create the administrator
             administrator = Administrator.objects.create(
-                user=user,
+                first_name=request.data.get('first_name'),
+                last_name = request.data.get('last_name'),
+                email = request.data.get('email'),
+                username = request.data.get('username'),
+                password = request.data.get('password')
             )
 
             return Response({'message': 'Administrator created successfully'}, status=status.HTTP_201_CREATED)
@@ -111,27 +101,30 @@ class LoginView(APIView):
         Returns:
         - Response -> The response with the message
         """
+
+        # Define the user
+        user = None
+
         try:
             # Get the data
             username = request.data.get('username')
             password = request.data.get('password')
 
-            # Get the user
-            user = User.objects.get(username=username, password=password)
-
-            # Check the password
-            if user.check_password(password) is False:
-                return Response({'message': 'Incorrect password'}, status=status.HTTP_400_BAD_REQUEST)
-
-            # Get the type of user
+            # Verify if the user exists
             try:
-                client = Client.objects.get(user=user)
-                return Response({'message': 'You are a Client'}, status=status.HTTP_200_OK)
-            except Exception as notIsClient:
-                administrator = Administrator.objects.get(user=user)
-                return Response({'message': 'You are an Administrator'}, status=status.HTTP_200_OK)
+                user = Client.objects.get(username=username, password=password)
+                user_type = 'Client'
 
-        except User.DoesNotExist:
+            except Exception as NotIsClient:
+                user = Administrator.objects.get(username=username, password=password)
+                user_type = 'Administrator'
+
+            if user:
+                return Response({'message': 'User authenticated successfully', 'user': user.username, 'type': user_type}, status=status.HTTP_200_OK)
+            else:
+                return Response({'message': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except user.DoesNotExist:
             return Response({'message': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
         except Exception as e:

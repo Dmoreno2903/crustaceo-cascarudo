@@ -27,7 +27,10 @@ LOCAL_APPS = [
     'rest_framework',
 ]
 
-THIRD_APPS = []
+THIRD_APPS = [
+    'user',
+    'product'
+]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
