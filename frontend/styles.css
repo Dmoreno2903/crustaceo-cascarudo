@@ -1,7 +1,7 @@
 /* Barra de navegacion */
 .navbar {
     padding: 2rem;
-    background-color: #f9f5fa;
+    background-color: #EBEBEB;
 }
   
 .navbar-collapse {
@@ -11,4 +11,66 @@
 
 .navbar-collapse a {
     color: #0a0a23;
+}
+
+/* carrito de compras */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EBEBEB;
+    padding: 20px;
+  }
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-top:20px;
+}
+
+.columna {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.columna input {
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 10px; 
+  text-align: center;
+}
+
+
+.columna-resumen {
+    background-image: linear-gradient(45deg, #734116, #D97B29);
+    color: white;
+    border-radius: 5%;
+  }
+
+
+.product {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.total {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.buy-btn {
+    background-color: #D97B29;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
 }
