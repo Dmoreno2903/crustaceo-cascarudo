@@ -1,11 +1,15 @@
+import { RamaSergio } from "./components/RamaSergio"
 
 function App() {
 
   return (
    <>
+   <RamaSergio/>
    hola mundo
    <br/>
    soy sergio
+   <br />
+   
    </>
   )
 }
