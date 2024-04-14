@@ -7,6 +7,7 @@ import { Registro } from "./pages/registro/Registro"
 import { InicioDeSesion } from "./pages/inicioDeSesion/InicioDeSesion"
 import { CarritoComprasCheck } from "./pages/carritoComprasCheck/CarritoComprasCheck"
 import { Detallado } from "./pages/detallado/Detallado"
+import { Usuario } from "./pages/usuario/Usuario"
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
           <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/>
           <Route path="/carrito-compras-check" element={<CarritoComprasCheck/>}/>
           <Route path="/detallado" element={<Detallado/>}/>
+
+          
+          <Route path="/usuario" element={<Usuario/>}/>
       </Routes>
    </Router>
    
