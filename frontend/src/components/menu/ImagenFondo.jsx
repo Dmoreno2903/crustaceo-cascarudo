@@ -1,9 +1,9 @@
 import crustaceoCascarudo from '../../assets/imagenes/crustaceo_cascarudo.jpg'
-
+import "../../styles/ImagenFondo.css"
 export const ImagenFondo = () => {
   return (
-    <div>
-      <img src={crustaceoCascarudo} alt="imagen del crustaceo cascarudo"/>
+    <div className='imagen-fondo'>
+      
     </div>
     
   )
