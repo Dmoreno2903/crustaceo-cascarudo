@@ -9,12 +9,17 @@ import { CarritoComprasCheck } from "./pages/CarritoComprasCheck"
 import { Detallado } from "./pages/Detallado"
 import { Usuario } from "./pages/Usuario"
 import { Footer } from "./components/Footer"
+import { PrivateRoute } from "./utils/PrivateRoute"
 import "./styles/App.css"
+import { AuthContextProvider } from "./context/AuthContextProvider"
+import { NotFound } from "./pages/NotFound"
+
 
 function App() {
   return (
    <>
    <Router>
+   <AuthContextProvider>
       <Navbar/>
       <Routes>
           <Route path="/" element={<Navigate to="/menu" replace />} />
@@ -23,12 +28,16 @@ function App() {
           <Route path="/registro" element={<Registro/>}/>
           <Route path="/inicio-de-sesion" element={<InicioDeSesion/>}/>
           <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/>
-          <Route path="/carrito-compras-check" element={<CarritoComprasCheck/>}/>
+          <Route path="/carrito-compras-check" element={<PrivateRoute><CarritoComprasCheck/></PrivateRoute>}/>
           <Route path="/detallado" element={<Detallado/>}/>
-          <Route path="/usuario" element={<Usuario/>}/>
+          <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
+
+          <Route path="*" element={<NotFound/>}/>
       </Routes>
       <Footer/>
+      </AuthContextProvider>
    </Router>
+
    
    
    </>
