@@ -1,4 +1,4 @@
-import { ShoppingCart, User } from "phosphor-react"
+import { ShoppingCart, UserCircle } from "phosphor-react"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 export const Navbar = () => {
@@ -14,7 +14,7 @@ export const Navbar = () => {
           <ShoppingCart size={32}/>
         </Link>
         <Link to="/usuario">
-          <User size={32}/>
+          <UserCircle size={32}/>
         </Link>
       </div>
       
