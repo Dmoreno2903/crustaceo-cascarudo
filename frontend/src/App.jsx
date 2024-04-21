@@ -8,14 +8,14 @@ import { InicioDeSesion } from "./pages/InicioDeSesion"
 import { CarritoComprasCheck } from "./pages/CarritoComprasCheck"
 import { Detallado } from "./pages/Detallado"
 import { Usuario } from "./pages/Usuario"
+import { Footer } from "./components/Footer"
+import "./styles/App.css"
 
 function App() {
-
   return (
    <>
    <Router>
       <Navbar/>
-      
       <Routes>
           <Route path="/" element={<Navigate to="/menu" replace />} />
           <Route path="/menu" element={<Menu/>}/>
@@ -25,11 +25,11 @@ function App() {
           <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/>
           <Route path="/carrito-compras-check" element={<CarritoComprasCheck/>}/>
           <Route path="/detallado" element={<Detallado/>}/>
-
-          
           <Route path="/usuario" element={<Usuario/>}/>
       </Routes>
+      <Footer/>
    </Router>
+   
    
    </>
   )
