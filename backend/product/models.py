@@ -1,5 +1,6 @@
 # Library for models
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Base(models.Model):
@@ -36,6 +37,7 @@ class Burguer(Base):
     Burguer model
 
     Attributes:
+        score: Score of the burguer
         name: Name of the burguer
         price: Price of the burguer
         description: Description of the burguer
@@ -44,6 +46,7 @@ class Burguer(Base):
         created_at: Date of creation
         product: Base model
     """
+    score = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     class Meta:
         verbose_name = 'Burguer'

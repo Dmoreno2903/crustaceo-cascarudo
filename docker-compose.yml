@@ -6,12 +6,13 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    command: python3 manage.py runserver
     ports:
       - "8000:8000"
     expose:
       - "8000"
     volumes:
-      - .:/app
+      - .:/backend
     depends_on:
       - database
     env_file:
@@ -27,3 +28,7 @@ services:
       - .env
     volumes:
       - crustaceo_db:/var/lib/postgresql/data
+
+
+volumes:
+  crustaceo_db:
