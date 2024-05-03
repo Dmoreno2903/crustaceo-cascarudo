@@ -1,87 +1,135 @@
 [
     {
-        "id": 1,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 60
+        "id":1,
+        "score": 4,
+        "name": "Cangreburguer clásica",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": true
     },
     {
-        "id": 2,
-        "nombre": "Cangreburguer especial",
-        "descripcion": " Esta hamburguesa incluye doble carne de cangrejo, una generosa porción de aguacate, bacon crujiente de pescado, queso cheddar añejo, hojas de arúgula fresca, y una exclusiv",
-        "precio": 30000,
-        "valoracion": 70
+        "id":2,
+        "score": 3,
+        "name": "Cangreburguer especial",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": true
     },
     {
-        "id": 3,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 72
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 4,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 73
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 5,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 75
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 6,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 77
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 7,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 79
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 8,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 80
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 9,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 83
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 10,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 85
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     },
     {
-        "id": 11,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 87
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    },
+    {
+        "id":3,
+        "score": 2,
+        "name": "Cangreburguer de piña",
+        "price": "25000",
+        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
+        "image": "/src/assets/imagenes/cangreburguer.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
     }
-    ,
-    {
-        "id": 12,
-        "nombre": "Cangreburguer clásica",
-        "descripcion": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "precio": 25000,
-        "valoracion": 90
-    }
+    
 ]

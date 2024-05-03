@@ -9,7 +9,6 @@ export const MenuGeneral = () => {
         <BotonMenu name={"Papas"}/>
         <BotonMenu name={"Cangreburguers"}/>
         <BotonMenu name={"Bebidas"}/>
-
       </div>
       <ListaProductosGeneral/>
       <BotonCambiarPagina/>

@@ -3,9 +3,10 @@ import { TarjetaProductoDestacado } from "./TarjetaProductoDestacado"
 
 
 export const ListaProductosDestacados = () => {
-  const listaOrdenada = ListaProductos.sort((a,b)=>(b.valoracion - a.valoracion))
+  const listaOrdenada = ListaProductos.filter(producto=>producto.is_outstanding)
   const listaRecortada = listaOrdenada.slice(0,2)
 
+  
   return (
     <div>
       {listaRecortada.map(producto=>(
