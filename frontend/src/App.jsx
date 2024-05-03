@@ -27,7 +27,7 @@ function App() {
           <Route path="/inicio" element={<Inicio/>}/>
           <Route path="/registro" element={<Registro/>}/>
           <Route path="/inicio-de-sesion" element={<InicioDeSesion/>}/>
-          <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/>
+          <Route path="/carrito-compras-preview" element={<PrivateRoute><CarritoComprasPreview/></PrivateRoute>}/>
           <Route path="/carrito-compras-check" element={<PrivateRoute><CarritoComprasCheck/></PrivateRoute>}/>
           <Route path="/detallado" element={<Detallado/>}/>
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
