@@ -9,7 +9,9 @@
     justify-content: space-between;
     align-items: center;
 }
-
+.barra-busqueda{
+    align-self: center;
+}
 .derecha{
     display: flex;
     gap: 25px;
