@@ -11,8 +11,12 @@ export const Navbar = () => {
   console.log("navbar user", user)
   return (
     <div className="navbar">
+      <div className="izquierda">
+        <Link to="/">Crustaceo cascarudo</Link>
+      </div>
 
-      <Link to="/">Crustaceo cascarudo</Link>
+      <input className="barra-busqueda" placeholder="Buscar productos..."/>
+      
 
       <div className="derecha">
         <Link to="/">Menu</Link>
