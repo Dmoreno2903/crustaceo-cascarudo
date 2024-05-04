@@ -7,8 +7,6 @@ export const Navbar = () => {
   
   const {user} = useContext(AuthContext)
 
-
-  console.log("navbar user", user)
   return (
     <div className="navbar">
       <div className="izquierda">
