@@ -6,9 +6,7 @@ import { AuthContext } from "../context/AuthContextProvider"
 
 
 export const Menu = () => {
-  const { user } = useContext(AuthContext)
   
-console.log(user)
   return (
     <div>
       <ImagenFondo/>
