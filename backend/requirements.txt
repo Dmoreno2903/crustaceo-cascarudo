@@ -1,6 +1,10 @@
 # Python
 Django==5.0.3
 djangorestframework
+Pillow
 
 # Django
 python-dotenv
+
+# Base de datos
+psycopg2-binary

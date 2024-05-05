@@ -11,7 +11,7 @@ class Administrator(User):
         return self.username
 
     class Meta:
-        db_table = 'Administrator'
+        db_table = 'administrator'
         verbose_name = 'Administrator'
         verbose_name_plural = 'Administrators'
 
@@ -30,6 +30,6 @@ class Client(User):
         return self.username
 
     class Meta:
-        db_table = 'Client'
+        db_table = 'client'
         verbose_name = 'Client'
         verbose_name_plural = 'Clients'

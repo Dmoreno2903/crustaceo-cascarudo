@@ -1,0 +1,32 @@
+
+services:
+  backend:
+    image: backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 manage.py runserver
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    volumes:
+      - .:/backend
+    depends_on:
+      - database
+    env_file:
+      - .env
+
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    env_file:
+      - .env
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:

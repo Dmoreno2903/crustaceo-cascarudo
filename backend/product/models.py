@@ -49,6 +49,7 @@ class Burguer(Base):
     score = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     class Meta:
+        db_table = 'burguer'
         verbose_name = 'Burguer'
         verbose_name_plural = 'Burguers'
 
@@ -67,6 +68,7 @@ class Fries(Base):
     """
 
     class Meta:
+        db_table = 'fries'
         verbose_name = 'Fries'
         verbose_name_plural = 'Fries'
 
@@ -85,5 +87,6 @@ class Drink(Base):
     """
 
     class Meta:
+        db_table = 'drink'
         verbose_name = 'Drink'
         verbose_name_plural = 'Drinks'
