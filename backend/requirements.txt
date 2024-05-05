@@ -1,10 +1,12 @@
 # Python
 Django==5.0.3
-djangorestframework
+gunicorn
 Pillow
 
 # Django
-python-dotenv
+djangorestframework
+django-cors-headers
+django-environ
 
 # Base de datos
 psycopg2-binary

@@ -5,11 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python3 manage.py runserver
-    ports:
-      - "8000:8000"
     expose:
-      - "8000"
+      - "8001"
+    ports:
+      - "8001:8001"
+    command: gunicorn configuration.wsgi:application --name configuration_gunicorn --workers 1 --timeout 600 --bind 0.0.0.0:8001 --log-level=debug --log-file=-
     volumes:
       - .:/backend
     depends_on:

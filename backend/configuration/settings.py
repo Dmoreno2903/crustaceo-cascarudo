@@ -1,17 +1,24 @@
 # libraries
 import os
-from dotenv import load_dotenv
+import environ
 from pathlib import Path
 
 # Path of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Environment variables
-load_dotenv(f'../{BASE_DIR}/.env')
+env = environ.Env()
+# Read the .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG')
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG', default=False)
+# Allowed hosts
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+# Permitimos todas las peticiones
+CORS_ALLOW_ALL_ORIGINS = True
+# Origenes confiables para el CSRF
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default='')
 
 # Installed apps
 BASE_APPS = [
@@ -24,18 +31,21 @@ BASE_APPS = [
 ]
 
 LOCAL_APPS = [
-    'rest_framework',
+    'user',
+    'product'
 ]
 
 THIRD_APPS = [
-    'user',
-    'product'
+    'corsheaders',
+    'rest_framework',
+
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
 # Middleware
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
