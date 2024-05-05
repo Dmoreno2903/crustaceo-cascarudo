@@ -28,5 +28,16 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8002:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static:/backend/static
+      - ./media:/backend/media
+    depends_on:
+      - backend
+
 volumes:
   db:
