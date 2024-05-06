@@ -3,17 +3,26 @@
     top: 0;
     z-index: 100;
     width: 100%;
-    height: 80px;
-    background-color: rgb(128, 128, 128);
+    height: 90px;
+    background-color: #EBEBEB;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+/* Estilo de los componentes Link de react-router-dom, se renderizan como a*/
+.navbar a {
+    /*elimina el subrayado de las etiquetas a*/
+    text-decoration: none;
+    /*hereda el color del elemento padre, en este caso del body*/
+    color: inherit;
+}
 .barra-busqueda{
     align-self: center;
 }
+
 .derecha{
     display: flex;
+    align-items: center;
     gap: 25px;
 }
 

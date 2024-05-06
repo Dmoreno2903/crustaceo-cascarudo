@@ -9,9 +9,9 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="izquierda">
+      
         <Link to="/">Crustaceo cascarudo</Link>
-      </div>
+      
 
       <input className="barra-busqueda" placeholder="Buscar productos..."/>
       
@@ -36,9 +36,6 @@ export const Navbar = () => {
         <Link to="/carrito-compras-preview">
             <ShoppingCart size={32}/>
         </Link>
-
-        
-        
       </div>
       
     </div>

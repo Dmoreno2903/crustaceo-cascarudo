@@ -1,0 +1,19 @@
+.tarjeta-producto-destacado{
+    height: 600px;
+    width: 500px;
+    text-align: center;
+}
+.image{
+    height: 252px;
+    width: 440px;
+}
+.name{
+    font-size: 35px;
+}
+.description{
+    font-size: 20px;
+}
+.price{
+    font-size: 35px;
+    color: #D97B29;
+}
