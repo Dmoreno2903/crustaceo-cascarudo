@@ -4,5 +4,5 @@
     justify-content: center;
     /*permite que los elementos se envuelvan a la siguiente línea si no hay suficiente espacio en la línea actual.*/
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 50px;
 }

@@ -1,6 +1,7 @@
-
-export const BotonAgregarProducto = () => {
+import '../../styles/botones/BotonAgregarProducto.css'
+export const BotonAgregarProducto = ({handleClick}) => {
+  
   return (
-    <button>Agregar al carrito</button>
+    <button className='boton' onClick={handleClick}>Agregar al carrito</button>
   )
 }
