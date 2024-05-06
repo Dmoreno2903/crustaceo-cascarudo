@@ -1,6 +1,16 @@
+/* Estilos generales de la pagina */
+
+/* Selecciona el elemento body de la página */
 body {
-    margin-top: 80px;
-    margin-left: 0px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-  }
+  /* Establece los márgenes del cuerpo de la página. 90px en la parte superior, 0px en los demás lados */
+  margin: 60px 0px 0px 0px;
+
+  /* Establece el color del texto del cuerpo de la página a un marrón muy oscuro (#260101) */
+  color: #260101;
+
+  /* Establece el color de fondo del cuerpo de la página a un gris claro (#EBEBEB) */
+  background-color: #EBEBEB;
+
+  /* Fuente del texto de la pagina*/
+  font-family: 'Ubuntu', 'Arial', 'Helvetica', sans-serif;
+}

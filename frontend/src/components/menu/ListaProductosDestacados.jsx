@@ -1,6 +1,6 @@
 import ListaProductos from "../../dataMomentanea/ListaProductos.json"
 import { TarjetaProductoDestacado } from "./TarjetaProductoDestacado"
-
+import '../../styles/menu/ListaProductosDestacados.css'
 
 export const ListaProductosDestacados = () => {
   const listaOrdenada = ListaProductos.filter(producto=>producto.is_outstanding)
@@ -8,7 +8,7 @@ export const ListaProductosDestacados = () => {
 
   
   return (
-    <div>
+    <div className="productos-destacados">
       {listaRecortada.map(producto=>(
         <TarjetaProductoDestacado
         key={producto.id} 
