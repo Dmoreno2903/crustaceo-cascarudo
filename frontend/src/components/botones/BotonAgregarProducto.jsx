@@ -5,3 +5,4 @@ export const BotonAgregarProducto = ({handleClick}) => {
     <button className='boton-agregar-producto' onClick={handleClick}>Agregar al carrito</button>
   )
 }
+
