@@ -10,4 +10,5 @@
 }
 .boton-menu:hover{
     cursor:pointer;
+    filter: brightness(90%); /* Oscurece el botón un 10% al pasar el mouse */
 }

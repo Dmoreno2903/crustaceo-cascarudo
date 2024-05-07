@@ -3,17 +3,21 @@
 }
 
 .general-image{
-    height: 171.82px;
     width: 300px;
+    height: 171.82px;
+    border-radius: 25px;
 }
 
 .general-name{
-    font-size: 30px;
+    width: 307px;
+    height: 49px;
+    margin-bottom: 0;
 }
 
 .general-price{
     font-size: 35px;
     color: #D97B29;
+    margin: 5px 0;
 }
 
 .general-info-producto {
@@ -21,6 +25,10 @@
     margin-bottom: 10px;
     position: relative;
     overflow: hidden; /* Asegura que el contenido de ::after no se desborde */
+    transition: transform 0.3s ease; /* Agrega una transición suave al transform */
+}
+.general-info-producto:hover{
+    transform: scale(1.05); /* Amplía el elemento un 5% al pasar el mouse */
 }
 
 .general-info-producto::after {

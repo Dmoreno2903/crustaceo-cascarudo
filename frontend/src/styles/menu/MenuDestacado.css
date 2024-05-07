@@ -1,3 +1,9 @@
+.menu-destacado{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap:50px;
+}
 .titulo{
     text-align: center;
 }

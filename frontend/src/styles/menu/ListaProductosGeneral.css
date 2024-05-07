@@ -20,7 +20,7 @@
         /* Crea 3 columnas de igual ancho */
         grid-template-columns: repeat(3, 1fr);
         /* Establece el espacio entre las columnas y las filas */
-        gap: 50px;
+        gap: 125px;
         /* Los elementos se centran horizontalmente en sus respectivas celdas */
         justify-items: center;
         /* Agrega un margen de 20px a la izquierda y a la derecha */

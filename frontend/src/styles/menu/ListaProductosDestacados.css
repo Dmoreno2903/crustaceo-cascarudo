@@ -1,7 +1,7 @@
 .productos-destacados{
     display: flex;
     /*centra los hijos a lo largo del eje horizontal*/
-    justify-content: center;
+    justify-content: space-evenly;
     /*permite que los elementos se envuelvan a la siguiente línea si no hay suficiente espacio en la línea actual.*/
     flex-wrap: wrap;
     gap: 50px;

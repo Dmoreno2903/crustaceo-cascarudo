@@ -34,7 +34,7 @@ export const MenuGeneral = () => {
         <BotonMenu name={"Bebidas"}/>
       </div>
       <ListaProductosGeneral listaRecortada={listaRecortada}/>
-      <Pagination count={numeroPaginas} color="primary" onChange={handleChange}></Pagination>
+      <Pagination className="pagination" count={numeroPaginas} color="primary" onChange={handleChange}></Pagination>
     </div>
   )
 }

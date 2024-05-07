@@ -4,8 +4,9 @@
     font-size: 20px;
     border: none;
     border-radius: 25px;
-    padding: 0 40px;
+    padding: 10px 40px;
 }
 .boton-agregar-producto:hover{
     cursor:pointer;
+    filter: brightness(90%); /* Oscurece el botón un 10% al pasar el mouse */
 }
