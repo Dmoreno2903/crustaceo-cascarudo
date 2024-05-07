@@ -1,6 +1,12 @@
+import { useParams } from "react-router-dom"
 
 export const Detallado = () => {
+  const {id} = useParams()
   return (
-    <div>Detallado</div>
+    <div>Detallado
+      <br/>
+
+      producto con id: {id}
+    </div>
   )
 }

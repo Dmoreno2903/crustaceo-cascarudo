@@ -1,11 +1,13 @@
-.boton-agregar-producto {
+.boton-menu {
     background-color: #D97B29;
     color: #EBEBEB;
+    height: 70px;
+    width: 374px;
     font-size: 20px;
     border: none;
     border-radius: 25px;
     padding: 0 40px;
 }
-.boton-agregar-producto:hover{
+.boton-menu:hover{
     cursor:pointer;
 }

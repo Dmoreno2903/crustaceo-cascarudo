@@ -3,6 +3,8 @@ import { ListaProductosGeneral } from "./ListaProductosGeneral"
 import Pagination from "@mui/material/Pagination"
 import ListaProductos from "../../dataMomentanea/ListaProductos.json"
 import { useState } from "react"
+import '../../styles/menu/MenuGeneral.css'
+
 
 export const MenuGeneral = () => {
 
@@ -25,8 +27,8 @@ export const MenuGeneral = () => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="menu-general">
+      <div className="botones-filtro">
         <BotonMenu name={"Papas"}/>
         <BotonMenu name={"Cangreburguers"}/>
         <BotonMenu name={"Bebidas"}/>

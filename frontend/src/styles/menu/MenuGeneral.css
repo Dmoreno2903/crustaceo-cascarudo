@@ -1,0 +1,8 @@
+.menu-general{
+    margin-top: 100px;
+}
+.botones-filtro {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 100px;
+}
