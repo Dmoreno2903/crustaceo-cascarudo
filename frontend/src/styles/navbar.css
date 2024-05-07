@@ -16,6 +16,7 @@
     /*hereda el color del elemento padre, en este caso del body*/
     color: inherit;
 }
+
 .barra-busqueda{
     align-self: center;
 }
