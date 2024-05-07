@@ -1,0 +1,29 @@
+/* Selecciona la clase .lista-productos-general */
+.lista-productos-general {
+    /* Establece el tipo de layout a flex */
+    display: flex;
+    /* Los elementos se apilan verticalmente */
+    flex-direction: column;
+    /* Los elementos se centran horizontalmente */
+    align-items: center;
+    /* Agrega un margen de 20px a la izquierda y a la derecha */
+    margin: 0 20px;
+    gap: 50px;
+}
+
+/* Aplica estilos solo cuando la pantalla tiene al menos 768px de ancho */
+@media screen and (min-width: 768px) {
+    /* Selecciona la clase .lista-productos-general */
+    .lista-productos-general {
+        /* Establece el tipo de layout a grid */
+        display: grid;
+        /* Crea 3 columnas de igual ancho */
+        grid-template-columns: repeat(3, 1fr);
+        /* Establece el espacio entre las columnas y las filas */
+        gap: 125px;
+        /* Los elementos se centran horizontalmente en sus respectivas celdas */
+        justify-items: center;
+        /* Agrega un margen de 20px a la izquierda y a la derecha */
+        margin: 0 20px;
+    }
+}

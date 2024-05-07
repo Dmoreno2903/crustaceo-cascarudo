@@ -1,45 +1,37 @@
-.tarjeta-producto-destacado{
-    height: 500px;
-    width: 440px;
+.tarjeta-producto-general{
     text-align: center;
 }
-.detacado-image{
-    height: 220px;
-    width: 440px;
+
+.general-image{
+    width: 300px;
+    height: 171.82px;
     border-radius: 25px;
-}
-.detacado-name{
-    width: 440px;
-    height: 40px;
-    margin-bottom: 0;
-}
-.detacado-description{
-    width: 440px;
-    height: 115px;
-    font-size: 20px;
-    margin: 10px 0;
-}
-.detacado-price{
-    width: 440px;
-    height: 40px;
-    font-size: 35px;
-    color: #D97B29;
-    margin: 10px 0;
 }
 
-.destacado-info-producto {
-    
+.general-name{
+    width: 307px;
+    height: 49px;
+    margin-bottom: 0;
+}
+
+.general-price{
+    font-size: 35px;
+    color: #D97B29;
+    margin: 5px 0;
+}
+
+.general-info-producto {
     border-radius: 25px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     position: relative;
     overflow: hidden; /* Asegura que el contenido de ::after no se desborde */
     transition: transform 0.3s ease; /* Agrega una transición suave al transform */
 }
-.destacado-info-producto:hover{
+.general-info-producto:hover{
     transform: scale(1.05); /* Amplía el elemento un 5% al pasar el mouse */
 }
 
-.destacado-info-producto::after {
+.general-info-producto::after {
     content: "Ver producto detallado";
     position: absolute;
     top: 50%;
@@ -57,7 +49,7 @@
     opacity: 0; /* Inicialmente, el contenido de ::after es transparente */
 }
 
-.destacado-info-producto:hover::after {
+.general-info-producto:hover::after {
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%); /* Mantiene el contenido de ::after centrado */

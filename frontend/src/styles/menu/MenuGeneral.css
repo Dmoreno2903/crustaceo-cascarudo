@@ -1,0 +1,15 @@
+.menu-general{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+.botones-filtro {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 75px;
+}
+.pagination {
+    margin-bottom: 50px;
+}
