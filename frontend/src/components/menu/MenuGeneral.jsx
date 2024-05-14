@@ -2,8 +2,9 @@ import {BotonMenu} from "../botones/BotonMenu"
 import { ListaProductosGeneral } from "./ListaProductosGeneral"
 import Pagination from "@mui/material/Pagination"
 import ListaProductos from "../../dataMomentanea/ListaProductos.json"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import '../../styles/menu/MenuGeneral.css'
+import { AuthContext } from "../../context/AuthContextProvider"
 
 
 export const MenuGeneral = () => {
@@ -25,13 +26,16 @@ export const MenuGeneral = () => {
     setIndiceInicio(numeroActual*6)
     setIndiceFinal(numeroActual*6+6)
   }
-
+  
+  const {active, onClick} = useContext(AuthContext)
+  
   return (
     <div className="menu-general">
+      <h1 className="titulo">Menu</h1>
       <div className="botones-filtro">
-        <BotonMenu name={"Papas"}/>
-        <BotonMenu name={"Cangreburguers"}/>
-        <BotonMenu name={"Bebidas"}/>
+        <BotonMenu name={"Papas"} currentActive = {active.papas} onClick={()=>onClick("papas")}/>
+        <BotonMenu name={"Cangreburguers"} currentActive = {active.cangreburguers} onClick={()=>onClick("cangreburguers")}/>
+        <BotonMenu name={"Bebidas"} currentActive = {active.bebidas} onClick={()=>onClick("bebidas")}/>
       </div>
       <ListaProductosGeneral listaRecortada={listaRecortada}/>
       <Pagination className="pagination" count={numeroPaginas} color="primary" onChange={handleChange}></Pagination>

@@ -12,3 +12,6 @@
     cursor:pointer;
     filter: brightness(90%); /* Oscurece el botón un 10% al pasar el mouse */
 }
+.active {
+    background-color: rgba(160, 90, 20, 1);
+}

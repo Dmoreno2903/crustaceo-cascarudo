@@ -9,7 +9,17 @@
     display: flex;
     gap: 50px;
     margin-bottom: 75px;
+    justify-content: center;
 }
+
 .pagination {
     margin-bottom: 50px;
+}
+
+@media screen and (max-width:1250px) {
+    .botones-filtro{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
 }
