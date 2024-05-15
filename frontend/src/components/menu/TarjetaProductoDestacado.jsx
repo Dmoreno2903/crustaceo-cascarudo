@@ -3,6 +3,7 @@ import '../../styles/menu/TarjetaProductoDestacado.css'
 import { useNavigate } from "react-router-dom"
 
 export const TarjetaProductoDestacado = ({producto}) => {
+  
   const navigate = useNavigate()
   
   const handleClick = (id)=>{
@@ -10,7 +11,7 @@ export const TarjetaProductoDestacado = ({producto}) => {
   }
 
   const handleInfoClick = (id)=>{
-    navigate(`/detallado/${id}`)
+    navigate(`/detallado/burguers/${id}`)
   }
   
   return (

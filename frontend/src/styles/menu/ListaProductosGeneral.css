@@ -12,7 +12,7 @@
 }
 
 /* Aplica estilos solo cuando la pantalla tiene al menos 768px de ancho */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1250px) {
     /* Selecciona la clase .lista-productos-general */
     .lista-productos-general {
         /* Establece el tipo de layout a grid */

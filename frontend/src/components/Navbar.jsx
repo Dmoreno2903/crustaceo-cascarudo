@@ -3,14 +3,19 @@ import { Link } from "react-router-dom"
 import "../styles/Navbar.css"
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContextProvider"
+
 export const Navbar = () => {
   
   const {user} = useContext(AuthContext)
 
   return (
     <div className="navbar">
-      
-        <Link to="/">Crustaceo cascarudo</Link>
+      <div className="izquierda">
+        <Link to="/">
+          <div><img className="navbar-logo" src="/src/assets/imagenes/logo.jpg"/></div>
+          <div>Crustáceo cascarudo</div>
+        </Link>
+      </div>
       
 
       <input className="barra-busqueda" placeholder="Buscar productos..."/>

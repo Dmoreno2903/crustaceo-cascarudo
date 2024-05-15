@@ -7,9 +7,8 @@ import { AuthContext } from "../../context/AuthContextProvider"
 
 
 export const MenuGeneral = () => {
-  const {active, onClick, burguers, menuToShow} = useContext(AuthContext)
+  const {active, onClick, menuToShow} = useContext(AuthContext)
 
-  
   
   // Calcula el numero de paginas necesarias para la paginacion, siempre calcula por encima por si sobran productos
   const numeroPaginas = Math.ceil(menuToShow.length/6)
