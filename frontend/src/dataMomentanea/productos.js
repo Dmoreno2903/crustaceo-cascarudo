@@ -1,4 +1,4 @@
-[
+export const BURGUER = [
     {
         "id":1,
         "score": 4,
@@ -275,4 +275,80 @@
         "is_outstanding": true
     }
     
+]
+
+export const FRIES = [
+    {
+        "id":1,
+        "name": "Papas teriyaki",
+        "price": "12000",
+        "description": "papas en teriyaki",
+        "image": "/src/assets/imagenes/papas.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    },
+    {
+        "id":2,
+        "name": "Papas con salsa de tomate",
+        "price": "12000",
+        "description": "papas con salsa de tomate",
+        "image": "/src/assets/imagenes/papas.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    },
+    {
+        "id":3,
+        "name": "Papas con salsa rosada",
+        "price": "12000",
+        "description": "papas con salsa rosada",
+        "image": "/src/assets/imagenes/papas.jpg",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    }
+]
+
+export const DRINK = [
+    {
+        "id":1,
+        "name": "Cocacola",
+        "price": "12000",
+        "description": "Coca cola sabor clasico",
+        "image": "/src/assets/imagenes/drink.webp",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    },
+    {
+        "id":2,
+        "name": "Pepsi",
+        "price": "12000",
+        "description": "pepepsi",
+        "image": "/src/assets/imagenes/drink.webp",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    },
+    {
+        "id":3,
+        "name": "Cocacola sabor cafe",
+        "price": "12000",
+        "description": "Cocacola con sabor cafe",
+        "image": "/src/assets/imagenes/drink.webp",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    },
+    {
+        "id":4,
+        "name": "Naranja postobon",
+        "price": "12000",
+        "description": "postobon naranja",
+        "image": "/src/assets/imagenes/drink.webp",
+        "count": "",
+        "created_at": "",
+        "is_outstanding": false
+    }
 ]
