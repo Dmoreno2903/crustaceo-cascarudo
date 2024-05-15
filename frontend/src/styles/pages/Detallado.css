@@ -1,0 +1,30 @@
+.tarjeta-producto-detallado{
+    display: flex;
+    /* Asegúrate de que el contenido no se desborde */
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.detallado-image{
+    width: 558px;
+    height: 335px;
+    border-radius: 25px;
+}
+
+.detallado-info-producto{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 40%;
+}
+
+@media screen and (min-width: 1250px) {
+    .tarjeta-producto-detallado{
+        height: 80vh;
+        gap: 80px;
+    }
+}

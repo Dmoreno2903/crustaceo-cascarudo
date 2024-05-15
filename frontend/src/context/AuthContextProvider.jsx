@@ -42,6 +42,7 @@ export const AuthContextProvider = ({children}) => {
     const [fries, setFries] = useState(FRIES)
     const [drinks, setDrinks] = useState(DRINK)
     const [menuToShow, setMenuToShow] = useState([])
+    const [selectedList, setSelectedList] = useState('')
     const [active,setActive] = useState(
       {
         "fries": false,
@@ -49,7 +50,6 @@ export const AuthContextProvider = ({children}) => {
         "drinks": false
       }
     )
-    console.log(cartItems)
     const  onClick = (a) =>{
       let activeNuevo = {
         "fries": false,
@@ -68,19 +68,24 @@ export const AuthContextProvider = ({children}) => {
         onClick,
         burguers,
         fries,
-        menuToShow
+        drinks,
+        menuToShow,
+        selectedList
     }
     
     useEffect(()=>{
-      const currentActive = Object.keys(active).find(prop=>active[prop])
-      if(currentActive==="fries"){
+      const selectedList = Object.keys(active).find(prop=>active[prop])
+      if(selectedList==="fries"){
         setMenuToShow(fries)
+        setSelectedList("fries")
       }
-      else if (currentActive==="burguers"){
+      else if (selectedList==="burguers"){
         setMenuToShow(burguers)
+        setSelectedList("burguers")
       }
-      else if (currentActive==="drinks"){
+      else if (selectedList==="drinks"){
         setMenuToShow(drinks)
+        setSelectedList("drinks")
       }
     },[active])
 
