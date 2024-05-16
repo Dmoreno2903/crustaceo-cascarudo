@@ -9,34 +9,32 @@ export const Detallado = () => {
 
   const {fries, burguers, drinks} =useContext(AuthContext)
   
-  const [lista, setLista] = useState([])
   const [producto, setProducto] =useState()
-  
+  const [type, setType]=useState('')
   
   useEffect(()=>{
+    let lista = null
     if(product==="fries"){
-      setLista(fries)
-      
+      lista = fries
+      setType('fries')
     }
     else if(product==="burguers"){
-      setLista(burguers)
+      lista = burguers
+      setType('burguers')
     }
     else if(product==="drinks"){
-      setLista(drinks)
+      lista = drinks
+      setType('drinks')
     }
-    
-  },[product])
-
-  
-  
-  useEffect(()=>{
     const findProduct = lista.find(producto => producto.id===Number(id))
     setProducto(findProduct)
   })
+
   
-  const handleClick = (id) =>{
-    console.log(id)
-  }
+  
+  
+  
+  
 
   return (
     <div>
@@ -51,7 +49,7 @@ export const Detallado = () => {
             <p>Notas: {producto.score}</p>
             }
             <p className="detallado-price">{producto.price}</p>
-            <BotonAgregarProducto handleClick={()=>handleClick(producto.id)}/>
+            <BotonAgregarProducto id={producto.id} type={type} />
           </div>
 
         </div>
