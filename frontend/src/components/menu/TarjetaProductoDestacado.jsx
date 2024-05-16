@@ -2,13 +2,12 @@ import { BotonAgregarProducto } from "../botones/BotonAgregarProducto"
 import '../../styles/menu/TarjetaProductoDestacado.css'
 import { useNavigate } from "react-router-dom"
 
+
 export const TarjetaProductoDestacado = ({producto}) => {
   
   const navigate = useNavigate()
   
-  const handleClick = (id)=>{
-    console.log(id)
-  }
+  
 
   const handleInfoClick = (id)=>{
     navigate(`/detallado/burguers/${id}`)
@@ -22,7 +21,7 @@ export const TarjetaProductoDestacado = ({producto}) => {
         <p className="detacado-description">{producto.description}</p>
         <p className="detacado-price">{producto.price}</p>
       </div>
-      <BotonAgregarProducto handleClick={()=>handleClick(producto.id)}/>
+      <BotonAgregarProducto producto/>
     </div>
   )
 }

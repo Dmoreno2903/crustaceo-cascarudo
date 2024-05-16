@@ -13,7 +13,7 @@ import { PrivateRoute } from "./utils/PrivateRoute"
 import "./styles/App.css"
 import { AuthContextProvider } from "./context/AuthContextProvider"
 import { NotFound } from "./pages/NotFound"
-
+import {Toaster} from "react-hot-toast"
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
           <Route path="*" element={<NotFound/>}/>
       </Routes>
       <Footer/>
+      <Toaster/>
       </AuthContextProvider>
    </Router>
 

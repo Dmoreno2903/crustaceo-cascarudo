@@ -25,7 +25,7 @@ export const Detallado = () => {
       setLista(drinks)
     }
     
-  },[product])
+  })
 
   
   
@@ -34,9 +34,7 @@ export const Detallado = () => {
     setProducto(findProduct)
   })
   
-  const handleClick = (id) =>{
-    console.log(id)
-  }
+  
 
   return (
     <div>
@@ -51,7 +49,7 @@ export const Detallado = () => {
             <p>Notas: {producto.score}</p>
             }
             <p className="detallado-price">{producto.price}</p>
-            <BotonAgregarProducto handleClick={()=>handleClick(producto.id)}/>
+            <BotonAgregarProducto />
           </div>
 
         </div>

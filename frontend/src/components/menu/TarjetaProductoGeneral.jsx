@@ -10,9 +10,7 @@ export const TarjetaProductoGeneral = ({producto}) => {
   
   const navigate = useNavigate()
     
-    const handleClick = (id)=>{
-      console.log(id)
-    }
+    
 
     const handleInfoClick = (id)=>{
       navigate(`/detallado/${selectedList}/${id}`)
@@ -24,7 +22,7 @@ export const TarjetaProductoGeneral = ({producto}) => {
             <h2 className="general-name">{producto.name}</h2>
             <p className="general-price">{producto.price}</p>
           </div>
-          <BotonAgregarProducto handleClick={()=>handleClick(producto.id)}/>
+          <BotonAgregarProducto />
         </div>
       )
 }
