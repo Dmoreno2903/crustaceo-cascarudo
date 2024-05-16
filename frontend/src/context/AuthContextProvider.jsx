@@ -36,7 +36,7 @@ const getDefaultCart = () =>{
 
 export const AuthContextProvider = ({children}) => {
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState()
     const [cartItems, setCartItems] = useState(getDefaultCart())
     const [burguers, setBurguers] = useState(BURGUER)
     const [fries, setFries] = useState(FRIES)
