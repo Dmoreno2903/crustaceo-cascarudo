@@ -5,12 +5,12 @@ import toast from 'react-hot-toast'
 import { AuthContext } from '../../context/AuthContextProvider'
 import { useNavigate } from 'react-router-dom'
 
-export const BotonAgregarProducto = () => {
+export const BotonAgregarProducto = ({id, type}) => {
   const {user} = useContext(AuthContext)
   const navigate = useNavigate()
   const handleClick = () =>{
     user ? 
-    toast.success("Se ha agregado el producto")
+    toast.success(`Se agregó el producto`)
     :
     toast((t)=>{
       const navigateLogin = ()=>{

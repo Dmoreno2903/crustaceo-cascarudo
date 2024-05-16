@@ -21,7 +21,7 @@ export const TarjetaProductoDestacado = ({producto}) => {
         <p className="detacado-description">{producto.description}</p>
         <p className="detacado-price">{producto.price}</p>
       </div>
-      <BotonAgregarProducto producto/>
+      <BotonAgregarProducto producto = {producto.name} type={'burguers'}/>
     </div>
   )
 }
