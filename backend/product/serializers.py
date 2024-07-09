@@ -14,7 +14,7 @@ class BurguerSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Burguer
-        fields = ['name', 'description', 'price', 'image']
+        fields = ['id','name', 'price', 'description', 'image']
 
 class BurguerThumbnailSerializer(serializers.ModelSerializer):
     """
@@ -22,7 +22,7 @@ class BurguerThumbnailSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Burguer
-        fields = ['name', 'price', 'image']
+        fields = ['id','name', 'price', 'image']
 
 # Fries serializer
 class FriesSerializer(serializers.ModelSerializer):
@@ -31,7 +31,7 @@ class FriesSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Fries
-        fields = ['name', 'description', 'price', 'image']
+        fields = ['id','name', 'price', 'description', 'image']
 
 class FriesThumbnailSerializer(serializers.ModelSerializer):
     """
@@ -39,7 +39,7 @@ class FriesThumbnailSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Fries
-        fields = ['name', 'price', 'image']
+        fields = ['id', 'name', 'price', 'image']
 
 
 # Drink serializer
@@ -49,7 +49,7 @@ class DrinkSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Drink
-        fields = ['name', 'description', 'price', 'image']
+        fields = ['id','name', 'price', 'description', 'image']
 
 class DrinkThumbnailSerializer(serializers.ModelSerializer):
     """
@@ -57,4 +57,4 @@ class DrinkThumbnailSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Drink
-        fields = ['name', 'price', 'image']
+        fields = ['id', 'name', 'price', 'image']

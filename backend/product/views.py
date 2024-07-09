@@ -14,6 +14,7 @@ from .serializers import BurguerSerializer, BurguerThumbnailSerializer, FriesSer
 
 # Views for the client
 class BurguerViewSet(ReadOnlyModelViewSet):
+    queryset = Burguer.objects.all()
     """
     Burguer view set
     """
