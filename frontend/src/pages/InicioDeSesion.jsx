@@ -21,7 +21,7 @@ export const InicioDeSesion = () => {
           <form onSubmit={handleSubmit((values) => console.log(values))}>
             
             <div className="form-group">
-              <label htmlFor="username">Nombre de usuario</label>
+        
               <input
                 type="text"
                 {...register("username", { required: true })}
@@ -29,7 +29,7 @@ export const InicioDeSesion = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Contraseña</label>
+      
               <input
                 type="password"
                 {...register("password", { required: true })}
@@ -42,8 +42,10 @@ export const InicioDeSesion = () => {
             </button>
           </form>
           </div>
+          <a href="">¿Olvidaste tu contraseña?</a>
+          <br></br>
           <div>
-            <h2>¿No tienes cuenta?</h2>
+            <h4>¿No tienes cuenta?</h4>
             <Link className="link" to="/registro">
             Regístrate
             </Link>
