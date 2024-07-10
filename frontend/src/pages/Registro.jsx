@@ -15,7 +15,7 @@ export const Registro = () => {
 
           <form onSubmit={handleSubmit((values) => console.log(values))}>
             <div className="inicio-form-group">
-              <label htmlFor="firstName">Nombres</label>
+              
               <input
                 type="text"
                 {...register("firstName", { required: true })}
@@ -23,7 +23,7 @@ export const Registro = () => {
               />
             </div>
             <div className="inicio-form-group">
-              <label htmlFor="lastName">Apellidos</label>
+              
               <input
                 type="text"
                 {...register("lastName", { required: true })}
@@ -31,7 +31,6 @@ export const Registro = () => {
               />
             </div>
             <div className="inicio-form-group">
-              <label htmlFor="email">Correo electrónico</label>
               <input
                 type="email"
                 {...register("email", { required: true })}
@@ -39,7 +38,6 @@ export const Registro = () => {
               />
             </div>
             <div className="inicio-form-group">
-              <label htmlFor="username">Nombre de usuario</label>
               <input
                 type="text"
                 {...register("username", { required: true })}
@@ -47,7 +45,6 @@ export const Registro = () => {
               />
             </div>
             <div className="inicio-form-group">
-              <label htmlFor="password">Contraseña</label>
               <input
                 type="password"
                 {...register("password", { required: true })}
@@ -55,7 +52,6 @@ export const Registro = () => {
               />
             </div>
             <div className="inicio-form-group">
-              <label htmlFor="confirmPassword">Confirmar contraseña</label>
               <input
                 type="password"
                 {...register("confirmPassword", { required: true })}
@@ -76,7 +72,7 @@ export const Registro = () => {
           </form>
           </div>
           <div>
-            <h2>¿Ya tienes cuenta?</h2>
+            <h4>¿Ya tienes cuenta?</h4>
             <Link className="inicio-link" to="/inicio-de-sesion">
             Iniciar sesión
             </Link>
