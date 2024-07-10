@@ -5,12 +5,25 @@ import toast from 'react-hot-toast'
 import { AuthContext } from '../../context/AuthContextProvider'
 import { useNavigate } from 'react-router-dom'
 
-export const BotonAgregarProducto = ({id, type}) => {
-  const {user} = useContext(AuthContext)
+export const BotonAgregarProducto = ({productId, selectedList}) => {
+  const {user, cartItems, setCartItems} = useContext(AuthContext)
   const navigate = useNavigate()
+  const execute = ()=>{
+    productId = String(productId)
+    let copyCartItems = { ...cartItems }
+    if(!Object.keys(cartItems[selectedList]).includes(productId)){
+      copyCartItems[selectedList][productId] = 1
+      setCartItems(copyCartItems)
+    }
+    else {
+      copyCartItems[selectedList][productId]=cartItems[selectedList][productId]+1
+      setCartItems(copyCartItems)
+    }
+    toast.success(`Se agregó el producto`)
+  }
   const handleClick = () =>{
     user ? 
-    toast.success(`Se agregó el producto`)
+    execute()
     :
     toast((t)=>{
       const navigateLogin = ()=>{

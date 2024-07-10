@@ -45,7 +45,7 @@ class BurguerViewSet(ReadOnlyModelViewSet):
         Get oustanding burguers
         """
         queryset = Burguer.objects.filter(count__gt=0, is_outstanding=True)
-        serializer = BurguerThumbnailSerializer(queryset, many=True, context={'request': request})
+        serializer = BurguerSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

@@ -22,7 +22,7 @@ export const TarjetaProductoGeneral = ({producto}) => {
             <h2 className="general-name">{producto.name}</h2>
             <p className="general-price">{producto.price}</p>
           </div>
-          <BotonAgregarProducto id={producto.id} type={selectedList} />
+          <BotonAgregarProducto productId={producto.id} selectedList={selectedList} />
         </div>
       )
 }

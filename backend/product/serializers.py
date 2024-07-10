@@ -22,7 +22,7 @@ class BurguerThumbnailSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Burguer
-        fields = ['id','name', 'price', 'image']
+        fields = ['id', 'name', 'price', 'image']
 
 # Fries serializer
 class FriesSerializer(serializers.ModelSerializer):

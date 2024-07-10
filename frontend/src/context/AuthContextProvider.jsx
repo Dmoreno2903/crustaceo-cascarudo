@@ -1,43 +1,17 @@
 
 import { createContext, useEffect, useState} from 'react'
 import { BURGUER, FRIES, DRINK } from '../dataMomentanea/productos'
-
+import burguerService from '../services/burguers'
 export const AuthContext = createContext()
-
-const getDefaultCart = () =>{
-  let burguerCart = {}
-  let friesCart = {}
-  let drinksCart = {}
-  
-  BURGUER
-  .map(producto=>producto.id)
-  .forEach(id=>{
-    burguerCart[id]=0
-  })
-
-  FRIES
-  .map(producto=>producto.id)
-  .forEach(id=>{
-    friesCart[id]=0
-  })
-
-  DRINK
-  .map(producto=>producto.id)
-  .forEach(id=>{
-    drinksCart[id]=0
-  })
-    
-  
-  
-  
-
-  return {burguerCart,friesCart, drinksCart}
-}
 
 export const AuthContextProvider = ({children}) => {
 
-    const [user, setUser] = useState()
-    const [cartItems, setCartItems] = useState(getDefaultCart())
+    const [user, setUser] = useState({})
+    const [cartItems, setCartItems] = useState({
+      "fries":{},
+      "burguers":{},
+      "drinks":{}
+    })
     const [burguers, setBurguers] = useState(BURGUER)
     const [fries, setFries] = useState(FRIES)
     const [drinks, setDrinks] = useState(DRINK)
@@ -59,7 +33,22 @@ export const AuthContextProvider = ({children}) => {
       activeNuevo[a]=true
       setActive(activeNuevo)
     }
+    const [backendBurguers, setBackendBurguers] = useState([])
+    const [backendBurguersOut, setBackendBurguersOut] = useState([])
 
+    useEffect(() => {
+      burguerService
+        .getAll()
+        .then(burguers => {
+          setBackendBurguers(burguers)
+        })
+        
+      burguerService
+        .getOutstandingBurguers()
+        .then(burguers => {
+          setBackendBurguersOut(burguers)
+        })
+    }, [])
 
     const contextData = {
         user,
@@ -70,7 +59,9 @@ export const AuthContextProvider = ({children}) => {
         fries,
         drinks,
         menuToShow,
-        selectedList
+        selectedList,
+        cartItems,
+        setCartItems
     }
     
     useEffect(()=>{
@@ -88,10 +79,6 @@ export const AuthContextProvider = ({children}) => {
         setSelectedList("drinks")
       }
     },[active])
-
-    
-
-    
   return (
     <AuthContext.Provider value={contextData}>
       {children}
