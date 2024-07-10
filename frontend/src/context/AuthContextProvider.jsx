@@ -8,9 +8,9 @@ export const AuthContextProvider = ({children}) => {
 
     const [user, setUser] = useState({})
     const [cartItems, setCartItems] = useState({
-      "fries":{},
-      "burguers":{},
-      "drinks":{}
+      "fries":{1:4},
+      "burguers":{2:4,23:5},
+      "drinks":{1:3}
     })
     const [burguers, setBurguers] = useState(BURGUER)
     const [fries, setFries] = useState(FRIES)
