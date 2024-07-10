@@ -49,7 +49,7 @@ export const Detallado = () => {
             <p>Notas: {producto.score}</p>
             }
             <p className="detallado-price">{producto.price}</p>
-            <BotonAgregarProducto id={producto.id} type={type} />
+            <BotonAgregarProducto productId={producto.id} selectedList={type} />
           </div>
 
         </div>
