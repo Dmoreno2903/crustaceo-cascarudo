@@ -39,7 +39,7 @@ export const Navbar = () => {
           </>
         )}
         <Link to="/carrito-compras-preview">
-          <Badge badgeContent={4} color="primary">
+          <Badge badgeContent={1} color="primary">
             <ShoppingCart color="action" />
           </Badge>
         </Link>
