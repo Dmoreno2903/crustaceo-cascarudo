@@ -14,6 +14,8 @@ import "./styles/App.css"
 import { AuthContextProvider } from "./context/AuthContextProvider"
 import { NotFound } from "./pages/NotFound"
 import {Toaster} from "react-hot-toast"
+import { Admin } from "./pages/Admin"
+import { Facturas } from "./pages/Facturas"
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path="/carrito-compras-check" element={<PrivateRoute><CarritoComprasCheck/></PrivateRoute>}/>
           <Route path="/detallado/:product/:id" element={<Detallado/>}/>
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
+          <Route path="/admin" element={<PrivateRoute><Admin/></PrivateRoute>}/>
+          <Route path="/admin/facturas" element={<PrivateRoute><Facturas/></PrivateRoute>}/>
 
           <Route path="*" element={<NotFound/>}/>
       </Routes>
