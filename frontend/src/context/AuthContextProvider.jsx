@@ -36,19 +36,19 @@ export const AuthContextProvider = ({children}) => {
     const [backendBurguers, setBackendBurguers] = useState([])
     const [backendBurguersOut, setBackendBurguersOut] = useState([])
 
-    useEffect(() => {
-      burguerService
-        .getAll()
-        .then(burguers => {
-          setBackendBurguers(burguers)
-        })
+    // useEffect(() => {
+    //   burguerService
+    //     .getAll()
+    //     .then(burguers => {
+    //       setBackendBurguers(burguers)
+    //     })
         
-      burguerService
-        .getOutstandingBurguers()
-        .then(burguers => {
-          setBackendBurguersOut(burguers)
-        })
-    }, [])
+    //   burguerService
+    //     .getOutstandingBurguers()
+    //     .then(burguers => {
+    //       setBackendBurguersOut(burguers)
+    //     })
+    // }, [])
 
     const contextData = {
         user,
