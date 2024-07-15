@@ -10,28 +10,51 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
       fries, setFries,
       drinks, setDrinks,
       selectedValue, setSelectedValue
-     } = adminContext;
-    
-    
+     } = adminContext
+
+    let labelToShow = null
+    if(selectedValue==='Burguers'){
+      labelToShow = 'Hamburguesa'
+    }
+    else if(selectedValue==='Fries'){
+      labelToShow = 'Papas'
+    }
+    else if(selectedValue==='Drinks'){
+      labelToShow = 'Bebida'
+    }
    
     const onSubmit = (data) => {
+      let list = null
       if(selectedValue==='Burguers'){
+        list = burguers
+        
+      }
+      else if(selectedValue==='Drinks'){
+        list = drinks
+      }
+      else if(selectedValue==='Fries'){
+        list = fries
+      }
 
-        const objeto = burguers.find(objeto =>objeto.id === product.id)
-        objeto.name = data.name
-        const newList = burguers.map(burguer => burguer.id !== product.id ? burguer:objeto)
+      const objeto = list.find(objeto =>objeto.id === product.id)
+      objeto.name = data.name
+      objeto.description = data.description
+      objeto.score = data.score
+      objeto.price = data.price
+      objeto.image = data.image
+      objeto.count = data.count
+      objeto.is_outstanding = data.is_outstanding
+      
+      if(selectedValue==='Burguers'){
+        const newList = list.map(burguer => burguer.id !== product.id ? burguer:objeto)
         setBurguers(newList)
       }
       else if(selectedValue==='Drinks'){
-        const objeto = drinks.find(objeto =>objeto.id === product.id)
-        objeto.name = data.name
-        const newList = drinks.map(drink => drink.id !== product.id ? drink:objeto)
+        const newList = list.map(drink => drink.id !== product.id ? drink:objeto)
         setDrinks(newList)
       }
       else if(selectedValue==='Fries'){
-        const objeto = fries.find(objeto =>objeto.id === product.id)
-        objeto.name = data.name
-        const newList = fries.map(fries => fries.id !== product.id ? fries:objeto)
+        const newList = list.map(fries => fries.id !== product.id ? fries:objeto)
         setFries(newList)
       }
         
@@ -45,7 +68,7 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
       handleSubmit(
         onSubmit
         )}>
-        <h1>Actualizar producto</h1>
+        <h1>Actualizar {labelToShow} con id {product.id}</h1>
         <label>Nombre: <input {...register("name", { required: "por favor ingresa nombre" })} defaultValue={product.name}/></label>
         <label>Descripción: <input {...register("description", { required: "por favor ingresa descripción" })} defaultValue={product.description}/></label>
         <label>Puntuación: <input {...register("score", { required: "por favor ingresa puntuación" })} defaultValue={product.score}/></label>
