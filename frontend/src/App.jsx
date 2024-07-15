@@ -16,12 +16,14 @@ import { NotFound } from "./pages/NotFound"
 import {Toaster} from "react-hot-toast"
 import { Admin } from "./pages/Admin"
 import { Facturas } from "./pages/Facturas"
+import { AdminContextProvider } from "./context/AdminContextProvider"
 
 function App() {
   return (
    <>
-   <Router>
-   <AuthContextProvider>
+  <Router>
+    
+    <AuthContextProvider>
       <Navbar/>
       <Routes>
           <Route path="/" element={<Navigate to="/menu" replace />} />
@@ -33,15 +35,21 @@ function App() {
           <Route path="/carrito-compras-check" element={<PrivateRoute><CarritoComprasCheck/></PrivateRoute>}/>
           <Route path="/detallado/:product/:id" element={<Detallado/>}/>
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
-          <Route path="/admin" element={<PrivateRoute><Admin/></PrivateRoute>}/>
-          <Route path="/admin/facturas" element={<PrivateRoute><Facturas/></PrivateRoute>}/>
 
+          <Route path="/admin" element={<AdminContextProvider><Admin /></AdminContextProvider>} />
+          <Route path="/admin/facturas" element={<AdminContextProvider><Facturas /></AdminContextProvider>} />
+          
           <Route path="*" element={<NotFound/>}/>
       </Routes>
       <Footer/>
       <Toaster/>
-      </AuthContextProvider>
-   </Router>
+      
+    </AuthContextProvider>
+  
+  </Router>
+  
+  
+    
 
    
    

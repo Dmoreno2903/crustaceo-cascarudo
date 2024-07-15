@@ -1,24 +1,19 @@
 // agregar o eliminar productos del menu, cambiar si es destacado
 
-import { useEffect, useState } from "react"
-import { BURGUER, DRINK, FRIES } from "../../dataMomentanea/productos"
-import { ListaAdminMenu } from "./ListaAdminMenu"
-import { Dropdown } from 'react-dropdown'
+import { useContext } from "react"
+import { TarjetaAdminMenu } from "./TarjetaAdminMenu"
 import { DropdownList } from "./DropdownList"
+import { AdminContext } from "../../context/AdminContextProvider"
 export const AdminMenu = () => {
 
-  const [burguers, setBurguers] = useState(null)
-  const [fries, setFries] = useState(null)
-  const [drinks, setDrinks] = useState(null)
-
-  const [selectedValue, setSelectedValue] = useState(null)
+  const {
+    burguers,
+    fries,
+    drinks,
+    selectedValue, setSelectedValue
+  } = useContext(AdminContext)
   
-  useEffect(() => {
-    setBurguers(BURGUER)
-    setFries(FRIES)
-    setDrinks(DRINK)
-    setSelectedValue('Burguers')
-  }, [burguers])
+  
   
   const options = [
     { value: 'Burguers', label: ' Burguers ' }, 
@@ -33,10 +28,11 @@ export const AdminMenu = () => {
   else if (selectedValue === 'Fries'){
     menuToShow= fries
   }
-  else {
+  else if(selectedValue==='Drinks'){
     menuToShow=drinks
   }
 
+  console.log('admin menu, menutoshow', menuToShow)
   return (
     <>
     {burguers && fries && drinks && menuToShow &&
@@ -57,8 +53,8 @@ export const AdminMenu = () => {
         </thead>
         <tbody>
           {
-            menuToShow.map(burguer => 
-            <ListaAdminMenu key={burguer.id} burguer={burguer}/>
+            menuToShow.map(product => 
+            <TarjetaAdminMenu key={product.id} product={product} selectedValue={selectedValue}/>
           )
           }
           
