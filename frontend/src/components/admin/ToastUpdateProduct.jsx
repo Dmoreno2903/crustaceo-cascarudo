@@ -45,7 +45,15 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
       handleSubmit(
         onSubmit
         )}>
-        <label>name: <input {...register("name", { required: "por favor ingresa nombre" })} defaultValue={product.name}/></label>
+        <h1>Actualizar producto</h1>
+        <label>Nombre: <input {...register("name", { required: "por favor ingresa nombre" })} defaultValue={product.name}/></label>
+        <label>Descripción: <input {...register("description", { required: "por favor ingresa descripción" })} defaultValue={product.description}/></label>
+        <label>Puntuación: <input {...register("score", { required: "por favor ingresa puntuación" })} defaultValue={product.score}/></label>
+        <label>Precio: <input {...register("price", { required: "por favor ingresa precio" })} defaultValue={product.price}/></label>
+        <label>Imagen: <input {...register("image", { required: "por favor ingresa imagen" })} defaultValue={product.image}/></label>
+        <label>Conteo: <input {...register("count", { required: "por favor ingresa conteo" })} defaultValue={Number(product.count)}/></label>
+        <label>Destacado: <input {...register("is_outstanding", { required: "por favor ingresa destacado" })} defaultValue={product.is_outstanding}/></label>
+        
         
         <input type="submit"/>
         <button type="button" onClick={() => toast.dismiss(t.id)}>Cancelar</button>

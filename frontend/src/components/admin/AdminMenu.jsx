@@ -40,14 +40,14 @@ export const AdminMenu = () => {
       <table>
         <thead>
           <tr>
-            <th>Burguer ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Score</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Count</th>
-            <th>Is outstanding</th>
+            <th>{selectedValue} ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Puntuación</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th>Conteo</th>
+            <th>Destacado</th>
           </tr>
         </thead>
         <tbody>
