@@ -17,8 +17,10 @@ import {Toaster} from "react-hot-toast"
 import { Admin } from "./pages/Admin"
 import { Facturas } from "./pages/Facturas"
 import { AdminContextProvider } from "./context/AdminContextProvider"
+import { useContext } from "react"
 
 function App() {
+
   return (
    <>
   <Router>

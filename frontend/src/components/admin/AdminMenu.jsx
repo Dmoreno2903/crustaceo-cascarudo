@@ -32,7 +32,6 @@ export const AdminMenu = () => {
     menuToShow=drinks
   }
 
-  console.log('admin menu, menutoshow', menuToShow)
   return (
     <>
     {burguers && fries && drinks && menuToShow &&

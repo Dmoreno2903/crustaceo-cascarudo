@@ -12,7 +12,8 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
       selectedValue, setSelectedValue
      } = adminContext;
     
-
+    
+   
     const onSubmit = (data) => {
       if(selectedValue==='Burguers'){
 
@@ -47,6 +48,7 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
         <label>name: <input {...register("name", { required: "por favor ingresa nombre" })} defaultValue={product.name}/></label>
         
         <input type="submit"/>
+        <button type="button" onClick={() => toast.dismiss(t.id)}>Cancelar</button>
     </form>
   )
 }
