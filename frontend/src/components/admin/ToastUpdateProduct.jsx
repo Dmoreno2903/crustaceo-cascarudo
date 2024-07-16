@@ -43,7 +43,7 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
         objeto.score = data.score
       }
       objeto.price = data.price
-      objeto.image = data.image
+      objeto.image = URL.createObjectURL(data.image[0])
       objeto.count = data.count
       objeto.is_outstanding = data.is_outstanding
       
@@ -75,7 +75,7 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
         <label>Descripción: <input {...register("description", { required: "por favor ingresa descripción" })} defaultValue={product.description}/></label>
         {selectedValue==='Burguers' && <label>Puntuación: <input {...register("score", { required: "por favor ingresa puntuación" })} defaultValue={product.score}/></label>}
         <label>Precio: <input {...register("price", { required: "por favor ingresa precio" })} defaultValue={product.price}/></label>
-        <label>Imagen: <input {...register("image", { required: "por favor ingresa imagen" })} defaultValue={product.image}/></label>
+        <label>Imagen: <input type='file' {...register("image", { required: "por favor ingresa imagen" })} /></label>
         <label>Conteo: <input {...register("count", { required: "por favor ingresa conteo" })} defaultValue={Number(product.count)}/></label>
         <label>Destacado: 
           <select {...register("is_outstanding", { required: "por favor ingresa destacado" })} defaultValue={product.is_outstanding}>
