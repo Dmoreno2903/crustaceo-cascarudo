@@ -39,7 +39,9 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
       const objeto = list.find(objeto =>objeto.id === product.id)
       objeto.name = data.name
       objeto.description = data.description
-      objeto.score = data.score
+      if(selectedValue==='Burguers'){
+        objeto.score = data.score
+      }
       objeto.price = data.price
       objeto.image = data.image
       objeto.count = data.count
@@ -71,7 +73,7 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
         <h1>Actualizar {labelToShow} con id {product.id}</h1>
         <label>Nombre: <input {...register("name", { required: "por favor ingresa nombre" })} defaultValue={product.name}/></label>
         <label>Descripción: <input {...register("description", { required: "por favor ingresa descripción" })} defaultValue={product.description}/></label>
-        <label>Puntuación: <input {...register("score", { required: "por favor ingresa puntuación" })} defaultValue={product.score}/></label>
+        {selectedValue==='Burguers' && <label>Puntuación: <input {...register("score", { required: "por favor ingresa puntuación" })} defaultValue={product.score}/></label>}
         <label>Precio: <input {...register("price", { required: "por favor ingresa precio" })} defaultValue={product.price}/></label>
         <label>Imagen: <input {...register("image", { required: "por favor ingresa imagen" })} defaultValue={product.image}/></label>
         <label>Conteo: <input {...register("count", { required: "por favor ingresa conteo" })} defaultValue={Number(product.count)}/></label>

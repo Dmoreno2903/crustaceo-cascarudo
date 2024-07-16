@@ -43,7 +43,9 @@ export const AdminMenu = () => {
             <th>{selectedValue} ID</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Puntuación</th>
+            {selectedValue === 'Burguers' &&
+              <th>Puntuación</th>
+            }
             <th>Precio</th>
             <th>Imagen</th>
             <th>Conteo</th>
