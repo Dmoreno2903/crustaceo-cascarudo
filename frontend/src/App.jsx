@@ -18,6 +18,7 @@ import { Admin } from "./pages/Admin"
 import { Facturas } from "./pages/Facturas"
 import { AdminContextProvider } from "./context/AdminContextProvider"
 import { useContext } from "react"
+import { PrivateAdminRoute } from "./utils/PrivateAdminRoute"
 
 function App() {
 
@@ -38,8 +39,8 @@ function App() {
           <Route path="/detallado/:product/:id" element={<Detallado/>}/>
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
 
-          <Route path="/admin" element={<AdminContextProvider><Admin /></AdminContextProvider>} />
-          <Route path="/admin/facturas" element={<AdminContextProvider><Facturas /></AdminContextProvider>} />
+          <Route path="/admin" element={<PrivateAdminRoute><AdminContextProvider><Admin /></AdminContextProvider></PrivateAdminRoute>} />
+          <Route path="/admin/facturas" element={<PrivateAdminRoute><AdminContextProvider><Facturas /></AdminContextProvider></PrivateAdminRoute>} />
           
           <Route path="*" element={<NotFound/>}/>
       </Routes>
