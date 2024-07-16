@@ -32,7 +32,7 @@ export const Navbar = () => {
             <Link to="/inicio-de-sesion">Ingresa</Link>
           </>
         )}
-        {(user && user.type === 'Client') && (
+        {user && (
           <>
             <Link to="/usuario">
               <UserCircle size={32} />

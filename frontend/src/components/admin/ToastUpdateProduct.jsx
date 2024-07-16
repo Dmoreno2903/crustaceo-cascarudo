@@ -77,7 +77,13 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
         <label>Precio: <input {...register("price", { required: "por favor ingresa precio" })} defaultValue={product.price}/></label>
         <label>Imagen: <input {...register("image", { required: "por favor ingresa imagen" })} defaultValue={product.image}/></label>
         <label>Conteo: <input {...register("count", { required: "por favor ingresa conteo" })} defaultValue={Number(product.count)}/></label>
-        <label>Destacado: <input {...register("is_outstanding", { required: "por favor ingresa destacado" })} defaultValue={product.is_outstanding}/></label>
+        <label>Destacado: 
+          <select {...register("is_outstanding", { required: "por favor ingresa destacado" })} defaultValue={product.is_outstanding}>
+            <option value = {true}>true</option>
+            <option value = {false}>false</option>
+
+          </select>
+        </label>
         
         
         <input type="submit"/>
