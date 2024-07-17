@@ -1,9 +1,11 @@
 // agregar o eliminar productos del menu, cambiar si es destacado
 
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { TarjetaAdminMenu } from "./TarjetaAdminMenu"
 import { DropdownList } from "./DropdownList"
 import { AdminContext } from "../../context/AdminContextProvider"
+import { BotonAdminAgregarProducto } from "../botones/BotonAdminAgregarProducto"
+
 export const AdminMenu = () => {
 
   const {
@@ -12,7 +14,6 @@ export const AdminMenu = () => {
     drinks,
     selectedValue, setSelectedValue
   } = useContext(AdminContext)
-  
   
   
   const options = [
@@ -37,6 +38,8 @@ export const AdminMenu = () => {
     {burguers && fries && drinks && menuToShow &&
       <>
       <DropdownList selectedValue={selectedValue} setSelectedValue={setSelectedValue} options={options}/>
+      <BotonAdminAgregarProducto/>
+      
       <table>
         <thead>
           <tr>

@@ -9,7 +9,7 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
       burguers, setBurguers,
       fries, setFries,
       drinks, setDrinks,
-      selectedValue, setSelectedValue
+      selectedValue
      } = adminContext
 
     let labelToShow = null

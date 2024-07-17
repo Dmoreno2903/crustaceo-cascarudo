@@ -7,10 +7,8 @@ import { AdminContext } from '../../context/AdminContextProvider'
 export const TarjetaAdminMenu = ({product}) => {
 
   const adminContext = useContext(AdminContext)
-  
   const {selectedValue} = useContext(AdminContext)
-  
-  
+
 
     const handleClick = () =>{
       toast.dismiss()

@@ -29,7 +29,6 @@ export const MenuGeneral = () => {
   }
   
   
-  
   return (
     <div className="menu-general">
       <h1 className="titulo">Menu</h1>
