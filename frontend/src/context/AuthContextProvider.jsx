@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({type: 'Administrator'})
     const [cartItems, setCartItems] = useState({
       "fries":{1:4},
       "burguers":{2:4,23:5},
@@ -50,14 +50,27 @@ export const AuthContextProvider = ({children}) => {
     //     })
     // }, [])
 
+    // const addDrink = (newDrink) => {
+    //   setDrinks(prevDrinks => [...prevDrinks, newDrink]);
+    // }
+    // const addDrink = (newDrink) => {
+    //   setDrinks(prevDrinks => [...prevDrinks, newDrink]);
+    // }
+    // const addDrink = (newDrink) => {
+    //   setDrinks(prevDrinks => [...prevDrinks, newDrink]);
+    // }
+
     const contextData = {
         user,
         active,
         setActive,
         onClick,
         burguers,
+        setBurguers,
         fries,
+        setFries,
         drinks,
+        setDrinks,
         menuToShow,
         selectedList,
         cartItems,
@@ -67,18 +80,19 @@ export const AuthContextProvider = ({children}) => {
     useEffect(()=>{
       const selectedList = Object.keys(active).find(prop=>active[prop])
       if(selectedList==="fries"){
-        setMenuToShow(fries)
+        setMenuToShow([...fries])
         setSelectedList("fries")
       }
       else if (selectedList==="burguers"){
-        setMenuToShow(burguers)
+        setMenuToShow([...burguers])
         setSelectedList("burguers")
       }
       else if (selectedList==="drinks"){
-        setMenuToShow(drinks)
+        setMenuToShow([...drinks])
         setSelectedList("drinks")
       }
     },[active])
+    
   return (
     <AuthContext.Provider value={contextData}>
       {children}

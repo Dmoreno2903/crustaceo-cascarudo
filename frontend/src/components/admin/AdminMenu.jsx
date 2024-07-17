@@ -1,24 +1,20 @@
 // agregar o eliminar productos del menu, cambiar si es destacado
 
-import { useEffect, useState } from "react"
-import { BURGUER, DRINK, FRIES } from "../../dataMomentanea/productos"
-import { ListaAdminMenu } from "./ListaAdminMenu"
-import { Dropdown } from 'react-dropdown'
+import { useContext, useEffect } from "react"
+import { TarjetaAdminMenu } from "./TarjetaAdminMenu"
 import { DropdownList } from "./DropdownList"
+import { AdminContext } from "../../context/AdminContextProvider"
+import { BotonAdminAgregarProducto } from "../botones/BotonAdminAgregarProducto"
+
 export const AdminMenu = () => {
 
-  const [burguers, setBurguers] = useState(null)
-  const [fries, setFries] = useState(null)
-  const [drinks, setDrinks] = useState(null)
-
-  const [selectedValue, setSelectedValue] = useState(null)
+  const {
+    burguers,
+    fries,
+    drinks,
+    selectedValue, setSelectedValue
+  } = useContext(AdminContext)
   
-  useEffect(() => {
-    setBurguers(BURGUER)
-    setFries(FRIES)
-    setDrinks(DRINK)
-    setSelectedValue('Burguers')
-  }, [burguers])
   
   const options = [
     { value: 'Burguers', label: ' Burguers ' }, 
@@ -33,7 +29,7 @@ export const AdminMenu = () => {
   else if (selectedValue === 'Fries'){
     menuToShow= fries
   }
-  else {
+  else if(selectedValue==='Drinks'){
     menuToShow=drinks
   }
 
@@ -42,23 +38,27 @@ export const AdminMenu = () => {
     {burguers && fries && drinks && menuToShow &&
       <>
       <DropdownList selectedValue={selectedValue} setSelectedValue={setSelectedValue} options={options}/>
+      <BotonAdminAgregarProducto/>
+      
       <table>
         <thead>
           <tr>
-            <th>Burguer ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Score</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Count</th>
-            <th>Is outstanding</th>
+            <th>{selectedValue} ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            {selectedValue === 'Burguers' &&
+              <th>Puntuación</th>
+            }
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th>Conteo</th>
+            <th>Destacado</th>
           </tr>
         </thead>
         <tbody>
           {
-            menuToShow.map(burguer => 
-            <ListaAdminMenu key={burguer.id} burguer={burguer}/>
+            menuToShow.map(product => 
+            <TarjetaAdminMenu key={product.id} product={product} selectedValue={selectedValue}/>
           )
           }
           
