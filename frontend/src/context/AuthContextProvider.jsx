@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
 
-    const [user, setUser] = useState({type: 'Administrator'})
+    const [user, setUser] = useState({type: 'Client'})
     const [cartItems, setCartItems] = useState({
       "fries":{1:4},
       "burguers":{2:4,23:5},
