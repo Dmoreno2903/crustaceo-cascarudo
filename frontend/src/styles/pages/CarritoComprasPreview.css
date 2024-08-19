@@ -1,15 +1,36 @@
+.table {
+  width: 100%;
+}
 
-/* .table {
-    width: 100%;
-    border-collapse: collapse; 
-  }
-  
-  .table, .table th, .table td {
-    border: 1px solid black; 
-  }
-  
-  .table th, .table td {
-    padding: 8px; 
-    text-align: left; 
+tfoot td {
+  font-weight: bold;
+}
 
-*/
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.comprar-btn {
+  width: 200px; /* Ajusta este valor según lo desees */
+}
+
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre los botones y la cantidad */
+}
+
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.quantity-value {
+  font-size: 18px;
+  width: 15px;
+  text-align: center;
+}

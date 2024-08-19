@@ -8,7 +8,14 @@ import { AuthContext } from "../context/AuthContextProvider";
 import logo from '/src/assets/imagenes/logo.jpg';
 
 export const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, cartItems } = useContext(AuthContext);
+
+  // Calcula la cantidad total de productos en el carrito
+  const getTotalItems = () => {
+    return Object.values(cartItems).reduce((total, categoryItems) => {
+      return total + Object.values(categoryItems).reduce((sum, quantity) => sum + quantity, 0);
+    }, 0);
+  };
 
   return (
     <div className="navbar">
@@ -41,8 +48,7 @@ export const Navbar = () => {
         )}
         {(!user || user.type === 'Client') && (
           <Link to="/carrito-compras-preview">
-            {/* badgeContent es para asignarle cantidad de productos actualmente en el carrito. Todavia no esta configurado */}
-            <Badge badgeContent={1} color="primary">
+            <Badge badgeContent={getTotalItems()} color="primary">
               <ShoppingCart color="action" />
             </Badge>
           </Link>
