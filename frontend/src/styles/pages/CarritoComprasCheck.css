@@ -1,0 +1,14 @@
+.carrito-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .image img {
+    width: 80vw; 
+    height: 80vh; 
+    object-fit: contain; 
+  }
+  
