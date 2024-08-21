@@ -19,6 +19,8 @@ import { Facturas } from "./pages/Facturas"
 import { AdminContextProvider } from "./context/AdminContextProvider"
 import { useContext } from "react"
 import { PrivateAdminRoute } from "./utils/PrivateAdminRoute"
+import { InfoEnvio } from "./pages/InfoEnvio"
+import { InfoPago } from "./pages/InfoPago"
 
 function App() {
 
@@ -35,10 +37,11 @@ function App() {
           <Route path="/registro" element={<Registro/>}/>
           <Route path="/inicio-de-sesion" element={<InicioDeSesion/>}/>
           <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/> {/* TODO: Volver a poner esta ruta privada */}
+          <Route path="/info-envio" element={<InfoEnvio/>}/> {/* TODO: Volver a poner esta ruta privada */}
+          <Route path="/info-pago" element={<InfoPago/>}/> {/* TODO: Volver a poner esta ruta privada */}
           <Route path="/carrito-compras-check" element={<PrivateRoute><CarritoComprasCheck/></PrivateRoute>}/>
           <Route path="/detallado/:product/:id" element={<Detallado/>}/>
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
-
           <Route path="/admin" element={<PrivateAdminRoute><AdminContextProvider><Admin /></AdminContextProvider></PrivateAdminRoute>} />
           <Route path="/admin/facturas" element={<PrivateAdminRoute><AdminContextProvider><Facturas /></AdminContextProvider></PrivateAdminRoute>} />
           
@@ -46,16 +49,8 @@ function App() {
       </Routes>
       <Footer/>
       <Toaster/>
-      
     </AuthContextProvider>
-  
-  </Router>
-  
-  
-    
-
-   
-   
+  </Router>  
    </>
   )
 }

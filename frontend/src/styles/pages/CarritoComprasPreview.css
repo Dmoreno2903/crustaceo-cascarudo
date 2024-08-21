@@ -1,33 +1,73 @@
+.table-container {
+  padding:25px 20px 10px 20px;
+}
+
 .table {
-  width: 100%;
+  width: 100%; 
 }
 
 tfoot td {
   font-weight: bold;
 }
 
-.button-container {
+.buy-btn-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 10px 0; 
+  text-align: center; 
 }
 
-.comprar-btn {
-  width: 200px; /* Ajusta este valor según lo desees */
+.continue-btn{
+  width: 200px;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #D97B29, #734116);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.continue-btn:hover {
+  background-color: #ebeff5;
+}
+
+.delete-btn {
+  background-color: transparent; 
+  border: none; 
+  padding: 0; 
+  cursor: pointer; 
+  transition: color 0.3s;
+}
+
+.delete-btn i {
+  color: gray; 
+  font-size: 25px; 
+}
+
+.delete-btn:hover i {
+  color: darkgray; 
 }
 
 
 .quantity-controls {
   display: flex;
-  align-items: center;
-  gap: 10px; /* Espacio entre los botones y la cantidad */
+  padding-top: 5px;
+  gap: 10px;
 }
 
 .quantity-btn {
   width: 30px;
   height: 30px;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
+
 
 .quantity-value {
   font-size: 18px;
@@ -36,54 +76,4 @@ tfoot td {
 }
 
 
-/* CarritoComprasPreview.css */
 
-/* Estilo general para la sección de dirección de envío */
-.address-section {
-  text-align: center; /* Centrar el contenido horizontalmente */
-  margin: 20px 0; /* Espacio arriba y abajo */
-}
-
-/* Estilo para el label de dirección */
-.address-section label {
-  display: block; /* Hacer que el label ocupe toda la línea */
-  margin-bottom: 10px; /* Espacio debajo del label */
-  font-size: 16px; /* Tamaño de la fuente del label */
-}
-
-/* Estilo para el campo de dirección */
-.address-section input {
-  width: 80%; /* Ocupa el 80% del contenedor */
-  max-width: 500px; /* Máximo ancho del campo */
-  padding: 10px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de la fuente del input */
-  border: 1px solid #ccc; /* Borde del campo */
-  border-radius: 5px; /* Bordes redondeados */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra del campo */
-}
-
-/* Estilo para el botón de comprar */
-.button-container {
-  text-align: center; /* Centrar el botón horizontalmente */
-  margin-top: 20px; /* Espacio arriba del botón */
-}
-
-.comprar-btn {
-  font-size: 18px; /* Tamaño de la fuente del botón */
-  padding: 10px 20px; /* Espaciado interno del botón */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
-  background-color: #007bff; /* Color de fondo del botón */
-  color: white; /* Color del texto del botón */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s; /* Transición de color de fondo */
-}
-
-.comprar-btn:hover {
-  background-color: #0056b3; /* Color de fondo del botón al pasar el mouse */
-}
-
-.comprar-btn:disabled {
-  background-color: #c0c0c0; /* Color de fondo del botón deshabilitado */
-  cursor: not-allowed; /* Cursor al pasar sobre el botón deshabilitado */
-}

@@ -5,9 +5,7 @@ import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { useNavigate } from "react-router-dom";
 
 export const CarritoComprasPreview = () => {
-  const { cartItems, updateCartItem, removeCartItem, setCartItems } = useContext(AuthContext);
-  const [address, setAddress] = useState(""); // Estado para la dirección
-  const [phone, setPhone] = useState("");
+  const { cartItems, updateCartItem, removeCartItem,  } = useContext(AuthContext);
   const navigate = useNavigate();
 
   let burguersCart = cartItems["burguers"];
@@ -29,24 +27,9 @@ export const CarritoComprasPreview = () => {
     removeCartItem(productId, category);
   };
 
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  };
-
-  const handleBuy = () => {
-    // Borra el carrito
-    setCartItems({
-      "fries": {},
-      "burguers": {},
-      "drinks": {}
-    });
-    // redirige a CarritoComprasCheck
-    navigate('/carrito-compras-check');
-  };
+  const handleContinue = () => {
+    navigate("/info-envio")
+  }
 
   // Calcula el total
   const calculateTotal = () => {
@@ -72,6 +55,7 @@ export const CarritoComprasPreview = () => {
         <p>No se han agregado productos al carrito aún</p>
       ) : (
         <>
+        <div className="table-container">
           <table className="table">
             <thead>
               <tr>
@@ -99,7 +83,7 @@ export const CarritoComprasPreview = () => {
                       <b>{burguer.name} - </b> {burguer.description}
                     </td>
                     <td>{burguer.price}</td>
-                    <td>
+                    <td style={{ textAlign: "center"}}>
                       <div className="quantity-controls">
                         <button
                           className="btn btn-outline-primary quantity-btn"
@@ -112,12 +96,14 @@ export const CarritoComprasPreview = () => {
                           className="btn btn-outline-primary quantity-btn"
                           onClick={() => handleIncrement(key, "burguers")}
                         >
-                          +
+                        <i className="bi bi-plus"></i>
                         </button>
                       </div>
                     </td>
                     <td>
-                      <button onClick={() => handleRemove(key, "burguers")}>Eliminar</button>
+                      <button 
+                      className="delete-btn"
+                      onClick={() => handleRemove(key, "burguers")}><i className="bi bi-x-circle"></i></button>
                     </td>
                   </tr>
                 );
@@ -157,7 +143,9 @@ export const CarritoComprasPreview = () => {
                       </div>
                     </td>
                     <td>
-                      <button onClick={() => handleRemove(key, "fries")}>Eliminar</button>
+                      <button 
+                      className="btn btn-delete"
+                      onClick={() => handleRemove(key, "fries")}>Eliminar</button>
                     </td>
                   </tr>
                 );
@@ -198,7 +186,9 @@ export const CarritoComprasPreview = () => {
                       </div>
                     </td>
                     <td>
-                      <button onClick={() => handleRemove(key, "drinks")}>Eliminar</button>
+                      <button 
+                      className="btn btn-delete"
+                      onClick={() => handleRemove(key, "drinks")}>Eliminar</button>
                     </td>
                   </tr>
                 );
@@ -216,38 +206,14 @@ export const CarritoComprasPreview = () => {
               </tr>
             </tfoot>
           </table>
-
-          {/* Campo de dirección de envío */}
-          <div className="address-section">
-            <h4>Información de envio</h4>
-            <input
-              type="text"
-              id="address"
-              value={address}
-              onChange={handleAddressChange}
-              placeholder="Ingrese su dirección"
-              required
-            />
           </div>
 
-          <div className="address-section">
-            <input
-              type="tel"
-              id="phone"
-              value={phone}
-              onChange={handlePhoneChange}
-              placeholder="Ingrese su número de teléfono"
-              required
-            />
-          </div>
-
-          <div className="button-container">
+          <div className="buy-btn-container">
             <button
-              className="btn comprar-btn"
-              onClick={handleBuy}
-              disabled={!address || !phone} // Deshabilitar si los campos están vacíos
+              className="btn continue-btn"
+              onClick={handleContinue}
             >
-              COMPRAR
+              CONTINUAR
             </button>
           </div>
         </>
