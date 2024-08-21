@@ -62,7 +62,7 @@ export const CarritoComprasPreview = () => {
       {Object.keys(cartItems["burguers"]).length === 0 &&
       Object.keys(cartItems["fries"]).length === 0 &&
       Object.keys(cartItems["drinks"]).length === 0 ? (
-        <p>No se han agregado productos al carrito aún</p>
+        <div className="car-empty">No se han agregado productos al carrito aún</div>
       ) : (
         <>
           <div className="table-container">

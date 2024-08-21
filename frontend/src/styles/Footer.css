@@ -1,4 +1,17 @@
-.footer{
-    background-color: rgb(128, 128, 128);
-    
-}
+.footer {
+    background-color: #FFF;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Empuja el footer al final */
+  }
+  
+  .footer-bottom {
+    font-size: 0.9em;
+    color: #6c757d;
+  }
+  
+  
+  
+  
+
+  
