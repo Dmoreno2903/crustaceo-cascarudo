@@ -5,7 +5,7 @@ import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { useNavigate } from "react-router-dom";
 
 export const CarritoComprasPreview = () => {
-  const { cartItems, updateCartItem, removeCartItem } = useContext(AuthContext);
+  const { cartItems, updateCartItem, removeCartItem, setCartItems } = useContext(AuthContext);
   const [address, setAddress] = useState(""); // Estado para la dirección
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
@@ -39,6 +39,11 @@ export const CarritoComprasPreview = () => {
 
   const handleBuy = () => {
     // Borra el carrito
+    setCartItems({
+      "fries": {},
+      "burguers": {},
+      "drinks": {}
+    });
     // redirige a CarritoComprasCheck
     navigate('/carrito-compras-check');
   };
