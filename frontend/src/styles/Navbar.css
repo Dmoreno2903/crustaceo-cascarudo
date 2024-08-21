@@ -31,10 +31,6 @@
     color: inherit;
 }
 
-.barra-busqueda{
-    align-self: center;
-}
-
 .derecha{
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import "../styles/pages/CarritoComprasPreview.css";
 import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
@@ -37,32 +37,49 @@ export const CarritoComprasPreview = () => {
 
   const handleBack = () => {
     navigate("/menu");
-  }
-
-  // Calcula el total
-  const calculateTotal = () => {
-    let total = 0;
-    Object.entries(cartItems).forEach(([category, items]) => {
-      Object.entries(items).forEach(([id, quantity]) => {
-        const product = [...BURGUER, ...FRIES, ...DRINK].find(
-          (p) => p.id === parseInt(id)
-        );
-        if (product) {
-          total += product.price * quantity;
-        }
-      });
-    });
-    return total;
   };
 
-  const total = calculateTotal();
+  const calculateCategoryTotal = (items, productList) => {
+    return Object.entries(items).reduce((total, [id, quantity]) => {
+      const product = productList.find((p) => p.id === parseInt(id));
+      if (product) {
+        return total + product.price * quantity;
+      }
+      return total;
+    }, 0);
+  };
+
+  const calculateTotal = () => {
+    const totalFries = calculateCategoryTotal(cartItems.fries, FRIES);
+    const totalBurguers = calculateCategoryTotal(cartItems.burguers, BURGUER);
+    const totalDrinks = calculateCategoryTotal(cartItems.drinks, DRINK);
+
+    const total = totalFries + totalBurguers + totalDrinks;
+
+    return {
+      total,
+    };
+  };
+
+  const { total } = calculateTotal();
 
   return (
     <>
       {Object.keys(cartItems["burguers"]).length === 0 &&
       Object.keys(cartItems["fries"]).length === 0 &&
       Object.keys(cartItems["drinks"]).length === 0 ? (
-        <div className="car-empty">No se han agregado productos al carrito aún</div>
+        <div className="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+          <div
+            className="rounded-circle d-flex justify-content-center align-items-center"
+            style={{ width: "100px", height: "100px", backgroundColor: "#3e3a3a" }}
+          >
+            <i
+              className="bi bi-cart"
+              style={{ fontSize: "40px", color: "white" }}
+            ></i>
+          </div>
+          <h3 className="mt-3">Aún no has agregado productos a tu carrito</h3>
+        </div>
       ) : (
         <>
           <div className="table-container">
@@ -244,9 +261,9 @@ export const CarritoComprasPreview = () => {
           </div>
 
           <div className="btn-container">
-            <button className="back-btn"
-            onClick={handleBack}
-            >Volver</button>
+            <button className="back-btn" onClick={handleBack}>
+              Volver
+            </button>
             <button className="btn continue-btn" onClick={handleContinue}>
               Continuar
             </button>
