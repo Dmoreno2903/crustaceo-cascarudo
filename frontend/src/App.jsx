@@ -5,7 +5,6 @@ import { CarritoComprasPreview} from "./pages/CarritoComprasPreview"
 import { Inicio } from "./pages/Inicio"
 import { Registro } from "./pages/Registro"
 import { InicioDeSesion } from "./pages/InicioDeSesion"
-import { CarritoComprasCheck } from "./pages/CarritoComprasCheck"
 import { Detallado } from "./pages/Detallado"
 import { Usuario } from "./pages/Usuario"
 import { Footer } from "./components/Footer"
@@ -21,6 +20,7 @@ import { useContext } from "react"
 import { PrivateAdminRoute } from "./utils/PrivateAdminRoute"
 import { InfoEnvio } from "./pages/InfoEnvio"
 import { InfoPago } from "./pages/InfoPago"
+import { ConfirmacionCompra } from "./pages/ConfirmacionCompra"
 
 function App() {
 
@@ -39,7 +39,7 @@ function App() {
           <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/> {/* TODO: Volver a poner esta ruta privada */}
           <Route path="/info-envio" element={<InfoEnvio/>}/> {/* TODO: Volver a poner esta ruta privada */}
           <Route path="/info-pago" element={<InfoPago/>}/> {/* TODO: Volver a poner esta ruta privada */}
-          <Route path="/carrito-compras-check" element={<PrivateRoute><CarritoComprasCheck/></PrivateRoute>}/>
+          <Route path="/confirmacion-compra" element={<PrivateRoute><ConfirmacionCompra/></PrivateRoute>}/>
           <Route path="/detallado/:product/:id" element={<Detallado/>}/>
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
           <Route path="/admin" element={<PrivateAdminRoute><AdminContextProvider><Admin /></AdminContextProvider></PrivateAdminRoute>} />

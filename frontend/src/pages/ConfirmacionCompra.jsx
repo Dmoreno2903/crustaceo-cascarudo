@@ -1,7 +1,7 @@
-import "../styles/pages/CarritoComprasCheck.css"; // Asegúrate de tener este archivo para los estilos
+import "../styles/pages/ConfirmacionCompra.css"; // Asegúrate de tener este archivo para los estilos
 import bobImage from '../assets/imagenes/bobImage.jpg'; // Ajusta la ruta según la ubicación de tu imagen
 
-export const CarritoComprasCheck = () => {
+export const ConfirmacionCompra = () => {
   return (
     <div className="carrito-check">
       <div className="image">

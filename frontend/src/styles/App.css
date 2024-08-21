@@ -1,4 +1,3 @@
-/* Estilos generales de la pagina */
 
 /* Selecciona el elemento body de la página */
 body {
@@ -14,3 +13,12 @@ body {
   /* Fuente del texto de la pagina*/
   font-family: 'Ubuntu', 'Arial', 'Helvetica', sans-serif;
 }
+
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+

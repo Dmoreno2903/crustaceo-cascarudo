@@ -10,6 +10,11 @@ tfoot td {
   font-weight: bold;
 }
 
+.car-empty {
+  padding: 20px;
+  margin: 5px;
+}
+
 .btn-container {
   display: flex;
   justify-content: center;
