@@ -8,7 +8,6 @@ export const ImagenFondo = () => {
           ¡No hay nada más sabroso que una Cangreburguer bien cocida bajo el sol
           de fondo de Bikini!
         </p>
-        <input type='text' placeholder='Buscar productos...' className='barra' />
       </div>
     </div>
   );

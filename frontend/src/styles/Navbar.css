@@ -37,3 +37,11 @@
     gap: 25px;
 }
 
+.barra-busqueda {
+    height: 35px; 
+    padding: 3px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    font-size: 14px; 
+  }
+  

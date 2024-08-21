@@ -1,9 +1,9 @@
 import { Badge } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
-import { UserCircle, Money, Notebook } from "phosphor-react";
+import { UserCircle, Money, Notebook} from "phosphor-react";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
-import { useContext } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import logo from '/src/assets/imagenes/logo.jpg';
 
@@ -61,6 +61,7 @@ export const Navbar = () => {
             </Link>
           </>
         )}
+       <input type='text' placeholder='Buscar productos...' className='barra-busqueda'/>
         
       </div>
     </div>
