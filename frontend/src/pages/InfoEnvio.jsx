@@ -11,8 +11,7 @@ export const InfoEnvio = () => {
   const navigate = useNavigate();
   
 
-  const handleEnvioSubmit = (e) => {
-    e.preventDefault();
+  const handleEnvioSubmit = () => {
     // Srive para manejar la información del envio
     console.log("Información de envío:", { email, address, phone });
   };
