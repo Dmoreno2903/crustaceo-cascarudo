@@ -167,10 +167,10 @@ export const CarritoComprasPreview = () => {
                       </td>
                       <td>
                         <button
-                          className="btn btn-delete"
+                          className="delete-btn"
                           onClick={() => handleRemove(key, "fries")}
                         >
-                          Eliminar
+                          <i className="bi bi-x-circle"></i>
                         </button>
                       </td>
                     </tr>
@@ -217,10 +217,10 @@ export const CarritoComprasPreview = () => {
                       </td>
                       <td>
                         <button
-                          className="btn btn-delete"
+                          className="delete-btn"
                           onClick={() => handleRemove(key, "drinks")}
                         >
-                          Eliminar
+                          <i className="bi bi-x-circle"></i>
                         </button>
                       </td>
                     </tr>
