@@ -246,9 +246,9 @@ export const CarritoComprasPreview = () => {
           <div className="btn-container">
             <button className="back-btn"
             onClick={handleBack}
-            >VOLVER</button>
+            >Volver</button>
             <button className="btn continue-btn" onClick={handleContinue}>
-              CONTINUAR
+              Continuar
             </button>
           </div>
         </>
