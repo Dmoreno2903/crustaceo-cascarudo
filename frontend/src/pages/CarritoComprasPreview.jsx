@@ -39,23 +39,30 @@ export const CarritoComprasPreview = () => {
     navigate("/menu");
   }
 
-  // Calcula el total
-  const calculateTotal = () => {
-    let total = 0;
-    Object.entries(cartItems).forEach(([category, items]) => {
-      Object.entries(items).forEach(([id, quantity]) => {
-        const product = [...BURGUER, ...FRIES, ...DRINK].find(
-          (p) => p.id === parseInt(id)
-        );
-        if (product) {
-          total += product.price * quantity;
-        }
-      });
-    });
-    return total;
+  const calculateCategoryTotal = (items, productList) => {
+    return Object.entries(items).reduce((total, [id, quantity]) => {
+      const product = productList.find(p => p.id === parseInt(id));
+      if (product) {
+        return total + (product.price * quantity);
+      }
+      return total;
+    }, 0);
   };
-
-  const total = calculateTotal();
+  
+  const calculateTotal = () => {
+    const totalFries = calculateCategoryTotal(cartItems.fries, FRIES);
+    const totalBurguers = calculateCategoryTotal(cartItems.burguers, BURGUER);
+    const totalDrinks = calculateCategoryTotal(cartItems.drinks, DRINK);
+  
+    const total = totalFries + totalBurguers + totalDrinks;
+  
+    
+    return {
+      total
+    };
+  };
+  
+  const { total } = calculateTotal();
 
   return (
     <>
