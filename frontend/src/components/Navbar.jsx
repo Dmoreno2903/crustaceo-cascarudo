@@ -27,8 +27,6 @@ export const Navbar = () => {
           <div>Crustáceo cascarudo</div>
         </Link>
       </div>
-
-      <input className="barra-busqueda" placeholder="Buscar productos..." />
       
       <div className="derecha">
         <Link to="/">Menu</Link>
