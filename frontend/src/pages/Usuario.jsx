@@ -1,6 +1,12 @@
 
+import UserCard from "../components/user/info";
+import OrderList from "../components/user/request";
+
 export const Usuario = () => {
   return (
-    <div>Usuario</div>
-  )
+    <div>
+      <UserCard />
+      <OrderList />
+    </div>
+  );
 }
