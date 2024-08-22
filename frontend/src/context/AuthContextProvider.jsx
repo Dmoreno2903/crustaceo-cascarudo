@@ -49,6 +49,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const contextData = {
     user,
+    setUser,
     active,
     setActive,
     onClick,
@@ -63,7 +64,7 @@ export const AuthContextProvider = ({ children }) => {
     cartItems,
     setCartItems,
     updateCartItem,
-    removeCartItem
+    removeCartItem,
   };
 
   useEffect(() => {

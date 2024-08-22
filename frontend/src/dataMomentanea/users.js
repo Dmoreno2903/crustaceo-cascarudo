@@ -3,6 +3,7 @@ export const CLIENT = [{
         type: "Client",
         name: 'Diego Moreno',
         username: 'dmoreno',
+        password: "hola",
         email: 'jaguirremo@unal.edu.co',
         age: 22,
         city: 'Medellín',
@@ -19,6 +20,7 @@ export const CLIENT = [{
         type: "Client",
         name: 'Sofi',
         username: 'sofi23',
+        password: "hola1",
         email: 'sofi@unal.edu.co',
         age: 22,
         city: 'Medellín',
@@ -35,6 +37,7 @@ export const CLIENT = [{
         type: "Client",
         name: 'Sebas',
         username: 'sebas23',
+        password: "hola2",
         email: 'sebas@unal.edu.co',
         age: 22,
         city: 'Medellín',
@@ -48,12 +51,13 @@ export const CLIENT = [{
       },
 ]
 
-export const Administrator = [
+export const ADMINISTRATOR = [
     {
         id:1,
         type: "Administrator",
         name: 'Sergio',
         username: 'sarias',
+        password: "hola3",
         email: 'sarias@unal.edu.co',
         age: 26,
         city: 'Medellín',
