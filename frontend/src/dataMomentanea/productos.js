@@ -8,7 +8,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": true
+        "is_outstanding": true,
+        "table":"burguers"
     },
     {
         "id":2,
@@ -19,7 +20,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": true
+        "is_outstanding": true,
+        "table":"burguers"
     },
     {
         "id":3,
@@ -30,7 +32,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":4,
@@ -41,7 +44,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":5,
@@ -52,7 +56,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":6,
@@ -63,7 +68,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":7,
@@ -74,7 +80,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":8,
@@ -85,7 +92,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":9,
@@ -96,7 +104,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":10,
@@ -107,7 +116,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":11,
@@ -118,7 +128,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":12,
@@ -129,7 +140,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"burguers"
     },
     {
         "id":13,
@@ -140,7 +152,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": true
+        "is_outstanding": true,
+        "table":"burguers"
     },
     {
         "id":14,
@@ -151,7 +164,8 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": true
+        "is_outstanding": true,
+        "table":"burguers"
     },
     {
         "id":15,
@@ -162,119 +176,9 @@ export const BURGUER = [
         "image": "/src/assets/imagenes/cangreburguer.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":16,
-        "score": 3,
-        "name": "Cangreburguer que hago con mi vida",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":17,
-        "score": 4,
-        "name": "Cangreburguer hjajajjajajaj",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":18,
-        "score": 3,
-        "name": "Cangreburguer aiudaaa",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":19,
-        "score": 4,
-        "name": "Cangreburguer cada dia mas esquizofrenico",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":20,
-        "score": 3,
-        "name": "Cangreburguer a trabajar",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":21,
-        "score": 4,
-        "name": "Estamos melos, sisas, sisas",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":22,
-        "score": 3,
-        "name": "khe",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":23,
-        "score": 4,
-        "name": "Satoru Gojo",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":24,
-        "score": 3,
-        "name": "iiiiiaaa",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
-    },
-    {
-        "id":25,
-        "score": 3,
-        "name": "Necesito chamba",
-        "price": "25000",
-        "description": " Jugosa carne de cangrejo, lechuga crujiente, queso derretido, rodajas de tomate fresco, cebolla, pepinillos, y la inconfundible salsa secreta, todo entre un pan suave y esponjoso.",
-        "image": "/src/assets/imagenes/cangreburguer.jpg",
-        "count": "",
-        "created_at": "",
-        "is_outstanding": true
+        "is_outstanding": true,
+        "table":"burguers"
     }
-    
 ]
 
 export const FRIES = [
@@ -286,7 +190,8 @@ export const FRIES = [
         "image": "/src/assets/imagenes/papas.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"fries"
     },
     {
         "id":2,
@@ -296,7 +201,8 @@ export const FRIES = [
         "image": "/src/assets/imagenes/papas.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"fries"
     },
     {
         "id":3,
@@ -306,7 +212,8 @@ export const FRIES = [
         "image": "/src/assets/imagenes/papas.jpg",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"fries"
     }
 ]
 
@@ -319,7 +226,8 @@ export const DRINK = [
         "image": "/src/assets/imagenes/drink.webp",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"drinks"
     },
     {
         "id":2,
@@ -329,7 +237,8 @@ export const DRINK = [
         "image": "/src/assets/imagenes/drink.webp",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"drinks"
     },
     {
         "id":3,
@@ -339,7 +248,8 @@ export const DRINK = [
         "image": "/src/assets/imagenes/drink.webp",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"drinks"
     },
     {
         "id":4,
@@ -349,6 +259,7 @@ export const DRINK = [
         "image": "/src/assets/imagenes/drink.webp",
         "count": "",
         "created_at": "",
-        "is_outstanding": false
+        "is_outstanding": false,
+        "table":"drinks"
     }
 ]
