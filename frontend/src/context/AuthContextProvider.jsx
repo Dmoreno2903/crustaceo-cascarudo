@@ -5,7 +5,7 @@ import burguerService from '../services/burguers';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({ type: 'Client' });
+  const [user, setUser] = useState(null);
   const [cartItems, setCartItems] = useState({
     "fries": { },
     "burguers": {  },

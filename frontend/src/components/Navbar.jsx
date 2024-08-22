@@ -6,6 +6,7 @@ import "../styles/Navbar.css";
 import { useContext} from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import logo from '/src/assets/imagenes/logo.jpg';
+import SearchBar from "./SearchBar";
 
 export const Navbar = () => {
   const { user, cartItems } = useContext(AuthContext);
@@ -51,7 +52,7 @@ export const Navbar = () => {
             </Badge>
           </Link>
         )}
-        {user.type === 'Administrator' && (
+        {user && user.type === 'Administrator' && (
           <>
             <Link to='/admin'>
               <Notebook size={32} />
@@ -61,7 +62,7 @@ export const Navbar = () => {
             </Link>
           </>
         )}
-       <input type='text' placeholder='Buscar productos...' className='barra-busqueda'/>
+       <SearchBar/>
         
       </div>
     </div>
