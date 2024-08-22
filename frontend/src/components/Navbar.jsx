@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="izquierda">
+      <div className="left">
         <Link to="/">
           <div>
             <img className="navbar-logo" src={logo} alt="Logo" />
@@ -29,40 +29,43 @@ export const Navbar = () => {
         </Link>
       </div>
       
-      <div className="derecha">
-        <Link to="/">Menu</Link>
+      <div className="right">
+        <SearchBar/>
+        <div className="right-buttons">
+          <Link to="/">Menu</Link>
+          
+          {!user && (
+            <>
+              <Link to="/registro">Crea tu cuenta</Link>
+              <Link to="/inicio-de-sesion">Ingresa</Link>
+            </>
+          )}
+          {user && (
+            <>
+              <Link to="/usuario">
+                <UserCircle size={32} />
+              </Link>
+            </>
+          )}
+          {(!user || user.type === 'Client') && (
+            <Link to="/carrito-compras-preview">
+              <Badge badgeContent={getTotalItems()} color="primary">
+                <ShoppingCart color="action" />
+              </Badge>
+            </Link>
+          )}
+          {user && user.type === 'Administrator' && (
+            <>
+              <Link to='/admin'>
+                <Notebook size={32} />
+              </Link>
+              <Link to="/admin/facturas">
+                <Money size={32}/>
+              </Link>
+            </>
+          )}
+        </div>
         
-        {!user && (
-          <>
-            <Link to="/registro">Crea tu cuenta</Link>
-            <Link to="/inicio-de-sesion">Ingresa</Link>
-          </>
-        )}
-        {user && (
-          <>
-            <Link to="/usuario">
-              <UserCircle size={32} />
-            </Link>
-          </>
-        )}
-        {(!user || user.type === 'Client') && (
-          <Link to="/carrito-compras-preview">
-            <Badge badgeContent={getTotalItems()} color="primary">
-              <ShoppingCart color="action" />
-            </Badge>
-          </Link>
-        )}
-        {user && user.type === 'Administrator' && (
-          <>
-            <Link to='/admin'>
-              <Notebook size={32} />
-            </Link>
-            <Link to="/admin/facturas">
-              <Money size={32}/>
-            </Link>
-          </>
-        )}
-       <SearchBar/>
         
       </div>
     </div>

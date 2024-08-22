@@ -3,16 +3,21 @@
     top: 0;
     z-index: 100;
     width: 100%;
-    height: 60px;
+    min-height: 60px; /* Cambiado de height a min-height */
     background-color: #EBEBEB;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     box-sizing: border-box;
+    flex-wrap: wrap; /* Permite que los elementos se acomoden en una nueva fila si es necesario */
 }
 
-.izquierda a{
+.left {
+    flex:1;
+}
+
+.left a{
     display: flex;
     align-items: center;
     gap:10px;
@@ -31,10 +36,21 @@
     color: inherit;
 }
 
-.derecha{
+.right {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 25px;
+    justify-content: flex-end;
+    flex:1;
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+.right-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .barra-busqueda {
