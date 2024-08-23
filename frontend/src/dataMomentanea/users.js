@@ -14,6 +14,11 @@ export const CLIENT = [{
         accountType: 'Ahorro', //solo ahorro o corriente
         accountNumber: 74,
         profilePicture: 'https://via.placeholder.com/150',
+        cartItems: {
+          "fries": { },
+          "burguers": { },
+          "drinks": { }
+        }
       },
       {
         id:2,
@@ -31,6 +36,11 @@ export const CLIENT = [{
         accountType: 'Corriente', //solo ahorro o corriente
         accountNumber: 84,
         profilePicture: 'https://via.placeholder.com/150',
+        cartItems: {
+          "fries": { "1": 2, "3": 3 },
+          "burguers": { "1": 3 },
+          "drinks": { "2": 2 }
+        }
       },
       {
         id: 3,
@@ -48,6 +58,11 @@ export const CLIENT = [{
         accountType: 'Corriente', //solo ahorro o corriente
         accountNumber: 85,
         profilePicture: 'https://via.placeholder.com/150',
+        cartItems: {
+          "fries": { "1": 2, "3": 3 },
+          "burguers": { "1": 3 },
+          "drinks": { "2": 2 }
+        }
       },
 ]
 
@@ -68,5 +83,10 @@ export const ADMINISTRATOR = [
         accountType: 'corriente', //solo ahorro o corriente
         accountNumber: 95,
         profilePicture: 'https://via.placeholder.com/150',
+        cartItems: {
+          "fries": { "1": 2, "3": 3 },
+          "burguers": { "1": 3 },
+          "drinks": { "2": 2 }
+        }
       }
 ]
