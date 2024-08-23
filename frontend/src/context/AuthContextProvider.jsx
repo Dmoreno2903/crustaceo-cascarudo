@@ -6,7 +6,9 @@ import burguerService from '../services/burguers';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(() => {
+    return JSON.parse(sessionStorage.getItem('username'))
+  })
   const [cartItems, setCartItems] = useState({
     "fries": { },
     "burguers": {  },
@@ -27,9 +29,6 @@ export const AuthContextProvider = ({ children }) => {
     ...ADMINISTRATOR
   ]
 
-  // const getUser = () => {
-  //   const user = sessionStorage.getItem('username')
-  // }
   const onClick = (a) => {
     let activeNuevo = {
       "fries": false,
@@ -60,8 +59,9 @@ export const AuthContextProvider = ({ children }) => {
       client.id === updatedClient.id ? updatedClient : client
     );
     setUser(updatedClient);
-  };
+  }
 
+  
   const contextData = {
     user,
     setUser,
