@@ -13,7 +13,7 @@ export const Registro = () => {
     
     const navigate = useNavigate()
     const onSubmit = (data) =>{
-      console.log("data enviada", data)
+      
       let newUser = {
         id:'',//numero
         type: '',
@@ -56,7 +56,7 @@ export const Registro = () => {
         toast.error("Las contraseñas no coinciden")
       }
 
-      if(!user || !email){
+      if(!user && !email && data.password === data.confirmPassword){
         const id = CLIENT.reduce((maxId, client) => Math.max(maxId, client.id), 0)
         newUser.id = id+1
         newUser.type = "Client"
