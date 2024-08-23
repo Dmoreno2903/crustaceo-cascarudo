@@ -93,6 +93,7 @@ export const AuthContextProvider = ({ children }) => {
     setCartItems,
     updateCartItem,
     removeCartItem,
+    CLIENT,
     USERS
   };
 
