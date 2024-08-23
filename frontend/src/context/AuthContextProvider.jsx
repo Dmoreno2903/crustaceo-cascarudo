@@ -55,6 +55,13 @@ export const AuthContextProvider = ({ children }) => {
     });
   };
 
+  const updateClientData = (updatedClient) => {
+    const updatedUsers = CLIENT.map(client =>
+      client.id === updatedClient.id ? updatedClient : client
+    );
+    setUser(updatedClient);
+  };
+
   const contextData = {
     user,
     setUser,

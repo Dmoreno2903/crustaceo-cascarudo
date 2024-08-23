@@ -4,6 +4,8 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 
 export const InfoEnvio = () => {
+
+  const { user } = useContext(AuthContext); 
   
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -48,10 +50,11 @@ export const InfoEnvio = () => {
         <div className="form-container">
           <h3 className="title">Información de envio</h3>
           <div className="shipment-section">
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
-              value={email}
+              value={user.email}
               onChange={handleEmailChange}
               placeholder="Ingrese su correo electrónico"
               required
@@ -59,10 +62,11 @@ export const InfoEnvio = () => {
           </div>
 
           <div className="shipment-section">
+            <label>Dirección</label>
             <input
               type="text"
               id="address"
-              value={address}
+              value={user.address}
               onChange={handleAddressChange}
               placeholder="Ingrese su dirección"
               required
@@ -70,10 +74,11 @@ export const InfoEnvio = () => {
           </div>
 
           <div className="shipment-section">
+            <label>Número de teléfono</label>
             <input
-              type="number"
+              type="text"
               id="phone"
-              value={phone}
+              value={user.phone}
               onChange={handlePhoneChange}
               placeholder="Ingrese su número de teléfono"
               required
@@ -82,11 +87,10 @@ export const InfoEnvio = () => {
 
           <div className="btn2-container">
             <button className="back-btn"
-            onClick={handleBack}>Volver</button>
+            onClick={handleBack}>Volver al carrito</button>
             <button
               className="btn continue-btn"
-              onClick={handleClick}
-              disabled={!email || !address || !phone} 
+              onClick={handleClick} 
             >
               Continuar
             </button>
