@@ -10,10 +10,10 @@ export const AuthContextProvider = ({ children }) => {
     return JSON.parse(localStorage.getItem('username'))
   })
   const [cartItems, setCartItems] = useState({
-    "fries": { },
-    "burguers": {  },
-    "drinks": {  }
-  })
+        "fries": { },
+        "burguers": { },
+        "drinks": { }
+      })
   const [burguers, setBurguers] = useState(BURGUER);
   const [fries, setFries] = useState(FRIES);
   const [drinks, setDrinks] = useState(DRINK);
@@ -28,6 +28,19 @@ export const AuthContextProvider = ({ children }) => {
     ...CLIENT,
     ...ADMINISTRATOR
   ]
+  
+  useEffect(() => {
+    if(user) {
+      setCartItems(user.cartItems)
+    }
+    else {
+      setCartItems({
+          "fries": { },
+          "burguers": { },
+          "drinks": { }
+        })
+    }
+  }, [user])
 
   const onClick = (a) => {
     let activeNuevo = {

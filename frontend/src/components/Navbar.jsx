@@ -9,7 +9,7 @@ import logo from '/src/assets/imagenes/logo.jpg';
 import SearchBar from "./SearchBar";
 
 export const Navbar = () => {
-  const { user, setUser, cartItems } = useContext(AuthContext);
+  const { user, setUser, cartItems, setCarItems } = useContext(AuthContext);
 
   // Calcula la cantidad total de productos en el carrito
   const getTotalItems = () => {
