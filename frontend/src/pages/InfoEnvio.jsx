@@ -7,11 +7,10 @@ export const InfoEnvio = () => {
 
   const { user } = useContext(AuthContext); 
   
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState(user.email || ""); // Valor por defecto del user
+  const [address, setAddress] = useState(user.address || ""); 
+  const [phone, setPhone] = useState(user.phone || ""); 
   const navigate = useNavigate();
-  
 
   const handleEnvioSubmit = () => {
     // Srive para manejar la información del envio
@@ -31,12 +30,12 @@ export const InfoEnvio = () => {
   };
 
   const handleContinue = () => {
-    navigate("/info-pago")
-  }
+    navigate("/info-pago");
+  };
 
   const handleBack = () => {
-    navigate("/carrito-compras-preview")
-  }
+    navigate("/carrito-compras-preview");
+  };
 
   const handleClick = () => {
     handleContinue();
@@ -48,13 +47,13 @@ export const InfoEnvio = () => {
       {/* Campo de información de envío */}
       <div className="page-container">
         <div className="form-container">
-          <h3 className="title">Información de envio</h3>
+          <h3 className="title">Información de envío</h3>
           <div className="shipment-section">
             <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
-              value={user.email}
+              value={email}
               onChange={handleEmailChange}
               placeholder="Ingrese su correo electrónico"
               required
@@ -66,7 +65,7 @@ export const InfoEnvio = () => {
             <input
               type="text"
               id="address"
-              value={user.address}
+              value={address} 
               onChange={handleAddressChange}
               placeholder="Ingrese su dirección"
               required
@@ -78,20 +77,17 @@ export const InfoEnvio = () => {
             <input
               type="text"
               id="phone"
-              value={user.phone}
+              value={phone} 
               onChange={handlePhoneChange}
               placeholder="Ingrese su número de teléfono"
               required
             />
           </div>
-
           <div className="btn2-container">
-            <button className="back-btn"
-            onClick={handleBack}>Volver al carrito</button>
-            <button
-              className="btn continue-btn"
-              onClick={handleClick} 
-            >
+            <button className="back-btn" onClick={handleBack}>
+              Volver al carrito
+            </button>
+            <button className="btn continue-btn" onClick={handleClick}>
               Continuar
             </button>
           </div>

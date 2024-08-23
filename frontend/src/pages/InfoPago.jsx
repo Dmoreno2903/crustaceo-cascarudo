@@ -7,8 +7,8 @@ export const InfoPago = () => {
 
   const { user } = useContext(AuthContext); 
   const { setCartItems } = useContext(AuthContext);
-  const [accountType, setAccountType] = useState("");
-  const [accountNumber, setAccountNumber] = useState("");
+  const [accountType, setAccountType] = useState(user.accountType || ""); // Valor por defecto del user
+  const [accountNumber, setAccountNumber] = useState(user.accountNumber || ""); // Valor por defecto del user
   const navigate = useNavigate();
 
   const handleAccountTypeChange = (e) => {
@@ -18,7 +18,6 @@ export const InfoPago = () => {
   const handleAccountNumberChange = (e) => {
     setAccountNumber(e.target.value);
   };
-
 
   const handleCancel = () => {
     setCartItems({
@@ -53,14 +52,13 @@ export const InfoPago = () => {
           <h3 className="title">Información de Pago</h3>
 
           <div className="shipment-section">
-            <label htmlFor="accountType">Seleccione el tipo de cuenta</label>
+            <label htmlFor="accountType">Seleccione el tipo de cuenta </label>
             <select
               id="accountType"
-              value={user.accountType}
+              value={accountType} // Usar el valor del estado
               onChange={handleAccountTypeChange}
               required
             >
-              <option value="" disabled>Seleccione el tipo de cuenta</option>
               <option value="ahorro">Cuenta de ahorro</option>
               <option value="corriente">Cuenta corriente</option>
             </select>
@@ -69,9 +67,9 @@ export const InfoPago = () => {
           <div className="shipment-section">
             <label htmlFor="accountNumber">Número de cuenta</label>
             <input
-              type="text"
+              type="number"
               id="accountNumber"
-              value={user.accountNumber}
+              value={accountNumber} // Usar el valor del estado
               onChange={handleAccountNumberChange}
               placeholder="Ingrese el número de cuenta"
               required

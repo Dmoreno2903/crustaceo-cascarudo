@@ -1,14 +1,20 @@
 .carrito-check {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
-  .image img {
-    width: 80vw; 
-    height: 80vh; 
-    object-fit: contain; 
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fcf5f5;
+}
+
+.image img {
+  width: 45vw; 
+  height: auto;
+  object-fit: contain;
+}
+
+.message {
+  margin-left: 80px; 
+  font-size: 1.5rem; 
+  color: #333; 
+  max-width: 32vw; 
+}

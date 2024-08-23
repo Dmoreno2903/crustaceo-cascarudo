@@ -1,47 +1,36 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { AuthContext } from "../../context/AuthContextProvider";
 
 export const OrderList = () => {
-  // Lista de pedidos (puedes reemplazar esto con datos reales o provenir de un estado)
-  const orders = [
-    {
-      id: 1,
-      date: '2024-08-22',
-      value: '$50.00',
-      address: '123 Main St, Nueva York, Estados Unidos',
-    },
-    {
-      id: 2,
-      date: '2024-08-21',
-      value: '$75.00',
-      address: '456 Elm St, Los Angeles, Estados Unidos',
-    },
-    {
-      id: 3,
-      date: '2024-08-20',
-      value: '$120.00',
-      address: '789 Maple Ave, Chicago, Estados Unidos',
-    },
-  ];
+
+  const { compras } = useContext(AuthContext);
 
   return (
     <div style={styles.listContainer}>
       <h3>Historial de compras</h3>
       <br></br>
-      {orders.map((order) => (
-        <div key={order.id} style={styles.orderCard}>
-          <div style={styles.orderInfo}>
-            <div style={styles.orderField}>
-              <strong>Fecha:</strong> {order.date}
-            </div>
-            <div style={styles.orderField}>
-              <strong>Valor:</strong> {order.value}
-            </div>
-            <div style={styles.orderField}>
-              <strong>Dirección:</strong> {order.address}
+      {compras.length > 0 ? (
+        compras.map((order, index) => (
+          <div key={index} style={styles.orderCard}>
+            <div style={styles.orderInfo}>
+              <div style={styles.orderField}>
+                <strong>Fecha:</strong> {order.date}
+              </div>
+              <div style={styles.orderField}>
+                <strong>Total:</strong> {order.total}
+              </div>
+              <div style={styles.orderField}>
+                <strong>Método de Pago:</strong> {order.paymentMethod}
+              </div>
+              <div style={styles.orderField}>
+                <strong>Productos:</strong> {order.productNames.join(', ')}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No se han realizado compras.</p>
+      )}
     </div>
   );
 };
