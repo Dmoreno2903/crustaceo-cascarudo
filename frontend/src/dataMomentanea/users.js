@@ -10,8 +10,8 @@ export const CLIENT = [{
         country: 'Colombia',
         occupation: 'Ingeniero de sistemas',
         address: 'calle 8',
-        phone: '+57 3017549300',
-        accountType: 'ahorro', //solo ahorro o corriente
+        phone: 3017549300,
+        accountType: 'Ahorro', //solo ahorro o corriente
         accountNumber: 74,
         profilePicture: 'https://via.placeholder.com/150',
       },
@@ -25,10 +25,10 @@ export const CLIENT = [{
         age: 22,
         city: 'Medellín',
         country: 'Colombia',
-        occupation: 'Ingeniero de sistemas',
+        occupation: 'Ingeniera de sistemas',
         address: 'calle 9',
         phone: '+57 3017549300',
-        accountType: 'corriente', //solo ahorro o corriente
+        accountType: 'Corriente', //solo ahorro o corriente
         accountNumber: 84,
         profilePicture: 'https://via.placeholder.com/150',
       },
@@ -45,7 +45,7 @@ export const CLIENT = [{
         occupation: 'Ingeniero de sistemas',
         address: 'calle 10',
         phone: '+57 3017549300',
-        accountType: 'corriente', //solo ahorro o corriente
+        accountType: 'Corriente', //solo ahorro o corriente
         accountNumber: 85,
         profilePicture: 'https://via.placeholder.com/150',
       },

@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContextProvider';
 
 export const UserCardEdit = () => {
-  // Estado inicial con la información del usuario
+  const { user, setUser } = useContext(AuthContext); 
+  const [isEditing, setIsEditing] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    name: 'Diego Moreno',
-    username: 'dmoreno',
-    email: 'jaguirremo@unal.edu.co',
-    age: 22,
-    city: 'Medellín',
-    country: 'Colombia',
-    occupation: 'Ingeniero de sistemas',
-    phone: '+57 3017549300',
-    profilePicture: 'https://via.placeholder.com/150',
+    name: user.name,
+    username: user.username,
+    email: user.email,
+    age: user.age,
+    city: user.city,
+    country: user.country,
+    occupation: user.occupation,
+    phone: user.phone,
+    profilePicture: user.profilePicture,
   });
 
-  // Manejador de cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prevUserInfo) => ({
@@ -23,9 +24,17 @@ export const UserCardEdit = () => {
     }));
   };
 
-  // Manejador del botón de guardar
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
   const handleSave = () => {
-    // Aquí se podrían hacer operaciones para guardar la información, como una llamada a una API.
+    // Actualizar la información del usuario en el contexto
+    setUser((prevUser) => ({
+      ...prevUser,
+      ...userInfo,
+    }));
+    setIsEditing(false);
     alert('Información guardada');
   };
 
@@ -46,6 +55,7 @@ export const UserCardEdit = () => {
                 value={userInfo.name}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
@@ -57,6 +67,7 @@ export const UserCardEdit = () => {
                 value={userInfo.username}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
@@ -68,10 +79,11 @@ export const UserCardEdit = () => {
                 value={userInfo.email}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
-              <label htmlFor="age"><strong>Edad</strong></label>
+              <label htmlFor="age"><strong>Edad:</strong></label>
               <input
                 type="number"
                 id="age"
@@ -79,6 +91,7 @@ export const UserCardEdit = () => {
                 value={userInfo.age}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
           </div>
@@ -92,6 +105,7 @@ export const UserCardEdit = () => {
                 value={userInfo.city}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
@@ -103,6 +117,7 @@ export const UserCardEdit = () => {
                 value={userInfo.country}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
@@ -114,6 +129,7 @@ export const UserCardEdit = () => {
                 value={userInfo.occupation}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
@@ -125,12 +141,21 @@ export const UserCardEdit = () => {
                 value={userInfo.phone}
                 onChange={handleChange}
                 style={styles.input}
+                disabled={!isEditing}
               />
             </div>
           </div>
         </form>
         <div style={styles.buttonContainer}>
-            <button type="button" onClick={handleSave} style={styles.saveButton}>Guardar</button>
+          {isEditing ? (
+            <button type="button" onClick={handleSave} style={styles.saveButton}>
+              Guardar
+            </button>
+          ) : (
+            <button type="button" onClick={handleEdit} style={styles.editButton}>
+              Editar
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -170,17 +195,17 @@ const styles = {
   },
   form: {
     display: 'flex',
-    flexDirection: 'row',  // Cambiado a 'row' para dividir en dos columnas
+    flexDirection: 'row',
     justifyContent: 'space-between',
   },
   formColumn: {
     display: 'flex',
     flexDirection: 'column',
-    width: '50%',  // Ajustado para dividir uniformemente el espacio
+    width: '50%',
   },
   formGroup: {
     marginBottom: '5px',
-    marginLeft: '10px',  // Añadido para separar los campos
+    marginLeft: '10px',
   },
   input: {
     width: '100%',
@@ -198,6 +223,15 @@ const styles = {
   },
   saveButton: {
     backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '10px 20px',
+    cursor: 'pointer',
+    fontSize: '16px',
+  },
+  editButton: {
+    backgroundColor: 'grey',
     color: '#fff',
     border: 'none',
     borderRadius: '4px',

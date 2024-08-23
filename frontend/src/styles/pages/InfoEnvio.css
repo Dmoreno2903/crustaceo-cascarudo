@@ -24,6 +24,12 @@
   width: 450px;
 }
 
+.shipment-section label {
+  display: block; /* Hace que el label ocupe todo el ancho disponible */
+  text-align: center; /* Centra el texto del label */
+  margin-bottom: 5px; /* Separar el label del campo de entrada */
+}
+
 input[type="email"],
 input[type="text"],
 input[type="number"],

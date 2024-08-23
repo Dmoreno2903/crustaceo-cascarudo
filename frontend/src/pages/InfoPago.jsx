@@ -4,11 +4,11 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 
 export const InfoPago = () => {
+
+  const { user } = useContext(AuthContext); 
   const { setCartItems } = useContext(AuthContext);
   const [accountType, setAccountType] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const [idNumber, setIdNumber] = useState("");
-  const [accountHolder, setAccountHolder] = useState("");
   const navigate = useNavigate();
 
   const handleAccountTypeChange = (e) => {
@@ -19,13 +19,6 @@ export const InfoPago = () => {
     setAccountNumber(e.target.value);
   };
 
-  const handleIdNumberChange = (e) => {
-    setIdNumber(e.target.value);
-  };
-
-  const handleAccountHolderChange = (e) => {
-    setAccountHolder(e.target.value);
-  };
 
   const handleCancel = () => {
     setCartItems({
@@ -41,8 +34,6 @@ export const InfoPago = () => {
     console.log("Información de pago:", {
       accountType,
       accountNumber,
-      accountHolder,
-      idNumber,
     });
 
     // Borra el carrito y redirige a la página de resumen de compra
@@ -62,9 +53,10 @@ export const InfoPago = () => {
           <h3 className="title">Información de Pago</h3>
 
           <div className="shipment-section">
+            <label htmlFor="accountType">Seleccione el tipo de cuenta</label>
             <select
               id="accountType"
-              value={accountType}
+              value={user.accountType}
               onChange={handleAccountTypeChange}
               required
             >
@@ -75,34 +67,13 @@ export const InfoPago = () => {
           </div>
 
           <div className="shipment-section">
+            <label htmlFor="accountNumber">Número de cuenta</label>
             <input
               type="text"
               id="accountNumber"
-              value={accountNumber}
+              value={user.accountNumber}
               onChange={handleAccountNumberChange}
               placeholder="Ingrese el número de cuenta"
-              required
-            />
-          </div>
-
-          <div className="shipment-section">
-            <input
-              type="text"
-              id="idNumber"
-              value={idNumber}
-              onChange={handleIdNumberChange}
-              placeholder="Ingrese su número de identificación"
-              required
-            />
-          </div>
-
-          <div className="shipment-section">
-            <input
-              type="text"
-              id="accountHolder"
-              value={accountHolder}
-              onChange={handleAccountHolderChange}
-              placeholder="Ingrese el titular de la cuenta"
               required
             />
           </div>
@@ -119,7 +90,6 @@ export const InfoPago = () => {
               className="btn continue-btn"
               type="button"
               onClick={handleBuy}
-              disabled={!accountType || !accountNumber || !idNumber || !accountHolder}
             >
               Pagar
             </button>
