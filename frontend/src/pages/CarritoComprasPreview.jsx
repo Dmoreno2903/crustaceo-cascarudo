@@ -113,7 +113,8 @@ export const CarritoComprasPreview = () => {
                       <td>
                         <b>{burguer.name} - </b> {burguer.description}
                       </td>
-                      <td>{burguer.price}</td>
+                      <td>${burguer.price.toLocaleString("es-CO"
+                    )}</td>
                       <td style={{ textAlign: "center" }}>
                         <div className="quantity-controls">
                           <button
@@ -162,7 +163,8 @@ export const CarritoComprasPreview = () => {
                       <td>
                         <b>{fries.name} - </b> {fries.description}
                       </td>
-                      <td>{fries.price}</td>
+                      <td>${fries.price.toLocaleString("es-CO"
+                    )}</td>
                       <td>
                         <div className="quantity-controls">
                           <button
@@ -212,7 +214,8 @@ export const CarritoComprasPreview = () => {
                         <b>{drink.name} - </b>
                         {drink.description}
                       </td>
-                      <td>{drink.price}</td>
+                      <td>${drink.price.toLocaleString("es-CO"
+                    )}</td>
                       <td>
                         <div className="quantity-controls">
                           <button
@@ -247,12 +250,12 @@ export const CarritoComprasPreview = () => {
               <tfoot>
                 <tr>
                   <td colSpan="2" style={{ textAlign: "right" }}>
-                    <b>Total:</b>
+                    <b>Total: </b>
                   </td>
-                  <td style={{ textAlign: "center" }}>
-                    {total.toLocaleString("es-CO", {
-                      minimumFractionDigits: 2,
-                    })}
+                  <td style={{ textAlign: "center" }}>$
+                    {total.toLocaleString("es-CO"
+                    )}
+
                   </td>
                   <td colSpan="2"></td>
                 </tr>

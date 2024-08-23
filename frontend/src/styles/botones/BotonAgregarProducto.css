@@ -1,7 +1,7 @@
 .boton-agregar-producto {
-    background-color: #D97B29;
+    background: linear-gradient(to right, #D97B29, #734116);
     color: #EBEBEB;
-    font-size: 20px;
+    font-size: 16px;
     border: none;
     border-radius: 25px;
     padding: 10px 40px;

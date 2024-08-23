@@ -39,6 +39,7 @@ export const UserCardEdit = () => {
   };
 
   return (
+    <>
     <div style={styles.card}>
       <div style={styles.profileSection}>
         <img src={userInfo.profilePicture} alt={`${userInfo.name}'s profile`} style={styles.profilePicture} />
@@ -159,6 +160,7 @@ export const UserCardEdit = () => {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

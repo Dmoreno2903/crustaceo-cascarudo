@@ -25,6 +25,8 @@ export const OrderList = () => {
 
   return (
     <div style={styles.listContainer}>
+      <h3>Historial de compras</h3>
+      <br></br>
       {orders.map((order) => (
         <div key={order.id} style={styles.orderCard}>
           <div style={styles.orderInfo}>
