@@ -6,12 +6,14 @@ import burguerService from '../services/burguers';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState();
-  const [cartItems, setCartItems] = useState({
-    "fries": { },
-    "burguers": {  },
-    "drinks": {  }
+  const [user, setUser] = useState(() => {
+    return JSON.parse(localStorage.getItem('username'))
   })
+  const [cartItems, setCartItems] = useState({
+        "fries": { },
+        "burguers": { },
+        "drinks": { }
+      })
   const [burguers, setBurguers] = useState(BURGUER);
   const [fries, setFries] = useState(FRIES);
   const [drinks, setDrinks] = useState(DRINK);
@@ -26,10 +28,20 @@ export const AuthContextProvider = ({ children }) => {
     ...CLIENT,
     ...ADMINISTRATOR
   ]
+  
+  useEffect(() => {
+    if(user) {
+      setCartItems(user.cartItems)
+    }
+    else {
+      setCartItems({
+          "fries": { },
+          "burguers": { },
+          "drinks": { }
+        })
+    }
+  }, [user])
 
-  // const getUser = () => {
-  //   const user = sessionStorage.getItem('username')
-  // }
   const onClick = (a) => {
     let activeNuevo = {
       "fries": false,
@@ -60,8 +72,9 @@ export const AuthContextProvider = ({ children }) => {
       client.id === updatedClient.id ? updatedClient : client
     );
     setUser(updatedClient);
-  };
+  }
 
+  
   const contextData = {
     user,
     setUser,
@@ -80,6 +93,7 @@ export const AuthContextProvider = ({ children }) => {
     setCartItems,
     updateCartItem,
     removeCartItem,
+    CLIENT,
     USERS
   };
 
