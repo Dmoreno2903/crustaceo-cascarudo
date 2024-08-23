@@ -9,14 +9,20 @@ import logo from '/src/assets/imagenes/logo.jpg';
 import SearchBar from "./SearchBar";
 
 export const Navbar = () => {
-  const { user, cartItems } = useContext(AuthContext);
+  const { user, setUser, cartItems } = useContext(AuthContext);
 
   // Calcula la cantidad total de productos en el carrito
   const getTotalItems = () => {
     return Object.values(cartItems).reduce((total, categoryItems) => {
       return total + Object.values(categoryItems).reduce((sum, quantity) => sum + quantity, 0);
     }, 0);
-  };
+  }
+
+  // Cerrar sesión
+  const signOut = () => {
+    setUser(null)
+    localStorage.removeItem('username')
+  }
 
   return (
     <div className="navbar">
@@ -63,6 +69,12 @@ export const Navbar = () => {
                 <Money size={32}/>
               </Link>
             </>
+          )}
+          {user && (<Link to='/menu'>
+            <div onClick={signOut}>
+              Cerrar sesion
+            </div>
+          </Link>
           )}
         </div>
         

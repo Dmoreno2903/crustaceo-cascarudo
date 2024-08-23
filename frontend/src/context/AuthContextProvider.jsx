@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    return JSON.parse(sessionStorage.getItem('username'))
+    return JSON.parse(localStorage.getItem('username'))
   })
   const [cartItems, setCartItems] = useState({
     "fries": { },

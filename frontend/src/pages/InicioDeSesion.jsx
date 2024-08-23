@@ -20,7 +20,7 @@ export const InicioDeSesion = () => {
         let { password, ...copyUser } = user
         setUser(copyUser)
         navigate('/menu')
-        sessionStorage.setItem('username', JSON.stringify(copyUser))
+        localStorage.setItem('username', JSON.stringify(copyUser))
         toast.success(`Sesion iniciada, hola ${user.name}`)
       }
       else{
