@@ -1,17 +1,17 @@
 .boton-menu {
-    background-color: #D97B29;
-    color: #EBEBEB;
-    height: 70px;
-    width: 374px;
-    font-size: 20px;
-    border: none;
-    border-radius: 25px;
-    padding: 0 40px;
+  background: linear-gradient(to right, #d97b29, #734116);
+  color: #ebebeb;
+  height: 70px;
+  width: 300px;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
+  padding: 0 40px;
 }
-.boton-menu:hover{
-    cursor:pointer;
-    filter: brightness(90%); /* Oscurece el botón un 10% al pasar el mouse */
+.boton-menu:hover {
+  cursor: pointer;
+  filter: brightness(90%); /* Oscurece el botón un 10% al pasar el mouse */
 }
 .active {
-    background-color: rgba(160, 90, 20, 1);
+  background-color: rgba(160, 90, 20, 1);
 }

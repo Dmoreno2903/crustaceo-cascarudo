@@ -1,6 +1,5 @@
 .tarjeta-producto-detallado{
     display: flex;
-    /* Asegúrate de que el contenido no se desborde */
     overflow: auto;
     align-items: center;
     justify-content: center;
@@ -20,6 +19,22 @@
     flex-direction: column;
     text-align: center;
     width: 40%;
+}
+
+.return-btn {
+    width: auto;
+    padding: 10px 20px;
+    background-color: rgba(169, 169, 169, 0.7); /* Gris oscuro con transparencia */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.return-btn:hover {
+    background-color: rgba(128, 128, 128, 0.7); /* Gris aún más oscuro con transparencia en hover */
 }
 
 @media screen and (min-width: 1250px) {
