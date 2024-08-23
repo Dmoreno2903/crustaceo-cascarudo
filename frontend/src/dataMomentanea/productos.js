@@ -9,7 +9,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": true,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":2,
@@ -21,7 +22,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": true,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":3,
@@ -33,7 +35,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":4,
@@ -45,7 +48,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":5,
@@ -57,7 +61,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":6,
@@ -69,7 +74,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":7,
@@ -81,7 +87,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":8,
@@ -93,7 +100,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":9,
@@ -105,7 +113,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":10,
@@ -117,7 +126,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["mala", "estaba bien"]
     },
     {
         "id":11,
@@ -129,7 +139,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena", "mala", "estaba bien"]
     },
     {
         "id":12,
@@ -141,7 +152,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": false,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "buena"]
     },
     {
         "id":13,
@@ -153,7 +165,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": true,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala"]
     },
     {
         "id":14,
@@ -165,7 +178,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": true,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["buena", "mala", "estaba bien"]
     },
     {
         "id":15,
@@ -177,7 +191,8 @@ export const BURGUER = [
         "count": "",
         "created_at": "",
         "is_outstanding": true,
-        "table":"burguers"
+        "table":"burguers",
+        "comments": ["mala", "estaba bien"]
     }
 ]
 

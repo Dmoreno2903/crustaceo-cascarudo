@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { BURGUER, FRIES, DRINK } from '../dataMomentanea/productos';
+import {CLIENT, ADMINISTRATOR} from '../dataMomentanea/users'// base de datos estatica, luego hay que cambiarlo
 import burguerService from '../services/burguers';
 
 export const AuthContext = createContext();
@@ -10,7 +11,7 @@ export const AuthContextProvider = ({ children }) => {
     "fries": { },
     "burguers": {  },
     "drinks": {  }
-  });
+  })
   const [burguers, setBurguers] = useState(BURGUER);
   const [fries, setFries] = useState(FRIES);
   const [drinks, setDrinks] = useState(DRINK);
@@ -21,7 +22,14 @@ export const AuthContextProvider = ({ children }) => {
     "burguers": true,
     "drinks": false
   });
+  const USERS = [
+    ...CLIENT,
+    ...ADMINISTRATOR
+  ]
 
+  // const getUser = () => {
+  //   const user = sessionStorage.getItem('username')
+  // }
   const onClick = (a) => {
     let activeNuevo = {
       "fries": false,
@@ -65,8 +73,10 @@ export const AuthContextProvider = ({ children }) => {
     setCartItems,
     updateCartItem,
     removeCartItem,
+    USERS
   };
 
+  
   useEffect(() => {
     const selectedList = Object.keys(active).find(prop => active[prop]);
     if (selectedList === "fries") {
