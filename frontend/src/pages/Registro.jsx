@@ -13,7 +13,6 @@ export const Registro = () => {
     
     const navigate = useNavigate()
     const onSubmit = (data) =>{
-      
       let newUser = {
         id:'',//numero
         type: '',
@@ -60,13 +59,18 @@ export const Registro = () => {
         const id = CLIENT.reduce((maxId, client) => Math.max(maxId, client.id), 0)
         newUser.id = id+1
         newUser.type = "Client"
-        newUser.name = `${data.firstname} ${data.lastname}`
+        newUser.name = `${data.firstName} ${data.lastName}`
         newUser.username = data.username
         newUser.password = data.password
         newUser.email = data.email
         
-        setUser(newUser)
+        
+        let { password, ...copyUser } = newUser
+        setUser(copyUser)
         navigate('/usuario')
+        localStorage.setItem('username', JSON.stringify(copyUser))
+        console.log(copyUser.name)
+        toast.success(`Sesion iniciada, hola ${copyUser.name} porfavor configura los datos faltantes`)
         
       }
 

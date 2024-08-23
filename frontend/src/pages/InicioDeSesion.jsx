@@ -21,7 +21,7 @@ export const InicioDeSesion = () => {
         setUser(copyUser)
         navigate('/menu')
         localStorage.setItem('username', JSON.stringify(copyUser))
-        toast.success(`Sesion iniciada, hola ${user.name}`)
+        toast.success(`Sesion iniciada, hola ${copyUser.name}`)
       }
       else{
         reset()
