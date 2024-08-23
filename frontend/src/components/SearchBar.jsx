@@ -32,7 +32,6 @@ const SearchBar = () => {
       setFilteredItems(filtered)
     }
   }
-  console.log("filtered",filteredItems)
 
   const handleInfoClick = (table, id) => {
     navigate(`/detallado/${table}/${id}`)
