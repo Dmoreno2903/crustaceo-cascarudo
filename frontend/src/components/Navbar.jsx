@@ -1,7 +1,7 @@
 import { Badge } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import { UserCircle, Money, Notebook} from "phosphor-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { useContext} from "react";
 import { AuthContext } from "../context/AuthContextProvider";
@@ -9,7 +9,9 @@ import logo from '/src/assets/imagenes/logo.jpg';
 import SearchBar from "./SearchBar";
 
 export const Navbar = () => {
-  const { user, setUser, cartItems, setCarItems } = useContext(AuthContext);
+  const { user, setUser, cartItems, redirectToast } = useContext(AuthContext);
+
+  const navigate = useNavigate()
 
   // Calcula la cantidad total de productos en el carrito
   const getTotalItems = () => {
@@ -22,6 +24,17 @@ export const Navbar = () => {
   const signOut = () => {
     setUser(null)
     localStorage.removeItem('username')
+  }
+
+  //maneja el click del carrito en la navbar para que redirija al acrrito si hay usuario o para que salte el toast sino lo hay
+  const handleCartClick = (e) => {
+    e.preventDefault() // Esto hace que el componente Link del cart si redirija
+    if (user) {
+      navigate("/carrito-compras-preview")
+    } 
+    else {
+      redirectToast()
+    }
   }
 
   return (
@@ -54,7 +67,7 @@ export const Navbar = () => {
             </>
           )}
           {(!user || user.type === 'Client') && (
-            <Link to="/carrito-compras-preview">
+            <Link onClick={handleCartClick}>
               <Badge badgeContent={getTotalItems()} color="primary">
                 <ShoppingCart color="action" />
               </Badge>
