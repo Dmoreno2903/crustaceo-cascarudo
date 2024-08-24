@@ -3,10 +3,14 @@ import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { COMPRAS } from "../dataMomentanea/compras";
 import { CLIENT, ADMINISTRATOR } from "../dataMomentanea/users"; // base de datos estatica, luego hay que cambiarlo
 import burguerService from "../services/burguers";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const navigate = useNavigate()
+  
   const [user, setUser] = useState(() => {
     return JSON.parse(localStorage.getItem('username'))
   })
@@ -72,6 +76,47 @@ export const AuthContextProvider = ({ children }) => {
     });
   };
 
+  const redirectToast = () => {
+    toast((t)=>{
+      const navigateLogin = ()=>{
+        navigate('/inicio-de-sesion')
+        toast.dismiss(t.id)
+      }
+      const navigateRegister = ()=>{
+        navigate('/registro')
+        toast.dismiss(t.id)
+      }
+      const cancel = () =>{
+        toast.dismiss(t.id)
+      }
+      return(
+        <>
+        
+        <div>
+          No has iniciado sesion
+          <br/>
+          <div>
+            <button onClick={navigateLogin}>
+              Iniciar sesion
+            </button>
+            <button onClick={navigateRegister}>
+              Crear cuenta
+            </button>
+            <button onClick={cancel}>
+              cancelar
+            </button>
+          </div>
+        </div>
+        
+        </>
+      )
+    },
+    {
+      duration: 4000,
+      id: 'clipboard',
+    })
+  }
+
   // Filtrar las compras realizadas por el usuario activo
   useEffect(() => {
     if (user) {
@@ -108,7 +153,8 @@ export const AuthContextProvider = ({ children }) => {
     removeCartItem,
     CLIENT,
     USERS,
-    compras
+    compras,
+    redirectToast
   };
 
   useEffect(() => {
