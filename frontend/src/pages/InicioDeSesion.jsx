@@ -58,7 +58,7 @@ export const InicioDeSesion = () => {
             </button>
           </form>
           </div>
-          <a href="">¿Olvidaste tu contraseña?</a>
+          <a href="/recuperar-contrasena">¿Olvidaste tu contraseña?</a>
           <br></br>
           <div>
             <h4>¿No tienes cuenta?</h4>

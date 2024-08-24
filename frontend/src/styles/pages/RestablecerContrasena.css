@@ -1,0 +1,76 @@
+.reset-password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.reset-password-form {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.reset-password-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d4a0a0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f7931e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.submit-button:hover {
+    background-color: #e68317;
+}
+
+.message {
+    text-align: center;
+    margin-top: 10px;
+    color: #555;
+    font-size: 14px;
+}
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}

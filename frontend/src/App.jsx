@@ -5,6 +5,8 @@ import { CarritoComprasPreview} from "./pages/CarritoComprasPreview"
 import { Inicio } from "./pages/Inicio"
 import { Registro } from "./pages/Registro"
 import { InicioDeSesion } from "./pages/InicioDeSesion"
+import { RecuperarContrasena } from "./pages/RecuperarContrasena"
+import { RestablecerContrasena } from "./pages/RestablecerContrasena";
 import { Detallado } from "./pages/Detallado"
 import { Usuario } from "./pages/Usuario"
 import { Footer } from "./components/Footer"
@@ -35,6 +37,8 @@ function App() {
           <Route path="/inicio" element={<Inicio/>}/>
           <Route path="/registro" element={<Registro/>}/>
           <Route path="/inicio-de-sesion" element={<InicioDeSesion/>}/>
+          <Route path="/recuperar-contrasena" element={<RecuperarContrasena/>} />
+          <Route path="/restablecer-contrasena" element={<RestablecerContrasena />} />
           <Route path="/carrito-compras-preview" element={<CarritoComprasPreview/>}/> {/* TODO: Volver a poner esta ruta privada */}
           <Route path="/info-envio" element={<InfoEnvio/>}/> {/* TODO: Volver a poner esta ruta privada */}
           <Route path="/info-pago" element={<InfoPago/>}/> {/* TODO: Volver a poner esta ruta privada */}
