@@ -22,6 +22,7 @@ import { PrivateAdminRoute } from "./utils/PrivateAdminRoute"
 import { InfoEnvio } from "./pages/InfoEnvio"
 import { InfoPago } from "./pages/InfoPago"
 import { ConfirmacionCompra } from "./pages/ConfirmacionCompra"
+import LoginProhibido from "./pages/LoginProhibido"
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>}/>
           <Route path="/admin" element={<PrivateAdminRoute><AdminContextProvider><Admin /></AdminContextProvider></PrivateAdminRoute>} />
           <Route path="/admin/facturas" element={<PrivateAdminRoute><AdminContextProvider><Facturas /></AdminContextProvider></PrivateAdminRoute>} />
+          <Route path="/login-prohibido" element={<LoginProhibido/>}/>
           
           <Route path="*" element={<NotFound/>}/>
       </Routes>

@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import '../styles/pages/InicioDeSesion.css'
 import { AuthContext } from "../context/AuthContextProvider";
 import { useContext } from "react";
+import sadSong from '../assets/sounds/sadSong.m4a'
 
 import toast from 'react-hot-toast'
 
@@ -13,10 +14,18 @@ export const InicioDeSesion = () => {
     const navigate = useNavigate()
 
     const {register, handleSubmit, reset} = useForm()
+    const audio = new Audio(sadSong);
 
     const onSubmit = (data) => {
       const user = USERS.find(client => client.username === data.username)
-      if(user && user.password===data.password){
+      if(data.username.toLowerCase().includes('plankton') || data.password.toLowerCase().includes('plankton')){
+        
+        audio.pause(); // Detener el audio si ya está reproduciéndose
+        audio.currentTime = 0; // Reiniciar el audio al principio
+        audio.play();
+        navigate('/login-prohibido')
+      }
+      else if(user && user.password===data.password){
         let { password, ...copyUser } = user
         setUser(copyUser)
         navigate('/menu')
