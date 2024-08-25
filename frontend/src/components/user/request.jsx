@@ -1,16 +1,40 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContextProvider";
 
 export const OrderList = () => {
-
   const { compras } = useContext(AuthContext);
+  const [ratings, setRatings] = useState([...compras]);
+
+  const handleRatingChange = (e, index) => {
+    const newRating = e.target.value;
+    const updatedRatings = ratings.map((order, i) =>
+      i === index ? { ...order, rating: newRating } : order
+    );
+    setRatings(updatedRatings);
+  };
+
+  const handleCommentChange = (e, index) => {
+    const comment = e.target.value;
+    const words = comment.trim().split(/\s+/);
+
+    if (words.length <= 3) {
+      const updatedRatings = ratings.map((order, i) =>
+        i === index ? { ...order, comment } : order
+      );
+      setRatings(updatedRatings);
+    }
+  };
+
+  const handleSave = () => {
+    alert('Información guardada');
+  };
 
   return (
     <div style={styles.listContainer}>
       <h3>Historial de compras</h3>
-      <br></br>
-      {compras.length > 0 ? (
-        compras.map((order, index) => (
+      <br />
+      {ratings.length > 0 ? (
+        ratings.map((order, index) => (
           <div key={index} style={styles.orderCard}>
             <div style={styles.orderInfo}>
               <div style={styles.orderField}>
@@ -25,6 +49,36 @@ export const OrderList = () => {
               <div style={styles.orderField}>
                 <strong>Productos:</strong> {order.productNames.join(', ')}
               </div>
+              <div style={styles.orderField}>
+                <strong>Calificación:</strong>
+                <select
+                  value={order.rating || ''}
+                  onChange={(e) => handleRatingChange(e, index)}
+                >
+                  <option value="" disabled>
+                    Selecciona una calificación
+                  </option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <div style={styles.orderField}>
+                <strong>Comentario:</strong>
+                <input
+                  type="text"
+                  value={order.comment || ''}
+                  onChange={(e) => handleCommentChange(e, index)}
+                  maxLength={20} // Limitar a 20 caracteres para asegurar 3 palabras máximo
+                  placeholder="Máximo 3 palabras"
+                  style={styles.commentInput}
+                />
+              </div>
+              <button style={styles.saveButton} onClick={handleSave}>
+                Guardar
+              </button>
             </div>
           </div>
         ))
@@ -60,6 +114,19 @@ const styles = {
   },
   orderField: {
     marginBottom: '5px',
+  },
+  commentInput: {
+    width: '100%',
+  },
+  saveButton: {
+    marginTop: '10px',
+    padding: '10px 15px',
+    backgroundColor: '#808080', // Color gris
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    alignSelf: 'center', // Centra el botón
   },
 };
 
