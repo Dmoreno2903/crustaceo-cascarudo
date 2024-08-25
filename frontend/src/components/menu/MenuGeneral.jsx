@@ -4,6 +4,7 @@ import Pagination from "@mui/material/Pagination"
 import { useContext, useEffect, useState } from "react"
 import '../../styles/menu/MenuGeneral.css'
 import { AuthContext } from "../../context/AuthContextProvider"
+import FiltradoPrecio from "./FiltradoPrecio"
 
 
 export const MenuGeneral = () => {
@@ -43,6 +44,7 @@ export const MenuGeneral = () => {
         <BotonMenu name={"Cangreburguers"} currentActive = {active.burguers} onClick={()=>onClick("burguers")}/>
         <BotonMenu name={"Bebidas"} currentActive = {active.drinks} onClick={()=>onClick("drinks")}/>
       </div>
+      <FiltradoPrecio/>
       <ListaProductosGeneral listaRecortada={listaRecortada}/>
       <Pagination className="pagination" page={page} count={numeroPaginas} color="primary" onChange={handleChange}></Pagination>
     </div>
