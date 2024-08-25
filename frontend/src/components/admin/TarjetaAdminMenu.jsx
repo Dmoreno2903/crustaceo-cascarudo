@@ -12,15 +12,12 @@ export const TarjetaAdminMenu = ({product}) => {
 
     const handleClick = () =>{
       toast.dismiss()
-      toast((t)=>{
-        return(
-          <ToastUpdateProduct product={product} adminContext={adminContext} t={t} />
-        )
-      },
-      {
-        duration: Infinity
-      })
-    }
+      toast.custom(<ToastUpdateProduct product={product} adminContext={adminContext}/>,
+        {
+          duration: Infinity
+        }
+      )
+      }
   return (
     <tr onClick = {handleClick}>
         <td>{product.id}</td>

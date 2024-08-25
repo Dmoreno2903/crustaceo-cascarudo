@@ -1,0 +1,10 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: auto; /* Ajusta el ancho al 100% del contenedor padre */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+}
+

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContextProvider";
+import toast from 'react-hot-toast';
 
 export const OrderList = () => {
   const { compras, purchases } = useContext(AuthContext);
@@ -26,7 +27,8 @@ export const OrderList = () => {
   };
 
   const handleSave = () => {
-    alert('Información guardada');
+    toast.success('Información guardada');
+    
   };
   const [selectedValues, setSelectedValues] = useState({});
   const [comments, setComments] = useState({});
@@ -66,7 +68,9 @@ export const OrderList = () => {
                   <thead>
                     <tr>
                       <th style={{ padding: '10px 15px' }}>Nombre del producto</th>
-                      <th style={{ padding: '10px 15px' }}>Precio</th>
+                      <th style={{ padding: '10px 15px' }}>Cantidad</th>
+                      <th style={{ padding: '10px 15px' }}>Precio individual</th>
+                      <th style={{ padding: '10px 15px' }}>Precio total</th>
                       <th style={{ padding: '10px 15px' }}>Calificación</th>
                       <th style={{ padding: '10px 15px' }}>Comentario</th>
                     </tr>
@@ -75,7 +79,10 @@ export const OrderList = () => {
                     {purchase.productList.map(product => (
                       <tr key={product.id}>
                         <td style={{ padding: '10px 15px' }}>{product.name}</td>
+                        <td style={{ padding: '10px 15px' }}>{product.quantity}</td>
                         <td style={{ padding: '10px 15px' }}>{product.price}</td>
+                        <td style={{ padding: '10px 15px' }}>{product.price*product.quantity}</td>
+
                         <td style={{ padding: '10px 15px' }}>
                           <select
                             value={selectedValues[product.id] || 1}

@@ -1,8 +1,8 @@
 import toast from "react-hot-toast"
 import { BURGUER, FRIES, DRINK } from "../../dataMomentanea/productos"
 import {useForm} from "react-hook-form"
-
-export const ToastUpdateProduct = ({product, adminContext, t}) => {
+import styles from './ToastUpdateProduct.module.css'
+export const ToastUpdateProduct = ({product, adminContext, onCancel}) => {
     const { register, handleSubmit } = useForm()
     
     const { 
@@ -60,16 +60,14 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
         setFries(newList)
       }
         
-        toast.dismiss(t.id)
+      toast.dismiss()
     }
 
     
 
   return (
-    <form onSubmit={
-      handleSubmit(
-        onSubmit
-        )}>
+    
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
         <h1>Actualizar {labelToShow} con id {product.id}</h1>
         <label>Nombre: <input {...register("name", { required: "por favor ingresa nombre" })} defaultValue={product.name}/></label>
         <label>Descripción: <input {...register("description", { required: "por favor ingresa descripción" })} defaultValue={product.description}/></label>
@@ -85,9 +83,12 @@ export const ToastUpdateProduct = ({product, adminContext, t}) => {
           </select>
         </label>
         
-        
+        <br/>
         <input type="submit"/>
-        <button type="button" onClick={() => toast.dismiss(t.id)}>Cancelar</button>
-    </form>
+        <br/>
+        <button type="button" onClick={()=>toast.dismiss()}>Cancelar</button>
+      </form>
+   
+    
   )
 }
