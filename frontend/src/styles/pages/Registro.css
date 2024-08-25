@@ -58,6 +58,8 @@
     box-sizing: border-box;
     color: #333;
     background-color: #f9f9f9;
+    align-items: center;
+    text-align: center;
   }
   
   .inicio-form-group input[type="checkbox"] {
