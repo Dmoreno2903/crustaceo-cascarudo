@@ -29,6 +29,7 @@ export const OrderList = () => {
     alert('Información guardada');
   };
   const [selectedValues, setSelectedValues] = useState({});
+  const [comments, setComments] = useState({});
 
   const handleChange = (productId, event) => {
     setSelectedValues({
@@ -36,6 +37,14 @@ export const OrderList = () => {
       [productId]: event.target.value,
     });
   };
+
+  const handleCommentChange1 = (productId, event) => {
+    setComments({
+      ...comments,
+      [productId]: event.target.value,
+    });
+  };
+
   return (
     <div style={styles.listContainer}>
       <h3>Historial de compras</h3>
@@ -78,7 +87,13 @@ export const OrderList = () => {
                           <option value="4">4</option>
                         </select>
                         </td>
-                        <td>bueno</td>
+                        <td>
+                          <input
+                            type="text"
+                            value={comments[product.id] }
+                            onChange={(event) => handleCommentChange(product.id, event)}
+                          />
+                        </td>
                       </tr>
                     )}
                   </tbody>
