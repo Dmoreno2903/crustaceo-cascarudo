@@ -62,40 +62,41 @@ export const OrderList = () => {
               </div>
               <div style={styles.orderField}>
                 <strong>Productos:</strong>
-                <table>
+                <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: '0 15px' }}>
                   <thead>
                     <tr>
-                      <th>Nombre del producto</th>
-                      <th>Precio</th>
-                      <th>Calificación</th>
-                      <th>Comentario</th>
+                      <th style={{ padding: '10px 15px' }}>Nombre del producto</th>
+                      <th style={{ padding: '10px 15px' }}>Precio</th>
+                      <th style={{ padding: '10px 15px' }}>Calificación</th>
+                      <th style={{ padding: '10px 15px' }}>Comentario</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {purchase.productList.map(product=>
+                    {purchase.productList.map(product => (
                       <tr key={product.id}>
-                        <td>{product.name}</td>
-                        <td>{product.price}</td>
-                        <td >
-                        <select
-                          value={selectedValues[product.id] || 1}
-                          onChange={(event) => handleChange(product.id, event)}
-                        >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                        </select>
+                        <td style={{ padding: '10px 15px' }}>{product.name}</td>
+                        <td style={{ padding: '10px 15px' }}>{product.price}</td>
+                        <td style={{ padding: '10px 15px' }}>
+                          <select
+                            value={selectedValues[product.id] || 1}
+                            onChange={(event) => handleChange(product.id, event)}
+                          >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
                         </td>
-                        <td>
+                        <td style={{ padding: '10px 15px' }}>
                           <input
                             type="text"
-                            value={comments[product.id] }
-                            onChange={(event) => handleCommentChange(product.id, event)}
+                            value={comments[product.id]}
+                            onChange={(event) => handleCommentChange1(product.id, event)}
                           />
                         </td>
                       </tr>
-                    )}
+                    ))}
                   </tbody>
                 </table>
                 <div style={styles.orderField}>
