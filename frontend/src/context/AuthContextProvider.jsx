@@ -75,7 +75,7 @@ export const AuthContextProvider = ({ children }) => {
       // Encuentra y actualiza el usuario en la lista estática de Administrator
       const userIndex = ADMINISTRATOR.findIndex(admin => admin.id === user.id)
       ADMINISTRATOR[userIndex].cartItems = cartItems
-      localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
+      localStorage.setItem('username', JSON.stringify(ADMINISTRATOR[userIndex]))
     }
   }, [cartItems])
 
