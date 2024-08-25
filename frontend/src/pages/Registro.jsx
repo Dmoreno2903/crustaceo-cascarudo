@@ -2,8 +2,11 @@ import {useForm} from "react-hook-form"
 import {Link, useNavigate} from "react-router-dom";
 import '../styles/pages/Registro.css'
 import { AuthContext } from "../context/AuthContextProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import Modal from "react-modal"; 
+
+Modal.setAppElement('#root');
 
 export const Registro = () => {
   
@@ -12,6 +15,9 @@ export const Registro = () => {
     const {register, handleSubmit} = useForm()
     
     const navigate = useNavigate()
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
     const onSubmit = (data) =>{
       let newUser = {
         id:'',//numero
@@ -128,12 +134,15 @@ export const Registro = () => {
               />
             </div>
             <div className="inicio-form-group inicio-checkbox-label">
-              <input
+            <input
                 type="checkbox"
                 {...register("terms", { required: true })}
                 id="terms"
               />
-              <label htmlFor="terms">Acepto las políticas de tratamiento de datos</label>
+              {/* Aquí agregamos un botón que abrirá el modal */}
+              <label htmlFor="terms">
+                Acepto las <span className="politica-link" onClick={() => setModalIsOpen(true)}>políticas de tratamiento de datos</span>
+              </label>
             </div>
             <button type="submit" className="submit-button">
               Registrarse
@@ -145,6 +154,39 @@ export const Registro = () => {
             <Link className="inicio-link" to="/inicio-de-sesion">
             Iniciar sesión
             </Link>
+            </div>
+
+            <div>
+            <Modal 
+              isOpen={modalIsOpen} 
+              onRequestClose={() => setModalIsOpen(false)}
+              contentLabel="Políticas de Tratamiento de Datos"
+              className="modal"
+              overlayClassName="modal-overlay"
+            >
+
+              <h2>Política de Tratamiento de Datos Personales.</h2>
+
+              <h4>1. Consentimiento del Usuario.</h4>
+              <p>El usuario acepta que sus datos serán utilizados para analizar sus preferencias 
+                de compra con el fin de mejorar los productos y beneficios ofrecidos por "Crustáceo Cascarudo".
+              </p>
+
+              <h4>2. Uso y Protección de Datos.</h4>
+              <p>
+              Los datos serán utilizados exclusivamente por "Crustáceo Cascarudo" y no se transferirán a terceros. 
+              Se implementan medidas de seguridad, incluyendo cifrado de datos, para prevenir la adulteración, pérdida, 
+              consulta, uso o acceso no autorizado.
+              </p>
+
+              <h4>3. Cumplimiento Legal.</h4>
+              <p>
+              Esta política cumple con la Ley Estatutaria 1581 de 2012 y el Decreto Reglamentario 1377 de 2013 
+              sobre protección de datos personales en Colombia.
+              </p>
+
+              <button onClick={() => setModalIsOpen(false)}>Cerrar</button>
+            </Modal>
             </div>
         </div>
       );
