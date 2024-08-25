@@ -48,6 +48,22 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, [user])
 
+  useEffect(()=>{
+    if(user && user.type === 'Client'){
+      // Encuentra y actualiza el usuario en la lista estática de Client
+      const userIndex = CLIENT.findIndex(client => client.id === user.id)
+      CLIENT[userIndex].cartItems = cartItems
+      localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
+      console.log(CLIENT)
+    }
+    else if(user && user.type === 'Administrator'){
+      // Encuentra y actualiza el usuario en la lista estática de Administrator
+      const userIndex = ADMINISTRATOR.findIndex(admin => admin.id === user.id)
+      ADMINISTRATOR[userIndex].cartItems = cartItems
+      localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
+    }
+  }, [cartItems])
+
   const onClick = (a) => {
     let activeNuevo = {
       fries: false,
