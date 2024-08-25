@@ -11,7 +11,7 @@ Modal.setAppElement('#root');
 
 export const Registro = () => {
   
-  const {setUser, USERS, CLIENT} = useContext(AuthContext)
+  const {setUser, USERS, CLIENT, playAudio} = useContext(AuthContext)
   
     const {register, handleSubmit} = useForm()
     
@@ -42,8 +42,7 @@ export const Registro = () => {
           "drinks": { }
         }
       }
-      const audio = new Audio(sadSong);
-      console.log(data)
+      
       const user = USERS.find(user => user.username === data.username)
       const email = USERS.find(user => user.email === data.email)
       if(
@@ -55,9 +54,7 @@ export const Registro = () => {
         data.confirmPassword.toLowerCase().includes('plankton')
       ){
         
-        audio.pause(); // Detener el audio si ya está reproduciéndose
-        audio.currentTime = 0; // Reiniciar el audio al principio
-        audio.play();
+        playAudio();
         navigate('/login-prohibido');
         toast.error('Registro denegado');
       }

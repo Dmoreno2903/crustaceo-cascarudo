@@ -5,6 +5,7 @@ import { CLIENT, ADMINISTRATOR } from "../dataMomentanea/users"; // base de dato
 import burguerService from "../services/burguers";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import sadSong from '../assets/sounds/sadSong.m4a';
 
 export const AuthContext = createContext();
 
@@ -34,6 +35,15 @@ export const AuthContextProvider = ({ children }) => {
     burguers: true,
     drinks: false,
   });
+  const [audio] = useState(new Audio(sadSong)); // Crear una instancia de Audio y guardarla en el estado
+
+  const playAudio = () => {
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  };
+
+
   const USERS = [
     ...CLIENT,
     ...ADMINISTRATOR
@@ -176,7 +186,8 @@ export const AuthContextProvider = ({ children }) => {
     USERS,
     compras,
     purchases,
-    redirectToast
+    redirectToast,
+    playAudio
   };
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import mrKrab from '../assets/imagenes/mrKrabSad.gif'
-import sadSong from '../assets/sounds/sadSong.m4a'
+
 
 //Le afectan los estilos de confirmacion carrito compra
 const LoginProhibido = () => {
