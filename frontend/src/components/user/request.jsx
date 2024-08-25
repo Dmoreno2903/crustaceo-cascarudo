@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContextProvider";
+import toast from 'react-hot-toast';
 
 export const OrderList = () => {
   const { compras, purchases } = useContext(AuthContext);
@@ -26,7 +27,8 @@ export const OrderList = () => {
   };
 
   const handleSave = () => {
-    alert('Información guardada');
+    toast.success('Información guardada');
+    
   };
   const [selectedValues, setSelectedValues] = useState({});
   const [comments, setComments] = useState({});
