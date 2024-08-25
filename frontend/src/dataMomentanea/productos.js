@@ -357,7 +357,7 @@ export const DRINK = [
   },
   {
     id: 12,
-    name: "Naranja postobon",
+    name: "Piñacolada",
     price: "12000",
     description: "postobon naranja",
     image: "/src/assets/imagenes/drink.webp",

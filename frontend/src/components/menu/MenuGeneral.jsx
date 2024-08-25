@@ -21,9 +21,9 @@ export const MenuGeneral = () => {
   const listaRecortada = menuToShow.slice(indiceInicio,indiceFinal)
 
   useEffect(() => {
-    setPage(1);
-    setIndiceInicio(0);
-    setIndiceFinal(6);
+    setPage(1)
+    setIndiceInicio(0)
+    setIndiceFinal(6)
   }, [menuToShow]);
 
   const handleChange = (event,currentPage)=>{
