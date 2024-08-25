@@ -20,7 +20,7 @@ export const Registro = () => {
 
     const onSubmit = (data) =>{
       let newUser = {
-        id:'',//numero
+        id:4,//numero
         type: '',
         name: '',
         username: '',
@@ -39,7 +39,8 @@ export const Registro = () => {
           "fries": { },
           "burguers": { },
           "drinks": { }
-        }
+        },
+        purchases: []
       }
       
       const user = USERS.find(user => user.username === data.username)
@@ -84,10 +85,10 @@ export const Registro = () => {
           
           
           let { password, ...copyUser } = newUser
+          CLIENT.push(newUser)
           setUser(copyUser)
           navigate('/usuario')
           localStorage.setItem('username', JSON.stringify(copyUser))
-          console.log(copyUser.name)
           toast.success(`Sesion iniciada, hola ${copyUser.name} porfavor configura los datos faltantes`)
           
         }
