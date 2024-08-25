@@ -1,7 +1,7 @@
 import {BotonMenu} from "../botones/BotonMenu"
 import { ListaProductosGeneral } from "./ListaProductosGeneral"
 import Pagination from "@mui/material/Pagination"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import '../../styles/menu/MenuGeneral.css'
 import { AuthContext } from "../../context/AuthContextProvider"
 
@@ -16,16 +16,22 @@ export const MenuGeneral = () => {
   // Indices de la lista recortada
   const [indiceInicio, setIndiceInicio] = useState(0)
   const [indiceFinal, setIndiceFinal] = useState(6)
-
+  const [page, setPage] = useState(1)
   // Lista con los elementos que se mostraran
   const listaRecortada = menuToShow.slice(indiceInicio,indiceFinal)
-  
-  
+
+  useEffect(() => {
+    setPage(1)
+    setIndiceInicio(0)
+    setIndiceFinal(6)
+  }, [menuToShow]);
+
   const handleChange = (event,currentPage)=>{
     const numeroActual = currentPage-1
     
     setIndiceInicio(numeroActual*6)
     setIndiceFinal(numeroActual*6+6)
+    setPage(currentPage)
   }
   
   
@@ -38,7 +44,7 @@ export const MenuGeneral = () => {
         <BotonMenu name={"Bebidas"} currentActive = {active.drinks} onClick={()=>onClick("drinks")}/>
       </div>
       <ListaProductosGeneral listaRecortada={listaRecortada}/>
-      <Pagination className="pagination" count={numeroPaginas} color="primary" onChange={handleChange}></Pagination>
+      <Pagination className="pagination" page={page} count={numeroPaginas} color="primary" onChange={handleChange}></Pagination>
     </div>
   )
 }

@@ -8,15 +8,22 @@ import toast from 'react-hot-toast'
 
 export const InicioDeSesion = () => {
 
-    const {setUser, USERS} = useContext(AuthContext)
+    const {setUser, USERS, playAudio} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
     const {register, handleSubmit, reset} = useForm()
+    
 
     const onSubmit = (data) => {
       const user = USERS.find(client => client.username === data.username)
-      if(user && user.password===data.password){
+      if(data.username.toLowerCase().includes('plankton') || data.password.toLowerCase().includes('plankton')){
+        
+        playAudio();
+        navigate('/login-prohibido');
+        toast.error('Inicio de sesión denegado')
+      }
+      else if(user && user.password===data.password){
         let { password, ...copyUser } = user
         setUser(copyUser)
         navigate('/menu')

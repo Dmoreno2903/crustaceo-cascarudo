@@ -29,6 +29,7 @@ export const InfoPago = () => {
   };
 
   const handleBuy = () => {
+    
     // Manejo de información de pago
     console.log("Información de pago:", {
       accountType,

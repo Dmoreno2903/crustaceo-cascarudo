@@ -3,10 +3,15 @@ import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { COMPRAS } from "../dataMomentanea/compras";
 import { CLIENT, ADMINISTRATOR } from "../dataMomentanea/users"; // base de datos estatica, luego hay que cambiarlo
 import burguerService from "../services/burguers";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import sadSong from '../assets/sounds/sadSong.m4a';
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const navigate = useNavigate()
+  
   const [user, setUser] = useState(() => {
     return JSON.parse(localStorage.getItem('username'))
   })
@@ -19,6 +24,10 @@ export const AuthContextProvider = ({ children }) => {
   const [fries, setFries] = useState(FRIES);
   const [drinks, setDrinks] = useState(DRINK);
   const [compras, setCompras] = useState(COMPRAS);
+
+  
+  const [purchases, setPurchases] = useState([])
+
   const [menuToShow, setMenuToShow] = useState([]);
   const [selectedList, setSelectedList] = useState("");
   const [active, setActive] = useState({
@@ -26,6 +35,15 @@ export const AuthContextProvider = ({ children }) => {
     burguers: true,
     drinks: false,
   });
+  const [audio] = useState(new Audio(sadSong)); // Crear una instancia de Audio y guardarla en el estado
+
+  const playAudio = () => {
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  };
+
+
   const USERS = [
     ...CLIENT,
     ...ADMINISTRATOR
@@ -34,6 +52,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     if(user) {
       setCartItems(user.cartItems)
+      setPurchases(user.purchases)
     }
     else {
       setCartItems({
@@ -43,6 +62,22 @@ export const AuthContextProvider = ({ children }) => {
         })
     }
   }, [user])
+
+  // modifica el carrito de las listas estaticas cuando se actualiza el carrito
+  useEffect(()=>{
+    if(user && user.type === 'Client'){
+      // Encuentra y actualiza el usuario en la lista estática de Client
+      const userIndex = CLIENT.findIndex(client => client.id === user.id)
+      CLIENT[userIndex].cartItems = cartItems
+      localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
+    }
+    else if(user && user.type === 'Administrator'){
+      // Encuentra y actualiza el usuario en la lista estática de Administrator
+      const userIndex = ADMINISTRATOR.findIndex(admin => admin.id === user.id)
+      ADMINISTRATOR[userIndex].cartItems = cartItems
+      localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
+    }
+  }, [cartItems])
 
   const onClick = (a) => {
     let activeNuevo = {
@@ -71,6 +106,47 @@ export const AuthContextProvider = ({ children }) => {
       return { ...prevCartItems, [category]: updatedCategory };
     });
   };
+
+  const redirectToast = () => {
+    toast((t)=>{
+      const navigateLogin = ()=>{
+        navigate('/inicio-de-sesion')
+        toast.dismiss(t.id)
+      }
+      const navigateRegister = ()=>{
+        navigate('/registro')
+        toast.dismiss(t.id)
+      }
+      const cancel = () =>{
+        toast.dismiss(t.id)
+      }
+      return(
+        <>
+        
+        <div>
+          No has iniciado sesion
+          <br/>
+          <div>
+            <button onClick={navigateLogin}>
+              Iniciar sesion
+            </button>
+            <button onClick={navigateRegister}>
+              Crear cuenta
+            </button>
+            <button onClick={cancel}>
+              cancelar
+            </button>
+          </div>
+        </div>
+        
+        </>
+      )
+    },
+    {
+      duration: 4000,
+      id: 'clipboard',
+    })
+  }
 
   // Filtrar las compras realizadas por el usuario activo
   useEffect(() => {
@@ -108,7 +184,10 @@ export const AuthContextProvider = ({ children }) => {
     removeCartItem,
     CLIENT,
     USERS,
-    compras
+    compras,
+    purchases,
+    redirectToast,
+    playAudio
   };
 
   useEffect(() => {

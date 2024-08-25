@@ -10,7 +10,7 @@ Modal.setAppElement('#root');
 
 export const Registro = () => {
   
-  const {setUser, USERS, CLIENT} = useContext(AuthContext)
+  const {setUser, USERS, CLIENT, playAudio} = useContext(AuthContext)
   
     const {register, handleSubmit} = useForm()
     
@@ -42,42 +42,55 @@ export const Registro = () => {
         }
       }
       
-
       const user = USERS.find(user => user.username === data.username)
       const email = USERS.find(user => user.email === data.email)
-
-      // Verificar si el usuario ya existe
-      if (user) {
-        toast.error("El usuario ya existe");
-      }
-
-      // Verificar si el email ya existe
-      if (email) {
-        toast.error("El email ya existe");
-      }
-
-      // Verificar si las contraseñas coinciden
-      if (data.password !== data.confirmPassword) {
-        toast.error("Las contraseñas no coinciden")
-      }
-
-      if(!user && !email && data.password === data.confirmPassword){
-        const id = CLIENT.reduce((maxId, client) => Math.max(maxId, client.id), 0)
-        newUser.id = id+1
-        newUser.type = "Client"
-        newUser.name = `${data.firstName} ${data.lastName}`
-        newUser.username = data.username
-        newUser.password = data.password
-        newUser.email = data.email
+      if(
+        data.firstName.toLowerCase().includes('plankton') ||
+        data.lastName.toLowerCase().includes('plankton') ||
+        data.email.toLowerCase().includes('plankton') ||
+        data.username.toLowerCase().includes('plankton') || 
+        data.password.toLowerCase().includes('plankton') ||
+        data.confirmPassword.toLowerCase().includes('plankton')
+      ){
         
-        
-        let { password, ...copyUser } = newUser
-        setUser(copyUser)
-        navigate('/usuario')
-        localStorage.setItem('username', JSON.stringify(copyUser))
-        console.log(copyUser.name)
-        toast.success(`Sesion iniciada, hola ${copyUser.name} porfavor configura los datos faltantes`)
-        
+        playAudio();
+        navigate('/login-prohibido');
+        toast.error('Registro denegado');
+      }
+      else{
+        // Verificar si el usuario ya existe
+        if (user) {
+          toast.error("El usuario ya existe");
+        }
+
+        // Verificar si el email ya existe
+        if (email) {
+          toast.error("El email ya existe");
+        }
+
+        // Verificar si las contraseñas coinciden
+        if (data.password !== data.confirmPassword) {
+          toast.error("Las contraseñas no coinciden")
+        }
+
+        if(!user && !email && data.password === data.confirmPassword){
+          const id = CLIENT.reduce((maxId, client) => Math.max(maxId, client.id), 0)
+          newUser.id = id+1
+          newUser.type = "Client"
+          newUser.name = `${data.firstName} ${data.lastName}`
+          newUser.username = data.username
+          newUser.password = data.password
+          newUser.email = data.email
+          
+          
+          let { password, ...copyUser } = newUser
+          setUser(copyUser)
+          navigate('/usuario')
+          localStorage.setItem('username', JSON.stringify(copyUser))
+          console.log(copyUser.name)
+          toast.success(`Sesion iniciada, hola ${copyUser.name} porfavor configura los datos faltantes`)
+          
+        }
       }
 
     }

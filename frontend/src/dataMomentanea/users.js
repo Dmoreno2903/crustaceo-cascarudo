@@ -18,7 +18,8 @@ export const CLIENT = [{
           "fries": { },
           "burguers": { },
           "drinks": { }
-        }
+        },
+        purchases: []
       },
       {
         id:2,
@@ -40,7 +41,32 @@ export const CLIENT = [{
           "fries": { "1": 2, "3": 3 },
           "burguers": { "1": 3 },
           "drinks": { "2": 2 }
-        }
+        },
+        purchases: [
+          {
+            id: 1,
+            total: 50000,
+            date: "22/08/2024",
+            paymentMethod: "tarjeta", //tarjeta o efectivo
+            productList: [{
+                id: 1, // id propio
+                idMenu: 1, // id del producto que compro
+                name: "Cangreburguer clásica",
+                price: "25000",
+                table: "burguers", // burguers, fries, drinks (esto esta en plural por la tabla a la que hace referencia)
+                score: 4,
+                comment: ""
+            },
+            {
+                id:2, // id propio
+                idmenu:1, // id del producto del menu
+                name: "Cangreburguer clásica",
+                price: "25000",
+                table: "burguers", // burguers, fries, drinks (esto esta en plural por la tabla a la que hace referencia)
+                score: 4,
+                comment: ""
+            }]
+          }]
       },
       {
         id: 3,
@@ -62,7 +88,8 @@ export const CLIENT = [{
           "fries": { "1": 2, "3": 3 },
           "burguers": { "1": 3 },
           "drinks": { "2": 2 }
-        }
+        },
+        purchases: []
       },
 ]
 
@@ -87,6 +114,7 @@ export const ADMINISTRATOR = [
           "fries": { "1": 2, "3": 3 },
           "burguers": { "1": 3 },
           "drinks": { "2": 2 }
-        }
+        },
+        purchases: []
       }
 ]

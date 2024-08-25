@@ -5,7 +5,7 @@ import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { useNavigate } from "react-router-dom";
 
 export const CarritoComprasPreview = () => {
-  const { cartItems, updateCartItem, removeCartItem } = useContext(AuthContext);
+  const { user, cartItems, updateCartItem, removeCartItem, setCartItems } = useContext(AuthContext);
   const navigate = useNavigate();
 
   let burguersCart = cartItems["burguers"];
@@ -13,22 +13,28 @@ export const CarritoComprasPreview = () => {
   let drinksCart = cartItems["drinks"];
 
   const handleIncrement = (productId, category) => {
-    updateCartItem(
-      productId,
-      category,
-      (cartItems[category][productId] || 0) + 1
-    );
+    productId = String(productId)
+    let copyCartItems = { ...cartItems }
+    copyCartItems[category][productId]=cartItems[category][productId]+1
+    setCartItems(copyCartItems)
+    
   };
 
   const handleDecrement = (productId, category) => {
     const currentQuantity = cartItems[category][productId] || 1;
     if (currentQuantity > 1) {
-      updateCartItem(productId, category, currentQuantity - 1);
+      productId = String(productId)
+      let copyCartItems = { ...cartItems }
+      copyCartItems[category][productId]=cartItems[category][productId]-1
+      setCartItems(copyCartItems)
+      
     }
   };
 
   const handleRemove = (productId, category) => {
-    removeCartItem(productId, category);
+    let copyCartItems = { ...cartItems }
+    delete copyCartItems[category][productId]
+      setCartItems(copyCartItems)
   };
 
   const handleContinue = () => {
