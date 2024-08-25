@@ -28,7 +28,14 @@ export const OrderList = () => {
   const handleSave = () => {
     alert('Información guardada');
   };
-  
+  const [selectedValues, setSelectedValues] = useState({});
+
+  const handleChange = (productId, event) => {
+    setSelectedValues({
+      ...selectedValues,
+      [productId]: event.target.value,
+    });
+  };
   return (
     <div style={styles.listContainer}>
       <h3>Historial de compras</h3>
@@ -60,7 +67,17 @@ export const OrderList = () => {
                       <tr key={product.id}>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
-                        <td>4</td>
+                        <td >
+                        <select
+                          value={selectedValues[product.id] || 1}
+                          onChange={(event) => handleChange(product.id, event)}
+                        >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                        </td>
                         <td>bueno</td>
                       </tr>
                     )}
