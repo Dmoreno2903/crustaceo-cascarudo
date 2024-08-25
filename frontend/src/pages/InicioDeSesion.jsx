@@ -30,6 +30,7 @@ export const InicioDeSesion = () => {
         localStorage.setItem('username', JSON.stringify(copyUser))
         toast.success(`Sesion iniciada, hola ${copyUser.name}`)
       }
+      
       else{
         reset()
         toast.error("Acceso denegado, el usuario o la contraseña fueron mal ingresadas o no se ha registrado")
