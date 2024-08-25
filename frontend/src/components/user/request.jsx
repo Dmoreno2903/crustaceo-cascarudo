@@ -130,9 +130,10 @@ export const OrderList = () => {
                   style={styles.commentInput}
                 />
               </div>
+               */}
               <button style={styles.saveButton} onClick={handleSave}>
-                Guardar
-              </button> */}
+                Guardar calificacion y comentario
+              </button>
             </div>
           </div>
         ))
