@@ -23,6 +23,10 @@ export const AuthContextProvider = ({ children }) => {
   const [fries, setFries] = useState(FRIES);
   const [drinks, setDrinks] = useState(DRINK);
   const [compras, setCompras] = useState(COMPRAS);
+
+  
+  const [purchases, setPurchases] = useState([])
+
   const [menuToShow, setMenuToShow] = useState([]);
   const [selectedList, setSelectedList] = useState("");
   const [active, setActive] = useState({
@@ -38,6 +42,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     if(user) {
       setCartItems(user.cartItems)
+      setPurchases(user.purchases)
     }
     else {
       setCartItems({
@@ -48,13 +53,13 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, [user])
 
+  // modifica el carrito de las listas estaticas cuando se actualiza el carrito
   useEffect(()=>{
     if(user && user.type === 'Client'){
       // Encuentra y actualiza el usuario en la lista estática de Client
       const userIndex = CLIENT.findIndex(client => client.id === user.id)
       CLIENT[userIndex].cartItems = cartItems
       localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
-      console.log(CLIENT)
     }
     else if(user && user.type === 'Administrator'){
       // Encuentra y actualiza el usuario en la lista estática de Administrator
@@ -170,6 +175,7 @@ export const AuthContextProvider = ({ children }) => {
     CLIENT,
     USERS,
     compras,
+    purchases,
     redirectToast
   };
 

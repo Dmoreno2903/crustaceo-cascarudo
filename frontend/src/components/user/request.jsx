@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContextProvider";
 
 export const OrderList = () => {
-  const { compras } = useContext(AuthContext);
+  const { compras, purchases } = useContext(AuthContext);
   const [ratings, setRatings] = useState([...compras]);
 
   const handleRatingChange = (e, index) => {
@@ -28,31 +28,52 @@ export const OrderList = () => {
   const handleSave = () => {
     alert('Información guardada');
   };
-
+  
   return (
     <div style={styles.listContainer}>
       <h3>Historial de compras</h3>
       <br />
-      {ratings.length > 0 ? (
-        ratings.map((order, index) => (
+      {purchases.length > 0 
+      ? (
+        purchases.map((purchase, index) => (
           <div key={index} style={styles.orderCard}>
             <div style={styles.orderInfo}>
               <div style={styles.orderField}>
-                <strong>Fecha:</strong> {order.date}
+                <strong>Fecha:</strong> {purchase.date}
               </div>
               <div style={styles.orderField}>
-                <strong>Total:</strong> {order.total}
+                <strong>Método de Pago:</strong> {purchase.paymentMethod}
               </div>
               <div style={styles.orderField}>
-                <strong>Método de Pago:</strong> {order.paymentMethod}
+                <strong>Productos:</strong>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nombre del producto</th>
+                      <th>Precio</th>
+                      <th>Calificación</th>
+                      <th>Comentario</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {purchase.productList.map(product=>
+                      <tr key={product.id}>
+                        <td>{product.name}</td>
+                        <td>{product.price}</td>
+                        <td>4</td>
+                        <td>bueno</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                <div style={styles.orderField}>
+                  <strong>Total:</strong> {purchase.total}
+                </div>
               </div>
-              <div style={styles.orderField}>
-                <strong>Productos:</strong> {order.productNames.join(', ')}
-              </div>
-              <div style={styles.orderField}>
+              {/* <div style={styles.orderField}>
                 <strong>Calificación:</strong>
                 <select
-                  value={order.rating || ''}
+                  value={purchase.rating || ''}
                   onChange={(e) => handleRatingChange(e, index)}
                 >
                   <option value="" disabled>
@@ -64,12 +85,12 @@ export const OrderList = () => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-              </div>
-              <div style={styles.orderField}>
+              </div> */}
+              {/* <div style={styles.orderField}>
                 <strong>Comentario:</strong>
                 <input
                   type="text"
-                  value={order.comment || ''}
+                  value={purchase.comment || ''}
                   onChange={(e) => handleCommentChange(e, index)}
                   maxLength={20} // Limitar a 20 caracteres para asegurar 3 palabras máximo
                   placeholder="Máximo 3 palabras"
@@ -78,7 +99,7 @@ export const OrderList = () => {
               </div>
               <button style={styles.saveButton} onClick={handleSave}>
                 Guardar
-              </button>
+              </button> */}
             </div>
           </div>
         ))
@@ -128,6 +149,7 @@ const styles = {
     cursor: 'pointer',
     alignSelf: 'center', // Centra el botón
   },
+  
 };
 
 export default OrderList;
