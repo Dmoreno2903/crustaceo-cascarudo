@@ -3,12 +3,10 @@ import '../../styles/botones/BotonAgregarProducto.css'
 
 import toast from 'react-hot-toast'
 import { AuthContext } from '../../context/AuthContextProvider'
-import { useNavigate } from 'react-router-dom'
-import RedirectToast from './RedirectToast'
 
 export const BotonAgregarProducto = ({productId, selectedList}) => {
   const {user, cartItems, setCartItems, redirectToast} = useContext(AuthContext)
-  const navigate = useNavigate()
+  
   const execute = ()=>{
     productId = String(productId)
     let copyCartItems = { ...cartItems }
