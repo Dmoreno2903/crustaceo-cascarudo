@@ -16,7 +16,7 @@ export const BURGUER = [
   {
     id: 2,
     score: 3,
-    name: "Cangreburger Especial del",
+    name: "Cangreburger Especial",
     price: 29000,
     description:
       "Una mezcla especial de carne de cangrejo, lechuga fresca, queso fundido, tomate, cebolla, pepinillos y la icónica salsa secreta, en un pan recién horneado.",

@@ -45,53 +45,30 @@ export const CLIENT = [{
         purchases: [
           {
             id: 1,
-            total: 50000,
+            total: 114000,
             date: "22/08/2024",
             paymentMethod: "tarjeta", //tarjeta o efectivo
             productList: [{
                 id: 1, // id propio
                 idMenu: 1, // id del producto que compro
                 name: "Cangreburguer clásica",
-                price: "25000",
+                quantity: 2,
+                price: "28000",
                 table: "burguers", // burguers, fries, drinks (esto esta en plural por la tabla a la que hace referencia)
                 score: 4,
                 comment: ""
             },
             {
                 id:2, // id propio
-                idmenu:1, // id del producto del menu
-                name: "Cangreburguer clásica",
-                price: "25000",
+                idmenu:2, // id del producto del menu
+                name: "Cangreburger Especial",
+                quantity: 2,
+                price: "29000",
                 table: "burguers", // burguers, fries, drinks (esto esta en plural por la tabla a la que hace referencia)
                 score: 4,
                 comment: ""
             }]
-          },
-          {
-            id: 2,
-            total: 50000,
-            date: "22/08/2024",
-            paymentMethod: "tarjeta", //tarjeta o efectivo
-            productList: [{
-                id: 1, // id propio
-                idMenu: 1, // id del producto que compro
-                name: "Cangreburguer especial",
-                price: "25000",
-                table: "burguers", // burguers, fries, drinks (esto esta en plural por la tabla a la que hace referencia)
-                score: 4,
-                comment: ""
-            },
-            {
-                id:2, // id propio
-                idmenu:1, // id del producto del menu
-                name: "Cangreburguer especial",
-                price: "25000",
-                table: "burguers", // burguers, fries, drinks (esto esta en plural por la tabla a la que hace referencia)
-                score: 4,
-                comment: ""
-            }]
-          }
-        ]
+          }]
       },
       {
         id: 3,
