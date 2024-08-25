@@ -5,7 +5,6 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "react-modal"; 
-import sadSong from '../assets/sounds/sadSong.m4a'
 
 Modal.setAppElement('#root');
 

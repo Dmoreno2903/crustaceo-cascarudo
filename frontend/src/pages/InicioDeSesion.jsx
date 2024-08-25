@@ -3,7 +3,6 @@ import {Link, useNavigate} from "react-router-dom";
 import '../styles/pages/InicioDeSesion.css'
 import { AuthContext } from "../context/AuthContextProvider";
 import { useContext } from "react";
-import sadSong from '../assets/sounds/sadSong.m4a'
 
 import toast from 'react-hot-toast'
 
