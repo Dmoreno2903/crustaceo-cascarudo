@@ -13,5 +13,6 @@
   filter: brightness(90%); /* Oscurece el botón un 10% al pasar el mouse */
 }
 .active {
-  background-color: rgba(160, 90, 20, 1);
+  background: rgb(77, 43, 9);
+  pointer-events: none; /* Deshabilita el hover */
 }
