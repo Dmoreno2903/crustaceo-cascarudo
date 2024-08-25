@@ -23,7 +23,8 @@ export const InicioDeSesion = () => {
         audio.pause(); // Detener el audio si ya está reproduciéndose
         audio.currentTime = 0; // Reiniciar el audio al principio
         audio.play();
-        navigate('/login-prohibido')
+        navigate('/login-prohibido');
+        toast.error('Inicio de sesión denegado')
       }
       else if(user && user.password===data.password){
         let { password, ...copyUser } = user
