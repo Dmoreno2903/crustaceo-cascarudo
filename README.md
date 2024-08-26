@@ -22,7 +22,7 @@ Para mostrar el frontend
 - primero ingresamos a la carpeta frontend con:
 `cd frontend`
 
-- luego es necesario ingresar instalar las dependencias con:
+- luego es necesario instalar las dependencias con:
 `npm install`
 
 - y para correr el proyecto usamos:
