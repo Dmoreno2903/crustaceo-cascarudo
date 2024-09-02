@@ -1,7 +1,7 @@
 # Crustaceo cascarudo
 Página web del restaurante de Don Cangrejo
 
-## Descripción
+# Descripción
 Este proyecto es una página web del restaurante de Don Cangrejo, el Crustáceo Cascarudo. En ella se pueden encontrar los platos que se sirven además de poder realizar pedidos.
 
 ## Tecnologías
@@ -12,10 +12,13 @@ Este proyecto es una página web del restaurante de Don Cangrejo, el Crustáceo 
 ### Backend
 - El backend está desarrollado usando el framework `Django` de `Python`
 - Se usa `django-rest-framework` para la creación de una API REST.
+- Uso de `simplejwt`para uso de tokens
+- Uso de `django-criptograpy` para encriptar datos
 ### Base de datos
 - La base de datos usada es `PostgreSQL`
 
-## Inicialización del proyecto
+# Inicialización del proyecto
+## Frontend
 
 Para mostrar el frontend
 
@@ -28,9 +31,24 @@ Para mostrar el frontend
 - y para correr el proyecto usamos:
 `npm run dev`
 
+## Backend:
+Para inicializar el backend ingresa a la carpeta del back con: `cd backend`
 
-Backend:
+#### Entorno virtual
+- Si no tienes un entorno virtual debes crearlo
+```bash
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+```
 
-- El frontend por el momento no esta conectado al backend, pero este se puede inicializar ingresando a la carpeta backend e ingresando el comando:
-`python manage.py runserver`
+#### Base de datos
+- Correr el contenedor de docker encargado de la base de datos
+```bash
+$ sudo docker compose -f "docker-compose-dev" up -d
+```
 
+- Aplicar las migraciones y correr el programa
+```bash
+$ python3 manage.py migrate
+$ python3 manage.py runserver
+```
