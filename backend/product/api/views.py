@@ -7,6 +7,10 @@ from rest_framework.decorators import action
 
 # Views for the client
 class BurguerViewSet(viewsets.ReadOnlyModelViewSet):
+    # Quitamos los permisos, ya que no es necesario
+    permission_classes = []
+    authentication_classes = []
+
     serializer_class = serializers.BurguerSerializer
     queryset = models.Burguer.objects.filter(count__gt=0)
 
@@ -31,6 +35,9 @@ class BurguerViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class FriesViewSet(viewsets.ReadOnlyModelViewSet):
+    # Quitamos los permisos, ya que no es necesario
+    permission_classes = []
+    authentication_classes = []
     serializer_class = serializers.FriesSerializer
     queryset = models.Fries.objects.filter(count__gt=0)
 
@@ -46,6 +53,9 @@ class FriesViewSet(viewsets.ReadOnlyModelViewSet):
     
 
 class DrinkViewSet(viewsets.ReadOnlyModelViewSet):
+    # Quitamos los permisos, ya que no es necesario
+    permission_classes = []
+    authentication_classes = []
     serializer_class = serializers.DrinkSerializer
     queryset = models.Drink.objects.filter(count__gt=0)
 
