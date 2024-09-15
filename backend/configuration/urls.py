@@ -16,6 +16,7 @@ urlpatterns = [
 urlpatterns += [
     path('user/', include('user.urls'), name='Users'),
     path('product/', include('product.urls'), name='Products'),
+    path('accounting/', include('accounting.urls'), name='Accounting'),
 ]
 
 # Agregamos las rutas para la visualización de las imágenes 
