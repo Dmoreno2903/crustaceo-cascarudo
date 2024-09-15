@@ -42,9 +42,16 @@ $ source .venv/bin/activate
 ```
 
 #### Base de datos
+`Windows`
 - Correr el contenedor de docker encargado de la base de datos
 ```bash
-$ sudo docker compose -f "docker-compose-dev" up -d
+$ docker-compose -f "docker-compose-dev.yml" up -d
+```
+
+`Linux`
+- Correr el contenedor de docker encargado de la base de datos
+```bash
+$ sudo docker compose -f "docker-compose-dev.yml" up -d
 ```
 
 - Aplicar las migraciones y correr el programa
