@@ -37,7 +37,7 @@ def create_initial_users(apps, schema_editor):
         phone='1234567890',
         address='Admin Street 123',
         birthdate='1980-01-01',
-        shoppingcart=cart,
+        shoopingcart=cart,
     )
 
     # Crear un usuario cliente
@@ -53,7 +53,7 @@ def create_initial_users(apps, schema_editor):
         phone='0987654321',
         address='Client Street 456',
         birthdate='1990-01-01',
-        shoppingcart=cart2,
+        shoopingcart=cart2,
     )
 
 
