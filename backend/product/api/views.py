@@ -3,69 +3,57 @@
 from product import models
 from product.api import serializers
 from rest_framework import status, viewsets
-from rest_framework.decorators import action
+from rest_framework.response import Response
 
 # Views for the client
-class BurguerViewSet(viewsets.ReadOnlyModelViewSet):
-    # Quitamos los permisos, ya que no es necesario
-    permission_classes = []
-    authentication_classes = []
-
-    serializer_class = serializers.BurguerSerializer
-    queryset = models.Burguer.objects.filter(count__gt=0)
-
-    # Get the all burguers
-    def list(self, request, *args, **kwargs):
-        """ Get the all burguers """
-        return super().list(request, *args, **kwargs, status=status.HTTP_200_OK)
-
-    # Get the burguer detail
-    def retrieve(self, request, *args, **kwargs):
-        """ Get the burguer detail """
-        return super().retrieve(request, *args, **kwargs, status=status.HTTP_200_OK)
-
-    # Get oustanding burguers
-    @action(detail=False, methods=['get'], url_path='outstanding', url_name='outstanding')
-    def getOustandingBurguers(self, request, *args, **kwargs):
-        """
-        Get oustanding burguers
-        """
-        self.queryset = models.Burguer.objects.filter(count__gt=0, is_outstanding=True)
-        return super().list(request, *args, **kwargs, status=status.HTTP_200_OK)
-
-
-class FriesViewSet(viewsets.ReadOnlyModelViewSet):
-    # Quitamos los permisos, ya que no es necesario
-    permission_classes = []
-    authentication_classes = []
-    serializer_class = serializers.FriesSerializer
-    queryset = models.Fries.objects.filter(count__gt=0)
-
-    # Get the all fries
-    def list(self, request, *args, **kwargs):
-        """ Get the all fries """
-        return super().list(request, *args, **kwargs, status=status.HTTP_200_OK)
-
-    # Get the fries detail
-    def retrieve(self, request, *args, **kwargs):
-        """ Get the fries detail """
-        return super().retrieve(request, *args, **kwargs, status=status.HTTP_200_OK)
+class ProductsViewSet(viewsets.ReadOnlyModelViewSet):
+    """ Vista para listar los productos disponibles """
     
-
-class DrinkViewSet(viewsets.ReadOnlyModelViewSet):
-    # Quitamos los permisos, ya que no es necesario
-    permission_classes = []
     authentication_classes = []
-    serializer_class = serializers.DrinkSerializer
-    queryset = models.Drink.objects.filter(count__gt=0)
+    permission_classes = []
 
-    # Get the all drinks
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
     def list(self, request, *args, **kwargs):
-        """ Get the all drinks """
-        return super().list(request, *args, **kwargs, status=status.HTTP_200_OK)
 
-    # Get the drink detail
-    def retrieve(self, request, *args, **kwargs):
-        """ Get the drink detail """
-        return super().retrieve(request, *args, **kwargs, status=status.HTTP_200_OK)
+        id = request.query_params.get('id', None)
+        if not id:
+            burguers = models.Burguer.objects.filter(count__gt=0)
+            fries = models.Fries.objects.filter(count__gt=0)
+            drinks = models.Drink.objects.filter(count__gt=0)
 
+            burguers_serializer = serializers.BurguerSerializer(burguers, many=True)
+            fries_serializer = serializers.FriesSerializer(fries, many=True)
+            drinks_serializer = serializers.DrinkSerializer(drinks, many=True)
+
+            return Response({
+                'burguers': burguers_serializer.data,
+                'fries': fries_serializer.data,
+                'drinks': drinks_serializer.data
+            }, status=status.HTTP_200_OK)
+        
+        prefix = id[:3] if id else None
+        if prefix == 'BUR':
+            burguer = models.Burguer.objects.filter(id=id)
+            if not burguer:
+                return Response({'message': 'Burguer not found'}, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = serializers.BurguerSerializer(burguer.first())
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        elif prefix == 'FRI':
+            fries = models.Fries.objects.filter(id=id)
+            if not fries:
+                return Response({'message': 'Fries not found'}, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = serializers.FriesSerializer(fries.first())
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        elif prefix == 'DRI':
+            drink = models.Drink.objects.filter(id=id)
+            if not drink:
+                return Response({'message': 'Drink not found'}, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = serializers.DrinkSerializer(drink.first())
+            return Response(serializer.data, status=status.HTTP_200_OK)

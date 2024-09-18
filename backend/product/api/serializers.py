@@ -7,7 +7,7 @@ from product import models
 class BurguerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Burguer
-        fields = ['id', 'name', 'description', 'price', 'score', 'image']
+        fields = ['id', 'is_outstanding', 'name', 'description', 'price', 'score', 'image']
 
 
 class FriesSerializer(serializers.ModelSerializer):
