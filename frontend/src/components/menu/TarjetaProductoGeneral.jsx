@@ -18,7 +18,7 @@ export const TarjetaProductoGeneral = ({producto}) => {
     return (
         <div className="tarjeta-producto-general">
           <div className="general-info-producto" onClick={()=>handleInfoClick(producto.id)}>
-            <img className="general-image" src={producto.image}/>
+            <img className="general-image" src={`http://localhost:8000${producto.image}`}/>
             <h2 className="general-name">{producto.name}</h2>
             <p className="general-price">${producto.price.toLocaleString("es-CO"
                     )}</p>

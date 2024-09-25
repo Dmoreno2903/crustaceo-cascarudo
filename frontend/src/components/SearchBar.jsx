@@ -9,15 +9,21 @@ const SearchBar = () => {
 
   const navigate = useNavigate()
 
+  const [searchTerm, setSearchTerm] =useState('')
+  const [filteredItems, setFilteredItems] = useState([])
+
+  // Verificar si burguers, fries y drinks están disponibles
+  if (!burguers || !fries || !drinks) {
+    return null; // No renderizar nada si cualquiera de estos no está disponible
+  }
+
   const items = [
       ...burguers,
       ...fries,
       ...drinks
   ]
 
-  const [searchTerm, setSearchTerm] =useState('')
-  const [filteredItems, setFilteredItems] = useState([])
-
+  
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase();
     setSearchTerm(term);
