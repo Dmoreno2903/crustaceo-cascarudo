@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { COMPRAS } from "../dataMomentanea/compras";
 import { CLIENT, ADMINISTRATOR } from "../dataMomentanea/users"; // base de datos estatica, luego hay que cambiarlo
-import burguerService from "../services/burguers";
+import products from "../services/products";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import sadSong from '../assets/sounds/sadSong.m4a';
@@ -20,10 +20,10 @@ export const AuthContextProvider = ({ children }) => {
         "burguers": { },
         "drinks": { }
       })
-  const [burguers, setBurguers] = useState(BURGUER);
-  const [fries, setFries] = useState(FRIES);
-  const [drinks, setDrinks] = useState(DRINK);
-  const [compras, setCompras] = useState(COMPRAS);
+  const [burguers, setBurguers] = useState(null);
+  const [fries, setFries] = useState(null);
+  const [drinks, setDrinks] = useState(null);
+  const [compras, setCompras] = useState();
 
   
   const [purchases, setPurchases] = useState([])
@@ -42,6 +42,22 @@ export const AuthContextProvider = ({ children }) => {
     audio.currentTime = 0;
     audio.play();
   };
+
+  //recupera los productos del backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const allProducts = await products.getAll();
+        setBurguers(allProducts.burguers)
+        setFries(allProducts.fries)
+        setDrinks(allProducts.drinks)
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
 
   const USERS = [
@@ -191,18 +207,21 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const selectedList = Object.keys(active).find((prop) => active[prop]);
-    if (selectedList === "fries") {
-      setMenuToShow([...fries]);
-      setSelectedList("fries");
-    } else if (selectedList === "burguers") {
-      setMenuToShow([...burguers]);
-      setSelectedList("burguers");
-    } else if (selectedList === "drinks") {
-      setMenuToShow([...drinks]);
-      setSelectedList("drinks");
+    if (active && fries && burguers && drinks) {
+      const selectedList = Object.keys(active).find((prop) => active[prop]);
+
+      if (selectedList === "fries") {
+        setMenuToShow([...fries]);
+        setSelectedList("fries");
+      } else if (selectedList === "burguers") {
+        setMenuToShow([...burguers]);
+        setSelectedList("burguers");
+      } else if (selectedList === "drinks") {
+        setMenuToShow([...drinks]);
+        setSelectedList("drinks");
+      }
     }
-  }, [active]);
+  }, [active, fries, burguers, drinks]);
 
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>

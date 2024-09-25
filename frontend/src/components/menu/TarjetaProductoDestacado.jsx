@@ -15,7 +15,7 @@ export const TarjetaProductoDestacado = ({ producto }) => {
         className="destacado-info-producto"
         onClick={() => handleInfoClick(producto.id)}
       >
-        <img className="detacado-image" src={producto.image} />
+        <img className="detacado-image" src={`http://localhost:8000${producto.image}`} />
         <h2 className="detacado-name">{producto.name}</h2>
         <p className="detacado-description">{producto.description}</p>
         <p className="detacado-price">

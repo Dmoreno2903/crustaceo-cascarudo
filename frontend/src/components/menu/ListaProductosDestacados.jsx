@@ -7,6 +7,11 @@ import { AuthContext } from "../../context/AuthContextProvider"
 export const ListaProductosDestacados = () => {
   const {burguers} = useContext(AuthContext)
   
+  // Verificar si burguers está disponible
+  if (!burguers) {
+    return null; // No renderizar nada si burguers no está disponible
+  }
+  
   const listaOrdenada = burguers.filter(producto=>producto.is_outstanding)
   const listaRecortada = listaOrdenada.slice(0,2)
 
