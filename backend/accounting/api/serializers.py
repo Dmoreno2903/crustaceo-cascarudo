@@ -7,10 +7,17 @@ from configuration import common
 
 class SaleDetailSerializer(serializers.ModelSerializer):
     """ Serializador para los productos vendidos """
+    product_name = serializers.SerializerMethodField()
 
     class Meta:
         model = accounting_models.ProductSold
-        fields = ['product', 'price', 'quantity']
+        fields = ['product_name', 'price', 'quantity']
+
+    def get_product_name(self, obj):
+        """ Obtiene el nombre del producto """
+        model = product_models.PARSER[obj.product[:3]]
+        product = model.objects.filter(id=obj.product).first()
+        return product.name if product else 'Producto no encontrado'
     
 
 class SaleSerializer(serializers.ModelSerializer):

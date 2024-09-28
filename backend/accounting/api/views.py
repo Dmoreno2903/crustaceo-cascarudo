@@ -4,7 +4,6 @@ from accounting.api import serializers
 from accounting import models
 from rest_framework import response, status
 
-
 class SaleViewSet(viewsets.ModelViewSet):
     """ Vista personalizada, recibe una petición de un usuario
     Coge si carrito de compras, registar la compra y envía un correo
@@ -25,6 +24,22 @@ class SaleViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         """ Lista todas las ventas del usuario
         """
+        # Verificamos si se trata de un rating
+        is_rating = request.query_params.get('rating', None)
+        id = request.query_params.get('id', None)
+
+        if is_rating and id:
+            sale = models.Sale.objects.filter(id=request.query_params.get('id'))
+            if not sale:
+                return response.Response({"message": 'Venta no encontrada'}, status=status.HTTP_404_NOT_FOUND)
+            
+            if sale.first().user != request.user:
+                return response.Response({"message": 'No tienes permisos para ver esta venta'}, status=status.HTTP_403_FORBIDDEN)
+
+            queryset = models.ProductSold.objects.filter(sale=sale.first(), product__startswith='BUR')
+            serializer = serializers.SaleDetailSerializer(queryset, context={'request': request}, many=True)
+            return response.Response(serializer.data, status=status.HTTP_200_OK)
+
         # Recibimos el parametro id de la venta
         if request.query_params.get('id', None):
             sale = models.Sale.objects.filter(id=request.query_params.get('id'))

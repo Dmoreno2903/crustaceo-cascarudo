@@ -10,9 +10,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone', 'address', 'birthdate', 'type']
-        read_only_fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone', 'address', 'birthdate', 'type']
-
+        fields = ['username', 'email', 'first_name', 'last_name', 'phone', 'address', 'birthdate', 'image', 'type']
+        read_only_fields = ['birthdate', 'type', 'image']
+        
 
 class ShoppingCartSerializer(serializers.ModelSerializer):
     """ Serializer for the Shopping Cart """
