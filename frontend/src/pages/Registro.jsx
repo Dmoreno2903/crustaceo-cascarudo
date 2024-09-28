@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "react-modal"; 
+import axios from "axios";
 
 Modal.setAppElement('#root');
 
@@ -18,83 +19,79 @@ export const Registro = () => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const onSubmit = (data) =>{
-      let newUser = {
-        id:4,//numero
-        type: '',
-        name: '',
-        username: '',
-        password: '',
-        email: '',
-        age: '',//numero
-        city: '',
-        country: '',
-        occupation: '',
-        address: '',
-        phone: '',//numero
-        accountType: '', //solo ahorro o corriente
-        accountNumber: '',//numero
-        profilePicture: 'https://via.placeholder.com/150',
-        cartItems: {
-          "fries": { },
-          "burguers": { },
-          "drinks": { }
-        },
-        purchases: []
+    const onSubmit = async (data) => {
+      try {
+          // Verificación de la palabra prohibida "plankton" en los campos clave
+          if (
+              data.firstName.toLowerCase().includes('plankton') ||
+              data.lastName.toLowerCase().includes('plankton') ||
+              data.email.toLowerCase().includes('plankton') ||
+              data.username.toLowerCase().includes('plankton') || 
+              data.password.toLowerCase().includes('plankton') ||
+              data.confirmPassword.toLowerCase().includes('plankton')
+          ) {
+              // playAudio();  // Reproduce el sonido de advertencia
+              navigate('/login-prohibido');  // Navega a la página de acceso prohibido
+              toast.error('Registro denegado');  // Muestra un mensaje de error
+              return;  // Detener la ejecución si se encuentra la palabra prohibida
+          }
+  
+          // Realizar la petición POST a la API de Django para registrar el usuario
+          const response = await fetch('http://127.0.0.1:8000/user/register/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  username: data.username,
+                  email: data.email,
+                  first_name: data.firstName,
+                  last_name: data.lastName,
+                  password: data.password,
+                  phone: data.phone,
+                  address: data.address,
+                  birthdate: data.birthdate
+              })
+          });
+  
+          const result = await response.json();
+  
+          if (!response.ok) {
+              // Si la respuesta no es OK, mostrar error
+              if (result.username) {
+                  toast.error("El usuario ya existe");
+              }
+              if (result.email) {
+                  toast.error("El email ya existe");
+              }
+          } else {
+              // Si el registro es exitoso, almacenar el usuario en localStorage y navegar
+              const newUser = {
+                  ...result,  // Los datos devueltos por la API
+                  profilePicture: 'https://via.placeholder.com/150',  // Placeholder de imagen por defecto
+                  cartItems: {
+                      "fries": { },
+                      "burguers": { },
+                      "drinks": { }
+                  },
+                  purchases: []
+              };
+  
+              let { password, ...copyUser } = newUser;  // Eliminar el password del objeto para almacenar en el contexto
+              setUser(copyUser);
+              localStorage.setItem('username', JSON.stringify(copyUser));
+              navigate('/usuario');
+              toast.success(`Sesión iniciada, hola ${copyUser.first_name} ${copyUser.last_name}, por favor configura los datos faltantes`);
+          }
+  
+      } catch (error) {
+          // Manejo de errores de red u otros
+          console.error("Error en el registro:", error);
+          toast.error("Ocurrió un error al registrar el usuario");
       }
-      
-      const user = USERS.find(user => user.username === data.username)
-      const email = USERS.find(user => user.email === data.email)
-      if(
-        data.firstName.toLowerCase().includes('plankton') ||
-        data.lastName.toLowerCase().includes('plankton') ||
-        data.email.toLowerCase().includes('plankton') ||
-        data.username.toLowerCase().includes('plankton') || 
-        data.password.toLowerCase().includes('plankton') ||
-        data.confirmPassword.toLowerCase().includes('plankton')
-      ){
-        
-        playAudio();
-        navigate('/login-prohibido');
-        toast.error('Registro denegado');
-      }
-      else{
-        // Verificar si el usuario ya existe
-        if (user) {
-          toast.error("El usuario ya existe");
-        }
-
-        // Verificar si el email ya existe
-        if (email) {
-          toast.error("El email ya existe");
-        }
-
-        // Verificar si las contraseñas coinciden
-        if (data.password !== data.confirmPassword) {
-          toast.error("Las contraseñas no coinciden")
-        }
-
-        if(!user && !email && data.password === data.confirmPassword){
-          const id = CLIENT.reduce((maxId, client) => Math.max(maxId, client.id), 0)
-          newUser.id = id+1
-          newUser.type = "Client"
-          newUser.name = `${data.firstName} ${data.lastName}`
-          newUser.username = data.username
-          newUser.password = data.password
-          newUser.email = data.email
-          
-          
-          let { password, ...copyUser } = newUser
-          CLIENT.push(newUser)
-          setUser(copyUser)
-          navigate('/usuario')
-          localStorage.setItem('username', JSON.stringify(copyUser))
-          toast.success(`Sesion iniciada, hola ${copyUser.name} porfavor configura los datos faltantes`)
-          
-        }
-      }
-
-    }
+  }
+    
+    
     return (
         <div className="inicio-form-container">
           
@@ -205,5 +202,4 @@ export const Registro = () => {
         </div>
       );
 }
-
 
