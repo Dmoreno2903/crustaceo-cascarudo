@@ -3,6 +3,8 @@ import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { COMPRAS } from "../dataMomentanea/compras";
 import { CLIENT, ADMINISTRATOR } from "../dataMomentanea/users"; // base de datos estatica, luego hay que cambiarlo
 import products from "../services/products";
+import userService from "../services/user";
+
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import sadSong from '../assets/sounds/sadSong.m4a';
@@ -11,15 +13,11 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate()
-  
-  const [user, setUser] = useState(() => {
-    return JSON.parse(localStorage.getItem('username'))
-  })
-  const [cartItems, setCartItems] = useState({
-        "fries": { },
-        "burguers": { },
-        "drinks": { }
-      })
+  const [token, setToken] = useState(null)
+
+  const [user, setUser] = useState()
+  const [cartItems, setCartItems] = useState({}
+        )
   const [burguers, setBurguers] = useState(null);
   const [fries, setFries] = useState(null);
   const [drinks, setDrinks] = useState(null);
@@ -42,6 +40,22 @@ export const AuthContextProvider = ({ children }) => {
     audio.currentTime = 0;
     audio.play();
   };
+  //recupera el perfil de usuario
+  useEffect(()=> {
+    if(token) {
+      console.log(token);
+    const fetchUserProfile = async () => {
+      try {
+        const userData = await userService.getUser(token);
+        console.log("User Data:", userData);
+        setUser(userData)
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+      fetchUserProfile();
+    }
+  }, [token])
 
   //recupera los productos del backend
   useEffect(() => {
@@ -59,41 +73,54 @@ export const AuthContextProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
+  //recupera el carrito
+  // useEffect(() => {
+  //   const fetchCart = async () => {
+  //     try {
+  //       const cartData = await user.getCart(user); // Reemplaza "USER_ID" con el ID del usuario
+  //       setCartItems(cartData);
+  //     } catch (error) {
+  //       console.error("Error fetching cart:", error);
+  //     }
+  //   };
+
+  //   fetchCart();
+  // }, []);
 
   const USERS = [
     ...CLIENT,
     ...ADMINISTRATOR
   ]
   
-  useEffect(() => {
-    if(user) {
-      setCartItems(user.cartItems)
-      setPurchases(user.purchases)
-    }
-    else {
-      setCartItems({
-          "fries": { },
-          "burguers": { },
-          "drinks": { }
-        })
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if(user) {
+  //     setCartItems(user.cartItems)
+  //     setPurchases(user.purchases)
+  //   }
+  //   else {
+  //     setCartItems({
+  //         "fries": { },
+  //         "burguers": { },
+  //         "drinks": { }
+  //       })
+  //   }
+  // }, [user])
 
   // modifica el carrito de las listas estaticas cuando se actualiza el carrito
-  useEffect(()=>{
-    if(user && user.type === 'Client'){
-      // Encuentra y actualiza el usuario en la lista estática de Client
-      const userIndex = CLIENT.findIndex(client => client.id === user.id)
-      CLIENT[userIndex].cartItems = cartItems
-      localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
-    }
-    else if(user && user.type === 'Administrator'){
-      // Encuentra y actualiza el usuario en la lista estática de Administrator
-      const userIndex = ADMINISTRATOR.findIndex(admin => admin.id === user.id)
-      ADMINISTRATOR[userIndex].cartItems = cartItems
-      localStorage.setItem('username', JSON.stringify(ADMINISTRATOR[userIndex]))
-    }
-  }, [cartItems])
+  // useEffect(()=>{
+  //   if(user && user.type === 'Client'){
+  //     // Encuentra y actualiza el usuario en la lista estática de Client
+  //     const userIndex = CLIENT.findIndex(client => client.id === user.id)
+  //     CLIENT[userIndex].cartItems = cartItems
+  //     localStorage.setItem('username', JSON.stringify(CLIENT[userIndex]))
+  //   }
+  //   else if(user && user.type === 'Administrator'){
+  //     // Encuentra y actualiza el usuario en la lista estática de Administrator
+  //     const userIndex = ADMINISTRATOR.findIndex(admin => admin.id === user.id)
+  //     ADMINISTRATOR[userIndex].cartItems = cartItems
+  //     localStorage.setItem('username', JSON.stringify(ADMINISTRATOR[userIndex]))
+  //   }
+  // }, [cartItems])
 
   const onClick = (a) => {
     let activeNuevo = {
@@ -181,6 +208,8 @@ export const AuthContextProvider = ({ children }) => {
 
   
   const contextData = {
+    token,
+    setToken,
     user,
     setUser,
     active,
