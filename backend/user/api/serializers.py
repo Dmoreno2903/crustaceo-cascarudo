@@ -68,7 +68,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone', 'address', 'birthdate', 'password']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, attrs):
@@ -93,10 +93,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            phone=validated_data['phone'],
-            address=validated_data['address'],
-            birthdate=validated_data['birthdate']
+            last_name=validated_data['last_name']
         )
 
         # Set the password

@@ -16,6 +16,8 @@ class RegisterView(viewsets.ModelViewSet):
     serializer_class = serializers.UserRegisterSerializer
     queryset = User.objects.all()
     parser_classes = [JSONParser]
+    authentication_classes = []
+    permission_classes = []
 
     # Al ser una vista para la creación de un usuario, se quitan
     # los permisos de autenticación
