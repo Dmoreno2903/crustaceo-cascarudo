@@ -3,38 +3,47 @@ import {Link, useNavigate} from "react-router-dom";
 import '../styles/pages/InicioDeSesion.css'
 import { AuthContext } from "../context/AuthContextProvider";
 import { useContext } from "react";
-
+import login from '../services/login';
 import toast from 'react-hot-toast'
 
 export const InicioDeSesion = () => {
 
-    const {setUser, USERS, playAudio} = useContext(AuthContext)
+    const {setUser, setToken, USERS, playAudio} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
     const {register, handleSubmit, reset} = useForm()
     
 
-    const onSubmit = (data) => {
-      const user = USERS.find(client => client.username === data.username)
-      if(data.username.toLowerCase().includes('plankton') || data.password.toLowerCase().includes('plankton')){
+    const onSubmit = async (data) => {
+      //const user = USERS.find(client => client.username === data.username)
+      // if(data.username.toLowerCase().includes('plankton') || data.password.toLowerCase().includes('plankton')){
         
-        playAudio();
-        navigate('/login-prohibido');
-        toast.error('Inicio de sesión denegado')
-      }
-      else if(user && user.password===data.password){
-        let { password, ...copyUser } = user
-        setUser(copyUser)
-        navigate('/menu')
-        localStorage.setItem('username', JSON.stringify(copyUser))
-        toast.success(`Sesion iniciada, hola ${copyUser.name}`)
-      }
+      //   playAudio();
+      //   navigate('/login-prohibido');
+      //   toast.error('Inicio de sesión denegado')
+      // }
+      // else if(user && user.password===data.password){
+      //   let { password, ...copyUser } = user
+      //   setUser(copyUser)
+      //   navigate('/menu')
+      //   localStorage.setItem('username', JSON.stringify(copyUser))
+      //   toast.success(`Sesion iniciada, hola ${copyUser.name}`)
+      // }
       
-      else{
-        reset()
-        toast.error("Acceso denegado, el usuario o la contraseña fueron mal ingresadas o no se ha registrado")
+      // else{
+      //   reset()
+      //   toast.error("Acceso denegado, el usuario o la contraseña fueron mal ingresadas o no se ha registrado")
+      // }
+      try {
+        const tokenData = await login.getToken(data);
+        console.log("Token:", tokenData);
+        setToken(tokenData.access);
+        navigate('/menu')
+      } catch (error) {
+        console.error("Error:", error);
       }
+
     }
     return (
         <div className="form-container">
