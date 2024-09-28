@@ -8,9 +8,9 @@ export const CarritoComprasPreview = () => {
   const { user, cartItems, updateCartItem, removeCartItem, setCartItems } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  let burguersCart = cartItems["burguers"];
-  let friesCart = cartItems["fries"];
-  let drinksCart = cartItems["drinks"];
+  // let burguersCart = cartItems["burguers"];
+  // let friesCart = cartItems["fries"];
+  // let drinksCart = cartItems["drinks"];
 
   const handleIncrement = (productId, category) => {
     productId = String(productId)

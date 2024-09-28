@@ -68,9 +68,11 @@ export const Navbar = () => {
           )}
           {(!user || user.type === 'Client') && (
             <Link onClick={handleCartClick}>
+              {cartItems &&
               <Badge badgeContent={getTotalItems()} color="primary">
                 <ShoppingCart color="action" />
               </Badge>
+              }
             </Link>
           )}
           {user && user.type === 'Administrator' && (

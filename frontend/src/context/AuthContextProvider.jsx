@@ -16,8 +16,7 @@ export const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(null)
 
   const [user, setUser] = useState()
-  const [cartItems, setCartItems] = useState({}
-        )
+  const [cartItems, setCartItems] = useState()
   const [burguers, setBurguers] = useState(null);
   const [fries, setFries] = useState(null);
   const [drinks, setDrinks] = useState(null);
@@ -54,6 +53,23 @@ export const AuthContextProvider = ({ children }) => {
       }
     };
       fetchUserProfile();
+    }
+  }, [token])
+
+  //recupera el carrito
+  useEffect(()=> {
+    if(token) {
+      console.log(token);
+    const fetchCartItems = async () => {
+      try {
+        const cartData = await userService.getCart(token);
+        console.log("User Cart:", cartData);
+        setCartItems(cartData)
+      } catch (error) {
+        console.error("Error fetching user Cart:", error);
+      }
+    };
+      fetchCartItems();
     }
   }, [token])
 
