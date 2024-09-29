@@ -77,13 +77,13 @@ export const CarritoComprasPreview = () => {
             setCartItems(updatedCartItems);
   };
 
-  // const handleContinue = () => {
-  //   navigate("/info-envio");
-  // };
+  const handleContinue = () => {
+    navigate("/info-envio");
+  };
 
-  // const handleBack = () => {
-  //   navigate("/menu");
-  // };
+  const handleBack = () => {
+     navigate("/menu");
+  };
 
   return (
     <>
@@ -189,12 +189,12 @@ export const CarritoComprasPreview = () => {
 
           <div className="btn-container">
             <button className="back-btn" 
-            // onClick={handleBack}
+            onClick={handleBack}
             >
               Volver al menú
             </button>
             <button className="btn continue-btn" 
-            // onClick={handleContinue}
+            onClick={handleContinue}
             >
               Continuar
             </button>
