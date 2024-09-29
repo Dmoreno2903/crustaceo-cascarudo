@@ -1,25 +1,37 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import '../../styles/botones/BotonAgregarProducto.css'
 
 import toast from 'react-hot-toast'
 import { AuthContext } from '../../context/AuthContextProvider'
-
-export const BotonAgregarProducto = ({productId, selectedList}) => {
-  const {user, cartItems, setCartItems, redirectToast} = useContext(AuthContext)
+import userService from '../../services/user'
+import products from '../../services/products'
+export const BotonAgregarProducto = ({productId}) => {
+  const {user, token, cartItems, setCartItems, redirectToast} = useContext(AuthContext)
   
-  const execute = ()=>{
-    productId = String(productId)
-    let copyCartItems = { ...cartItems }
-    if(!Object.keys(cartItems[selectedList]).includes(productId)){
-      copyCartItems[selectedList][productId] = 1
-      setCartItems(copyCartItems)
+  
+  
+  const execute = async () => {
+    try {
+        // Prepara los productos para enviar en el formato correcto
+        const products = {
+            products: {
+                ...cartItems.products,
+                [productId]: (cartItems.products[productId] || 0) + 1
+            }
+        };
+
+        // Llama a userService.addCartItems para agregar el producto al carrito
+        const updatedCartItems = await userService.addCartItems(token, products);
+
+        // Actualiza el estado del carrito con los nuevos items
+        setCartItems(updatedCartItems);
+
+        toast.success(`Se agregaron los productos al carrito`);
+    } catch (error) {
+        toast.error(`Error al agregar los productos: ${error.message}`);
     }
-    else {
-      copyCartItems[selectedList][productId]=cartItems[selectedList][productId]+1
-      setCartItems(copyCartItems)
-    }
-    toast.success(`Se agregó el producto`)
-  }
+  };
+  
   const handleClick = () =>{
     user ? 
     execute()

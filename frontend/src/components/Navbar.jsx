@@ -9,7 +9,7 @@ import logo from '/src/assets/imagenes/logo.jpg';
 import SearchBar from "./SearchBar";
 
 export const Navbar = () => {
-  const { user, setUser, cartItems, redirectToast } = useContext(AuthContext);
+  const { user,setToken, setUser, setCartItems, cartItems, redirectToast } = useContext(AuthContext);
 
   const navigate = useNavigate()
 
@@ -23,6 +23,8 @@ export const Navbar = () => {
   // Cerrar sesión
   const signOut = () => {
     setUser(null)
+    setToken(null)
+    setCartItems(null)
     localStorage.removeItem('username')
   }
 
@@ -68,9 +70,11 @@ export const Navbar = () => {
           )}
           {(!user || user.type === 'Client') && (
             <Link onClick={handleCartClick}>
+              {cartItems &&
               <Badge badgeContent={getTotalItems()} color="primary">
                 <ShoppingCart color="action" />
               </Badge>
+              }
             </Link>
           )}
           {user && user.type === 'Administrator' && (
