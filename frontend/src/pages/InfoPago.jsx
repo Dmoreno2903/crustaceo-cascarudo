@@ -2,11 +2,10 @@ import { useContext, useState } from "react";
 import "../styles/pages/InfoEnvio.css";
 import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
-
+import solds from "../services/solds";
 export const InfoPago = () => {
 
-  const { user } = useContext(AuthContext); 
-  const { setCartItems } = useContext(AuthContext);
+  const { user, token, cartItems, setCartItems, setSalesUser } = useContext(AuthContext);
   const [accountType, setAccountType] = useState(user.accountType || ""); // Valor por defecto del user
   const [accountNumber, setAccountNumber] = useState(user.accountNumber || ""); // Valor por defecto del user
   const navigate = useNavigate();
@@ -20,29 +19,22 @@ export const InfoPago = () => {
   };
 
   const handleCancel = () => {
-    setCartItems({
-        fries: {},
-        burguers: {},
-        drinks: {},
-    });
     navigate("/menu");
   };
+  
+  
+  const handleBuy = async () => {
+  
+      // Realiza la compra utilizando los productos del carrito
+      //const response = await solds.addSales(token, { ...cartItems });
+      //console.log('Response:', response.data);
+      // Borra el carrito y redirige a la página de resumen de compra
+      //setCartItems(null);
+      // Actualiza las ventas después de la compra
+      //const updatedSales = await solds.getSolds(token);
+      //setSalesUser(updatedSales);
 
-  const handleBuy = () => {
-    
-    // Manejo de información de pago
-    console.log("Información de pago:", {
-      accountType,
-      accountNumber,
-    });
-
-    // Borra el carrito y redirige a la página de resumen de compra
-    setCartItems({
-      fries: {},
-      burguers: {},
-      drinks: {},
-    });
-    navigate("/confirmacion-compra");
+      navigate("/confirmacion-compra");
   };
 
   return (
@@ -62,6 +54,8 @@ export const InfoPago = () => {
             >
               <option value="ahorro">Cuenta de ahorro</option>
               <option value="corriente">Cuenta corriente</option>
+              <option value="corriente">Efectivo</option>
+
             </select>
           </div>
 

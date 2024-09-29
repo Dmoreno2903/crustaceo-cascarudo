@@ -11,6 +11,17 @@ const getSolds = (token) => {
     return request.then(response => response.data);
   };
 
+  const addSales = (token, cart) => {
+    const request = axios.post(`${baseUrl}/sales/`, cart,  {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    });
+    return request.then(response => response.data);
+  };
+
 export default {
-    getSolds
+    getSolds,
+    addSales
 }

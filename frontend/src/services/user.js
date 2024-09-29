@@ -34,7 +34,7 @@ const getUser = async (token) => {
 const addCartItems = async (token, products) => {
     try {
         const response = await axios.post(
-            'http://127.0.0.1:8000/user/shoppingcart/',
+            `${baseUrl}/shoppingcart/`,
             products,
             {
                 headers: {

@@ -20,7 +20,6 @@ export const AuthContextProvider = ({ children }) => {
   const [burguers, setBurguers] = useState(null);
   const [fries, setFries] = useState(null);
   const [drinks, setDrinks] = useState(null);
-  const [compras, setCompras] = useState();
 
   const [salesUser, setSalesUser] = useState([])
   const [purchases, setPurchases] = useState([])
@@ -72,6 +71,8 @@ export const AuthContextProvider = ({ children }) => {
       fetchCartItems();
     }
   }, [token])
+
+  //recupera las ventas
   useEffect(() => {
     if (token) {
 
@@ -247,6 +248,7 @@ export const AuthContextProvider = ({ children }) => {
     CLIENT,
     USERS,
     salesUser,
+    setSalesUser,
     purchases,
     redirectToast,
     playAudio
