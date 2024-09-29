@@ -64,24 +64,10 @@ export const Registro = () => {
               if (result.email) {
                   toast.error("El email ya existe");
               }
-          } else {
-              // Si el registro es exitoso, almacenar el usuario en localStorage y navegar
-              const newUser = {
-                  ...result,  // Los datos devueltos por la API
-                  profilePicture: 'https://via.placeholder.com/150',  // Placeholder de imagen por defecto
-                  cartItems: {
-                      "fries": { },
-                      "burguers": { },
-                      "drinks": { }
-                  },
-                  purchases: []
-              };
-  
-              let { password, ...copyUser } = newUser;  // Eliminar el password del objeto para almacenar en el contexto
-              setUser(copyUser);
-              localStorage.setItem('username', JSON.stringify(copyUser));
-              navigate('/usuario');
-              toast.success(`Sesión iniciada, hola ${copyUser.first_name} ${copyUser.last_name}, por favor configura los datos faltantes`);
+          }
+          if(response.ok){
+            toast.success("Usuario creado con exito")
+            navigate('/inicio-de-sesion')
           }
   
       } catch (error) {
