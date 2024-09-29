@@ -16,32 +16,20 @@ export const InicioDeSesion = () => {
     
 
     const onSubmit = async (data) => {
-      //const user = USERS.find(client => client.username === data.username)
-      // if(data.username.toLowerCase().includes('plankton') || data.password.toLowerCase().includes('plankton')){
+      if(data.username.toLowerCase().includes('plankton') || data.password.toLowerCase().includes('plankton')){
         
-      //   playAudio();
-      //   navigate('/login-prohibido');
-      //   toast.error('Inicio de sesión denegado')
-      // }
-      // else if(user && user.password===data.password){
-      //   let { password, ...copyUser } = user
-      //   setUser(copyUser)
-      //   navigate('/menu')
-      //   localStorage.setItem('username', JSON.stringify(copyUser))
-      //   toast.success(`Sesion iniciada, hola ${copyUser.name}`)
-      // }
-      
-      // else{
-      //   reset()
-      //   toast.error("Acceso denegado, el usuario o la contraseña fueron mal ingresadas o no se ha registrado")
-      // }
+        playAudio();
+        navigate('/login-prohibido');
+        toast.error('Inicio de sesión denegado')
+      }
       try {
         const tokenData = await login.getToken(data);
         console.log("Token:", tokenData);
         setToken(tokenData.access);
         navigate('/menu')
       } catch (error) {
-        console.error("Error:", error);
+        reset()
+        toast.error("Acceso denegado, el usuario o la contraseña fueron mal ingresadas o no se ha registrado")
       }
 
     }

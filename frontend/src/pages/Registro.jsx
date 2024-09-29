@@ -30,10 +30,10 @@ export const Registro = () => {
               data.password.toLowerCase().includes('plankton') ||
               data.confirmPassword.toLowerCase().includes('plankton')
           ) {
-              // playAudio();  // Reproduce el sonido de advertencia
+              playAudio();  // Reproduce el sonido de advertencia
               navigate('/login-prohibido');  // Navega a la página de acceso prohibido
               toast.error('Registro denegado');  // Muestra un mensaje de error
-              return;  // Detener la ejecución si se encuentra la palabra prohibida
+              return
           }
   
           // Realizar la petición POST a la API de Django para registrar el usuario
