@@ -11,7 +11,9 @@ export const BotonAgregarProducto = ({productId}) => {
   
   
   const execute = async () => {
+    console.log(cartItems);
     try {
+      
         // Prepara los productos para enviar en el formato correcto
         const products = {
             products: {
@@ -19,10 +21,10 @@ export const BotonAgregarProducto = ({productId}) => {
                 [productId]: (cartItems.products[productId] || 0) + 1
             }
         };
-
+        
         // Llama a userService.addCartItems para agregar el producto al carrito
         const updatedCartItems = await userService.addCartItems(token, products);
-
+        console.log(updatedCartItems);
         // Actualiza el estado del carrito con los nuevos items
         setCartItems(updatedCartItems);
 

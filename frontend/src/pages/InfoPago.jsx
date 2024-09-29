@@ -3,7 +3,7 @@ import "../styles/pages/InfoEnvio.css";
 import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import solds from "../services/solds";
-import user from "../services/user";
+import userService from "../services/user";
 
 
 export const InfoPago = () => {
@@ -29,13 +29,14 @@ export const InfoPago = () => {
   const handleBuy = async () => {
 
       // Realiza la compra utilizando los productos del carrito
-      //const response = await solds.addSale(token);
-      //console.log('Response:', response);
+      const response = await solds.addSale(token, cartItems);
+      console.log('Response:', response);
       // Borra el carrito y redirige a la página de resumen de compra
-      //setCartItems(null);
+      const responseGetCart = await userService.getCart(token)
+      setCartItems(responseGetCart);
       // Actualiza las ventas después de la compra
-      //const updatedSales = await solds.getSolds(token);
-      //setSalesUser(updatedSales);
+      const update = await solds.getSolds(token);
+      setSalesUser(update);
 
       navigate("/confirmacion-compra");
   };
