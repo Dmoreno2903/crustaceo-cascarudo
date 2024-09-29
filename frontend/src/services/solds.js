@@ -11,9 +11,9 @@ const getSolds = (token) => {
     return request.then(response => response.data);
   };
 
-  const addSale = (token) => {
+  const addSale = (token, cartItems) => {
     
-    const request = axios.post(`${baseUrl}/sales/`, {
+    const request = axios.post(`${baseUrl}/sales/`, cartItems, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
