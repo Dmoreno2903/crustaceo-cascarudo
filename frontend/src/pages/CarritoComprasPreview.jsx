@@ -1,79 +1,93 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import "../styles/pages/CarritoComprasPreview.css";
-import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
 import { useNavigate } from "react-router-dom";
+import productService from "../services/products";
+import userService from "../services/user"
 
 export const CarritoComprasPreview = () => {
-  const { user, cartItems, updateCartItem, removeCartItem, setCartItems } = useContext(AuthContext);
+  const { user, token, cartItems, updateCartItem, removeCartItem, setCartItems } = useContext(AuthContext);
+  const [products, setProducts] = useState([]);
+
   const navigate = useNavigate();
-
-  // let burguersCart = cartItems["burguers"];
-  // let friesCart = cartItems["fries"];
-  // let drinksCart = cartItems["drinks"];
-
-  const handleIncrement = (productId, category) => {
-    productId = String(productId)
-    let copyCartItems = { ...cartItems }
-    copyCartItems[category][productId]=cartItems[category][productId]+1
-    setCartItems(copyCartItems)
-    
-  };
-
-  const handleDecrement = (productId, category) => {
-    const currentQuantity = cartItems[category][productId] || 1;
-    if (currentQuantity > 1) {
-      productId = String(productId)
-      let copyCartItems = { ...cartItems }
-      copyCartItems[category][productId]=cartItems[category][productId]-1
-      setCartItems(copyCartItems)
-      
-    }
-  };
-
-  const handleRemove = (productId, category) => {
-    let copyCartItems = { ...cartItems }
-    delete copyCartItems[category][productId]
-      setCartItems(copyCartItems)
-  };
-
-  const handleContinue = () => {
-    navigate("/info-envio");
-  };
-
-  const handleBack = () => {
-    navigate("/menu");
-  };
-
-  const calculateCategoryTotal = (items, productList) => {
-    return Object.entries(items).reduce((total, [id, quantity]) => {
-      const product = productList.find((p) => p.id === parseInt(id));
-      if (product) {
-        return total + product.price * quantity;
+  
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productDetails = [];
+      for (const key of Object.keys(cartItems.products)) {
+        try {
+          const product = await productService.getProduct(key);
+          productDetails.push({
+            ...product,
+            quantity: cartItems.products[key],
+            priceTotalProduct: cartItems.products[key]*product.price,
+          });
+        } catch (error) {
+          console.error(`Error fetching product with id ${key}:`, error);
+        }
       }
-      return total;
-    }, 0);
-  };
-
-  const calculateTotal = () => {
-    const totalFries = calculateCategoryTotal(cartItems.fries, FRIES);
-    const totalBurguers = calculateCategoryTotal(cartItems.burguers, BURGUER);
-    const totalDrinks = calculateCategoryTotal(cartItems.drinks, DRINK);
-
-    const total = totalFries + totalBurguers + totalDrinks;
-
-    return {
-      total,
+      setProducts(productDetails);
     };
+
+    fetchProducts();
+  }, [cartItems]);
+
+  
+
+  const handleIncrement = async (productId) => {
+        // Prepara los productos para enviar en el formato correcto
+        const products = {
+            products: {
+                ...cartItems.products,
+                [productId]: (cartItems.products[productId] || 0) + 1
+            }
+        };
+
+        // Llama a userService.addCartItems para agregar el producto al carrito
+        const updatedCartItems = await userService.addCartItems(token, products);
+
+        // Actualiza el estado del carrito con los nuevos items
+        setCartItems(updatedCartItems);
+
+      };
+
+  const handleDecrement = async (productId) => {
+    const currentQuantity = cartItems.products[productId] || 0;
+            if (currentQuantity > 1) {
+                const products = {
+                    products: {
+                        ...cartItems.products,
+                        [productId]: currentQuantity - 1
+                    }
+                };
+
+                const updatedCartItems = await userService.addCartItems(token, products);
+                setCartItems(updatedCartItems);
+                
+            }
   };
 
-  const { total } = calculateTotal();
+  const handleRemove = async (productId) => {
+    const { [productId]: _, ...remainingProducts } = cartItems.products;
+            const products = {
+                products: remainingProducts
+            };
+
+            const updatedCartItems = await userService.addCartItems(token, products);
+            setCartItems(updatedCartItems);
+  };
+
+  // const handleContinue = () => {
+  //   navigate("/info-envio");
+  // };
+
+  // const handleBack = () => {
+  //   navigate("/menu");
+  // };
 
   return (
     <>
-      {Object.keys(cartItems["burguers"]).length === 0 &&
-      Object.keys(cartItems["fries"]).length === 0 &&
-      Object.keys(cartItems["drinks"]).length === 0 ? (
+      {products.length === 0 ? (
         <div className="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
           <div
             className="rounded-circle d-flex justify-content-center align-items-center"
@@ -96,54 +110,55 @@ export const CarritoComprasPreview = () => {
                     Producto
                   </th>
                   <th scope="col">Detalle de compra</th>
-                  <th scope="col">Precio</th>
+                  <th scope="col">Precio por unidad</th>
                   <th scope="col">Cantidad</th>
+                  <th scope="col">Precio total por producto</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 {/* Hamburguesas */}
-                {Object.keys(burguersCart).map((key) => {
-                  const burguer = BURGUER.find((b) => b.id === parseInt(key));
+                {products.map((product) => {
                   return (
-                    <tr key={`burguer-${key}`}>
+                    <tr key={product}>
                       <td
                         style={{ textAlign: "center", verticalAlign: "middle" }}
                       >
                         <img
-                          src={burguer.image}
-                          alt={burguer.name}
+                          src={`http://localhost:8000${product.image}`}
+                          alt={product.name}
                           style={{ width: "80px", height: "80px" }}
                         />
                       </td>
                       <td>
-                        <b>{burguer.name} - </b> {burguer.description}
+                        <b>{product.name} - </b> {product.description}
                       </td>
-                      <td>${burguer.price.toLocaleString("es-CO"
-                    )}</td>
+                      <td>${product.price.toLocaleString("es-CO")}</td>
                       <td style={{ textAlign: "center" }}>
                         <div className="quantity-controls">
                           <button
                             className="btn btn-outline-primary quantity-btn"
-                            onClick={() => handleDecrement(key, "burguers")}
+                            onClick={() => handleDecrement(product.id, "burguers")}
                           >
                             -
                           </button>
                           <span className="quantity-value">
-                            {burguersCart[key]}
+                            {product.quantity}
                           </span>
                           <button
                             className="btn btn-outline-primary quantity-btn"
-                            onClick={() => handleIncrement(key, "burguers")}
+                            onClick={() => handleIncrement(product.id, "burguers")}
                           >
                             <i className="bi bi-plus"></i>
                           </button>
                         </div>
                       </td>
+                      <td style={{ textAlign: "center" }}>${product.priceTotalProduct.toLocaleString("es-CO")}</td>
+                      
                       <td>
                         <button
                           className="delete-btn"
-                          onClick={() => handleRemove(key, "burguers")}
+                          onClick={() => handleRemove(product.id, "burguers")}
                         >
                           <i className="bi bi-x-circle"></i>
                         </button>
@@ -152,128 +167,35 @@ export const CarritoComprasPreview = () => {
                   );
                 })}
 
-                {/* Papas */}
-                {Object.keys(friesCart).map((key) => {
-                  const fries = FRIES.find((f) => f.id === parseInt(key));
-                  return (
-                    <tr key={`fries-${key}`}>
-                      <td
-                        style={{ textAlign: "center", verticalAlign: "middle" }}
-                      >
-                        <img
-                          src={fries.image}
-                          alt={fries.name}
-                          style={{ width: "80px", height: "80px" }}
-                        />
-                      </td>
-                      <td>
-                        <b>{fries.name} - </b> {fries.description}
-                      </td>
-                      <td>${fries.price.toLocaleString("es-CO"
-                    )}</td>
-                      <td>
-                        <div className="quantity-controls">
-                          <button
-                            className="btn btn-outline-primary quantity-btn"
-                            onClick={() => handleDecrement(key, "fries")}
-                          >
-                            -
-                          </button>
-                          <span className="quantity-value">
-                            {friesCart[key]}
-                          </span>
-                          <button
-                            className="btn btn-outline-primary quantity-btn"
-                            onClick={() => handleIncrement(key, "fries")}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleRemove(key, "fries")}
-                        >
-                          <i className="bi bi-x-circle"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-
-                {/* Bebidas */}
-                {Object.keys(drinksCart).map((key) => {
-                  const drink = DRINK.find((d) => d.id === parseInt(key));
-                  return (
-                    <tr key={`drink-${key}`}>
-                      <td
-                        style={{ textAlign: "center", verticalAlign: "middle" }}
-                      >
-                        <img
-                          src={drink.image}
-                          alt={drink.name}
-                          style={{ width: "80px", height: "80px" }}
-                        />
-                      </td>
-                      <td>
-                        <b>{drink.name} - </b>
-                        {drink.description}
-                      </td>
-                      <td>${drink.price.toLocaleString("es-CO"
-                    )}</td>
-                      <td>
-                        <div className="quantity-controls">
-                          <button
-                            className="btn btn-outline-primary quantity-btn"
-                            onClick={() => handleDecrement(key, "drinks")}
-                          >
-                            -
-                          </button>
-                          <span className="quantity-value">
-                            {drinksCart[key]}
-                          </span>
-                          <button
-                            className="btn btn-outline-primary quantity-btn"
-                            onClick={() => handleIncrement(key, "drinks")}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleRemove(key, "drinks")}
-                        >
-                          <i className="bi bi-x-circle"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan="2" style={{ textAlign: "right" }}>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style={{ textAlign: "right" }}>
                     <b>Total: </b>
                   </td>
                   <td style={{ textAlign: "center" }}>$
-                    {total.toLocaleString("es-CO"
-                    )}
-
+                    {cartItems.total}
                   </td>
-                  <td colSpan="2"></td>
+                  <td></td>
+                  
                 </tr>
               </tfoot>
             </table>
           </div>
 
           <div className="btn-container">
-            <button className="back-btn" onClick={handleBack}>
+            <button className="back-btn" 
+            // onClick={handleBack}
+            >
               Volver al menú
             </button>
-            <button className="btn continue-btn" onClick={handleContinue}>
+            <button className="btn continue-btn" 
+            // onClick={handleContinue}
+            >
               Continuar
             </button>
           </div>
