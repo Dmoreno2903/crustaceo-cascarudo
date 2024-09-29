@@ -1,145 +1,109 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContextProvider";
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
-export const OrderList = () => {
-  const { compras, purchases } = useContext(AuthContext);
-  const [ratings, setRatings] = useState([...compras]);
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
 
-  const handleRatingChange = (e, index) => {
-    const newRating = e.target.value;
-    const updatedRatings = ratings.map((order, i) =>
-      i === index ? { ...order, rating: newRating } : order
-    );
-    setRatings(updatedRatings);
-  };
+  return (
+    <div style={styles.modalOverlay}>
+      <div style={styles.modalContent}>
+        <button style={styles.closeButton} onClick={onClose}>X</button>
+        {children}
+      </div>
+    </div>
+  );
+};
 
-  const handleCommentChange = (e, index) => {
-    const comment = e.target.value;
-    const words = comment.trim().split(/\s+/);
+const RatingModal = ({ isOpen, onClose, children}) => {
+  if (!isOpen) return null;
 
-    if (words.length <= 3) {
-      const updatedRatings = ratings.map((order, i) =>
-        i === index ? { ...order, comment } : order
-      );
-      setRatings(updatedRatings);
-    }
-  };
+  return (
+    <div style={styles.modalOverlay}>
+      <div style={styles.modalContent}>
+        <button style={styles.closeButton} onClick={onClose}>X</button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const OrderList = () => {
+  const { token, salesUser } = useContext(AuthContext);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [purchaseDetails, setPurchaseDetails] = useState([]);
+  const [isRatingModalOpen, setRatingModalOpen] = useState(false);
+  const [ratingDetails, setRatingDetails] = useState([]);
 
   const handleSave = () => {
     toast.success('Información guardada');
-    
-  };
-  const [selectedValues, setSelectedValues] = useState({});
-  const [comments, setComments] = useState({});
-
-  const handleChange = (productId, event) => {
-    setSelectedValues({
-      ...selectedValues,
-      [productId]: event.target.value,
-    });
   };
 
-  const handleCommentChange1 = (productId, event) => {
-    setComments({
-      ...comments,
-      [productId]: event.target.value,
-    });
+  const openModal = async (purchase) => {
+    setModalOpen(true);
+
+    // Fetch purchase details from API
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/accounting/sales/?id=${purchase.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setPurchaseDetails(response.data);
+    } catch (error) {
+      toast.error('Error al obtener detalles de la compra');
+    }
   };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setPurchaseDetails([]);
+  };
+
+  const OpenRatingModal = async (purchase) => {
+    setRatingModalOpen(true);
+
+    // Fetch purchase details from API
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/accounting/sales/?id=${purchase.id}&rating=true`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setRatingDetails(response.data);
+    } catch (error) {
+      toast.error('Error al obtener detalles de la compra');
+    }
+  };
+
+  const CloseRatingModal = () => {
+    setRatingModalOpen(false);
+    setRatingDetails([]);
+  }
 
   return (
     <div style={styles.listContainer}>
       <h3>Historial de compras</h3>
       <br />
-      {purchases.length > 0 
-      ? (
-        purchases.map((purchase, index) => (
-          <div key={index} style={styles.orderCard}>
+      {salesUser.length > 0 ? (
+        salesUser.map((purchase) => (
+          <div key={purchase.id} style={styles.orderCard}>
             <div style={styles.orderInfo}>
               <div style={styles.orderField}>
-                <strong>Fecha:</strong> {purchase.date}
+                <strong>ID:</strong> {purchase.id}
               </div>
               <div style={styles.orderField}>
-                <strong>Método de Pago:</strong> {purchase.paymentMethod}
+                <strong>Precio:</strong> ${purchase.price.toFixed(2)}
               </div>
               <div style={styles.orderField}>
-                <strong>Productos:</strong>
-                <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: '0 15px' }}>
-                  <thead>
-                    <tr>
-                      <th style={{ padding: '10px 15px' }}>Nombre del producto</th>
-                      <th style={{ padding: '10px 15px' }}>Cantidad</th>
-                      <th style={{ padding: '10px 15px' }}>Precio individual</th>
-                      <th style={{ padding: '10px 15px' }}>Precio total</th>
-                      <th style={{ padding: '10px 15px' }}>Calificación</th>
-                      <th style={{ padding: '10px 15px' }}>Comentario</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {purchase.productList.map(product => (
-                      <tr key={product.id}>
-                        <td style={{ padding: '10px 15px' }}>{product.name}</td>
-                        <td style={{ padding: '10px 15px' }}>{product.quantity}</td>
-                        <td style={{ padding: '10px 15px' }}>{product.price}</td>
-                        <td style={{ padding: '10px 15px' }}>{product.price*product.quantity}</td>
-
-                        <td style={{ padding: '10px 15px' }}>
-                          <select
-                            value={selectedValues[product.id] || 1}
-                            onChange={(event) => handleChange(product.id, event)}
-                          >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </td>
-                        <td style={{ padding: '10px 15px' }}>
-                          <input
-                            type="text"
-                            value={comments[product.id]}
-                            onChange={(event) => handleCommentChange1(product.id, event)}
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div style={styles.orderField}>
-                  <strong>Total:</strong> {purchase.total}
-                </div>
+                <strong>Fecha:</strong> {new Date(purchase.created_at).toLocaleString()}
               </div>
-              {/* <div style={styles.orderField}>
-                <strong>Calificación:</strong>
-                <select
-                  value={purchase.rating || ''}
-                  onChange={(e) => handleRatingChange(e, index)}
-                >
-                  <option value="" disabled>
-                    Selecciona una calificación
-                  </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div> */}
-              {/* <div style={styles.orderField}>
-                <strong>Comentario:</strong>
-                <input
-                  type="text"
-                  value={purchase.comment || ''}
-                  onChange={(e) => handleCommentChange(e, index)}
-                  maxLength={20} // Limitar a 20 caracteres para asegurar 3 palabras máximo
-                  placeholder="Máximo 3 palabras"
-                  style={styles.commentInput}
-                />
-              </div>
-               */}
-              <button style={styles.saveButton} onClick={handleSave}>
-                Guardar calificacion y comentario
+              <button onClick={() => openModal(purchase)} style={styles.detailButton}>
+                Ver detalles
+              </button>
+              <button onClick={() => OpenRatingModal(purchase)} style={styles.detailButton}>
+                Calificar
               </button>
             </div>
           </div>
@@ -147,6 +111,77 @@ export const OrderList = () => {
       ) : (
         <p>No se han realizado compras.</p>
       )}
+
+      <Modal isOpen={isRatingModalOpen} onClose={CloseRatingModal}>
+        <div>
+          <h4>Calificación y comentario</h4>
+          <h5>Calificación:</h5>
+          <table style={styles.table}>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Calificación</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ratingDetails.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.product_name}</td>
+                  <td>
+                    <select
+                      value={item.rating || 1} // Default to 1 if no rating is set
+                      onChange={(e) => {
+                        const newRating = e.target.value;
+                        // Update the rating in your state or context
+                        const updatedRatings = ratingDetails.map((detail, i) =>
+                          i === index ? { ...detail, rating: newRating } : detail
+                        );
+                        setRatingDetails(updatedRatings); // Make sure you have this state
+                      }}
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button onClick={ CloseRatingModal } style={styles.detailButton}>
+                Calificar
+            </button>
+        </div>
+      </Modal>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        {(
+          <div>
+            <h4>Detalles de la venta</h4>
+            <h5>Productos:</h5>
+            <table style={styles.table}>
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                </tr>
+              </thead>
+              <tbody>
+                {purchaseDetails.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.product_name}</td>
+                    <td>${item.price.toFixed(2)}</td>
+                    <td>{item.quantity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
@@ -177,9 +212,6 @@ const styles = {
   orderField: {
     marginBottom: '5px',
   },
-  commentInput: {
-    width: '100%',
-  },
   saveButton: {
     marginTop: '10px',
     padding: '10px 15px',
@@ -190,7 +222,46 @@ const styles = {
     cursor: 'pointer',
     alignSelf: 'center', // Centra el botón
   },
-  
+  detailButton: {
+    marginTop: '10px',
+    padding: '5px 10px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+  modalOverlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    padding: '20px',
+    width: '500px',
+    position: 'relative',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+  },
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '10px',
+  },
 };
 
 export default OrderList;

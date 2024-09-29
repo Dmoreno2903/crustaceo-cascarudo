@@ -5,15 +5,14 @@ export const UserCardEdit = () => {
   const { user, setUser } = useContext(AuthContext); 
   const [isEditing, setIsEditing] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    name: user.name,
-    username: user.username,
+    first_name: user.first_name,
     email: user.email,
-    age: user.age,
-    city: user.city,
-    country: user.country,
-    occupation: user.occupation,
+    last_name: user.last_name,
     phone: user.phone,
-    profilePicture: user.profilePicture,
+    birthdate: user.birthdate,
+    address: user.address,
+    image: user.image,
+    username: user.username
   });
 
   const handleChange = (e) => {
@@ -42,30 +41,30 @@ export const UserCardEdit = () => {
     <>
     <div style={styles.card}>
       <div style={styles.profileSection}>
-        <img src={userInfo.profilePicture} alt={`${userInfo.name}'s profile`} style={styles.profilePicture} />
+        <img src={`http://127.0.0.1:8000${userInfo.image}`} alt={`${userInfo.name}'s profile`} style={styles.profilePicture} />
       </div>
       <div style={styles.info}>
         <form style={styles.form}>
           <div style={styles.formColumn}>
             <div style={styles.formGroup}>
-              <label htmlFor="name"><strong>Nombre:</strong></label>
+              <label htmlFor="first_name"><strong>Nombre:</strong></label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={userInfo.name}
+                id="first_name"
+                name="first_name"
+                value={userInfo.first_name}
                 onChange={handleChange}
                 style={styles.input}
                 disabled={!isEditing}
               />
             </div>
             <div style={styles.formGroup}>
-              <label htmlFor="username"><strong>Usuario:</strong></label>
+              <label htmlFor="last_name"><strong>Apellido:</strong></label>
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={userInfo.username}
+                id="last_name"
+                name="last_name"
+                value={userInfo.last_name}
                 onChange={handleChange}
                 style={styles.input}
                 disabled={!isEditing}
@@ -84,12 +83,12 @@ export const UserCardEdit = () => {
               />
             </div>
             <div style={styles.formGroup}>
-              <label htmlFor="age"><strong>Edad:</strong></label>
+              <label htmlFor="username"><strong>Usuario:</strong></label>
               <input
-                type="number"
-                id="age"
-                name="age"
-                value={userInfo.age}
+                type="text"
+                id="username"
+                name="username"
+                value={userInfo.username}
                 onChange={handleChange}
                 style={styles.input}
                 disabled={!isEditing}
@@ -98,48 +97,24 @@ export const UserCardEdit = () => {
           </div>
           <div style={styles.formColumn}>
             <div style={styles.formGroup}>
-              <label htmlFor="city"><strong>Ciudad:</strong></label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={userInfo.city}
-                onChange={handleChange}
-                style={styles.input}
-                disabled={!isEditing}
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label htmlFor="country"><strong>País:</strong></label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value={userInfo.country}
-                onChange={handleChange}
-                style={styles.input}
-                disabled={!isEditing}
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label htmlFor="occupation"><strong>Ocupación:</strong></label>
-              <input
-                type="text"
-                id="occupation"
-                name="occupation"
-                value={userInfo.occupation}
-                onChange={handleChange}
-                style={styles.input}
-                disabled={!isEditing}
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label htmlFor="phone"><strong>Teléfono:</strong></label>
+              <label htmlFor="phone"><strong>Telefono:</strong></label>
               <input
                 type="text"
                 id="phone"
                 name="phone"
                 value={userInfo.phone}
+                onChange={handleChange}
+                style={styles.input}
+                disabled={!isEditing}
+              />
+            </div>
+            <div style={styles.formGroup}>
+              <label htmlFor="address"><strong>Dirección:</strong></label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={userInfo.address}
                 onChange={handleChange}
                 style={styles.input}
                 disabled={!isEditing}

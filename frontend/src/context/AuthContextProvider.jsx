@@ -1,9 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { BURGUER, FRIES, DRINK } from "../dataMomentanea/productos";
-import { COMPRAS } from "../dataMomentanea/compras";
 import { CLIENT, ADMINISTRATOR } from "../dataMomentanea/users"; // base de datos estatica, luego hay que cambiarlo
 import products from "../services/products";
 import userService from "../services/user";
+import sales from "../services/solds";
 
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
   const [drinks, setDrinks] = useState(null);
   const [compras, setCompras] = useState();
 
-  
+  const [salesUser, setSalesUser] = useState([])
   const [purchases, setPurchases] = useState([])
 
   const [menuToShow, setMenuToShow] = useState([]);
@@ -72,6 +72,22 @@ export const AuthContextProvider = ({ children }) => {
       fetchCartItems();
     }
   }, [token])
+  useEffect(() => {
+    if (token) {
+
+      const fetchSales = async () => {
+        try {
+          const salesData = await sales.getSolds(token);
+          console.log("Sales Data:", salesData);
+          setSalesUser(salesData)
+        } catch (error) {
+          console.error("Error fetching sales data:", error);
+        }
+      };
+
+      fetchSales();
+    }
+  }, [token]);
 
   //recupera los productos del backend
   useEffect(() => {
@@ -207,22 +223,7 @@ export const AuthContextProvider = ({ children }) => {
     })
   }
 
-  // Filtrar las compras realizadas por el usuario activo
-  useEffect(() => {
-    if (user) {
-      const userCompras = COMPRAS.filter(
-        (compra) => compra.username === user.username
-      ).map((compra) => ({
-        date: compra.date,
-        total: compra.total,
-        paymentMethod: compra.paymentMethod,
-        productNames: compra.productList.map((product) => product.name),
-      }));
-      setCompras(userCompras);
-    }
-  }, [user]);
 
-  
   const contextData = {
     token,
     setToken,
@@ -245,7 +246,7 @@ export const AuthContextProvider = ({ children }) => {
     removeCartItem,
     CLIENT,
     USERS,
-    compras,
+    salesUser,
     purchases,
     redirectToast,
     playAudio

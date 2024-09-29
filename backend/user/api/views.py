@@ -14,7 +14,10 @@ from user.api import serializers
 class RegisterView(viewsets.ModelViewSet):
     """ Register View """
     serializer_class = serializers.UserRegisterSerializer
+    queryset = User.objects.all()
     parser_classes = [JSONParser]
+    authentication_classes = []
+    permission_classes = []
 
     # Al ser una vista para la creación de un usuario, se quitan
     # los permisos de autenticación
@@ -28,7 +31,9 @@ class RegisterView(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    def list(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class UserProfile(viewsets.ModelViewSet):
     serializer_class = serializers.UserSerializer

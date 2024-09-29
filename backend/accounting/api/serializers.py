@@ -3,13 +3,21 @@ from django.db import transaction  # Para manejar transacciones de base de datos
 from accounting import models as accounting_models
 from product import models as product_models
 from user import models as user_models
+from configuration import common
 
 class SaleDetailSerializer(serializers.ModelSerializer):
     """ Serializador para los productos vendidos """
+    product_name = serializers.SerializerMethodField()
 
     class Meta:
         model = accounting_models.ProductSold
-        fields = ['product', 'price', 'quantity']
+        fields = ['product_name', 'price', 'quantity']
+
+    def get_product_name(self, obj):
+        """ Obtiene el nombre del producto """
+        model = product_models.PARSER[obj.product[:3]]
+        product = model.objects.filter(id=obj.product).first()
+        return product.name if product else 'Producto no encontrado'
     
 
 class SaleSerializer(serializers.ModelSerializer):
@@ -63,6 +71,8 @@ class SaleSerializer(serializers.ModelSerializer):
                 sale.delete()
                 raise serializers.ValidationError(str(error))
 
+            # Envía un correo de confirmación
+            self._send_confirmation_email(sale)
             return sale
 
     def _create_sale(self, user):
@@ -107,3 +117,10 @@ class SaleSerializer(serializers.ModelSerializer):
         """Limpia el carrito después de la venta"""
         cart.products = {}
         cart.save()
+
+    def _send_confirmation_email(self, sale):
+        """Envía un correo de confirmación de la venta"""
+        email = common.Email(to=sale.user.email)
+        email.set_subject('Venta realizada con éxito')
+        email.set_body(f'Se ha realizado una venta por un total de ${sale.price}.')
+        email.send()

@@ -14,7 +14,7 @@ class UserAdmin(BaseUserAdmin):
 
     fieldsets = (
         ("General information", {
-            'fields': ('username', 'email', 'first_name', 'last_name', 'phone', 'address', 'birthdate', 'type')
+            'fields': ('username', 'email', 'first_name', 'last_name', 'phone', 'address', 'birthdate', 'type', 'image')
         }),
         ('Advanced information', {
             'fields': ('is_active', 'date_joined', 'last_login', 'is_staff', 'is_superuser')
